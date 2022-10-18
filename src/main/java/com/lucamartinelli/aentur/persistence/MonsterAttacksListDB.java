@@ -1,0 +1,66 @@
+package com.lucamartinelli.aentur.persistence;
+
+import com.lucamartinelli.aentur.vo.AttackDTO;
+
+public class MonsterAttacksListDB {
+	
+	
+	public static final AttackDTO[] ATTACKS = new AttackDTO[] {
+			new AttackDTO(0, "Morso", "Denti aguzzi cercano di affondare nella tua carne, <br/><i>tira un D12, schiva al 6+</i>", 
+					1, new String[] {"fisico"}),
+			new AttackDTO(1, "Graffio", "Artigli affilati come rasoi potrebbero tagliare anche l'acciaio, <br/><i>tira un D8, schiva al 4+</i>", 
+					1, new String[] {"fisico"}),
+			new AttackDTO(2, "Grido", "Un grido o ululato frastornante in grado di rompere i timpani, <br/><i>tira un D6, proteggi le orecchie al 3+</i>", 
+					1, new String[] {"suono"}),
+			new AttackDTO(3, "Forte Morso", "Denti aguzzi e taglinti in un morso che potrebbe frantumare sassi, <br/><i>Tira un D12, schiva al 7+</i>",
+					2, new String[] {"fisico"}),
+			new AttackDTO(4, "Colpo", "Un colpo con una zampa o un bastone o qualcosa di simile, <br/><i>tira un D10, respingi il colpo al 4+</i>", 
+					1, new String[] {"fisico"}),
+			new AttackDTO(5, "Taglio", "Un taglio con una lama o un artiglio affilato, <br/><i>Tira un D6, schivi il taglio al 3+</i>",
+					1, new String[] {"fisico"}),
+			new AttackDTO(6, "Soffio ghiacciato", "Il mostro soffia un vento gelido, <br/><i>Tira un D6, il tuo calore non viene intaccato al 3+</i>", 
+					1, new String[] {"elementale"}),
+			new AttackDTO(7, "Scintilla", "Il mostro genera una piccola scossa elettrica, <br/><i>Tira un D12, la scarichi a terra senza danni al 6+</i>", 
+					1, new String[] {"elementale"}),
+			new AttackDTO(8, "Aria bollente", "Dalle narici del mostro esce un vento caldo, troppo caldo, <br/><i>Tira un D8, riesci a ripararti al 4+</i>",
+					1, new String[] {"elementale"}),
+			new AttackDTO(9, "Onda gelata", "Il mostro ti lancia un incantessimo, e' un'onda gelida magica, <br/><i>Tira un D10, schivi la magia al 4+</i>", 
+					1, new String[] {"magia"}),
+			new AttackDTO(10, "Onda elettrica", "Il mostro ti lancia un incantessimo, e' un'onda elettrica magica, <br/><i>Tira un D10, schivi la magia al 4+</i>", 
+					1, new String[] {"magia"}),
+			new AttackDTO(11, "Onda calda", "Il mostro ti lancia un incantessimo, e' un'onda rovente magica, <br/><i>Tira un D10, schivi la magia al 4+</i>",
+					1, new String[] {"magia"}),
+			new AttackDTO(12, "Sassata", "Il mostro lancia delle pietre appuntite contro di te,<br/><i>Tira un D6, Schivi le pietre al 3+</i>", 
+					1, new String[] {"elementale"}),
+			new AttackDTO(13, "Lapidazione", "Enormi pezzi di roccia appuntita ti vengono scagliate contro,<br/><i>Tira un D6, Schivi le pietre al 4+</i>", 
+					2, new String[] {"elementale"}),
+			new AttackDTO(14, "Avvinghiamento", "Un attacco che stritola con ragnatele, corde o persino con il proprio corpo,<br/><i>Tira un D8, riesci a ripararti al 4+</i>", 
+					1, new String[] {"fisico"}),
+			new AttackDTO(15, "Sputo acido", "Un veleno minore ti viene schizzato addosso,<br/><i>Tira un D4, riesci ad evitare lo spruzzo al 2+</i>", 
+					1, new String[] {"elementale"}),
+			new AttackDTO(16, "Sputo acido corrosivo", "Un potente veleno ti viene schizzato addosso,<br/><i>Tira un D4, riesci ad evitare lo spruzzo al 3+</i>", 
+					2, new String[] {"elementale"}),
+			new AttackDTO(17, "Onda magica", "Un'onda di magia nera viene generata dal nemico ed e' pronta a investirti, Il mostro ti lancia un incantessimo, e' un'onda gelida magica, <br/><i>Tira un D10, respingi la magia al 6+</i>", 
+					3, new String[] {"magia"}),
+			new AttackDTO(18, "Perforazione", "Una puntura perforante fatta con una lama o un pungiglione, <br/><i>Tira un D6, schivi il taglio al 4+</i>", 
+					2, new String[] {"fisico"}),
+			new AttackDTO(19, "Palla di fuoco", "Una magia incendiaria di alto livello viene lanciata contro di te, <br/><i>Tira un D10, schivi la sfera al 5+</i>", 
+					2, new String[] {"elementale"}),
+			new AttackDTO(20, "Scheggia di ghiaccio", "Un pezzo di ghiaccio appuntito viene creato e poi lanciato con forza contro di te,<br/><i>Tira un D10, schivi il pezzo di ghiaccio al 4+</i>", 
+					2, new String[] {"elementale"}),
+			new AttackDTO(21, "Forte impatto", "Un colpo di una mazza, clava, zampa o qualcosa di simile, <br/><i>Tira un D12, schiva al 7+</i>", 
+					2, new String[] {"fisico"}),
+			new AttackDTO(22, "Palla oscura", "Una sfera di energia magica nera si materializza, sembra esplosiva,<br/><i>Tira un D8, riesci a ripararti al 5+</i>", 
+					2, new String[] {"magia"}),
+			new AttackDTO(23, "Stridio", "Un fortissimo suono acuto viene espanso per la zona, le frequesze sono pericolose e romperebbero persino i vetri,<br/><i>tira un D6, proteggi le orecchie al 4+</i>", 
+					2, new String[] {"suono"}),
+			new AttackDTO(24, "Fendente", "Un colpo con un'arma contundente molto affilata,<br/><i>Tira un D4, pari al 3+</i>", 
+					3, new String[] {"fisico"}),
+			new AttackDTO(25, "name", "effect", 1, new String[] {}),
+			new AttackDTO(26, "name", "effect", 1, new String[] {}),
+			new AttackDTO(27, "name", "effect", 1, new String[] {}),
+			new AttackDTO(28, "name", "effect", 1, new String[] {}),
+			new AttackDTO(29, "name", "effect", 1, new String[] {})
+	};
+	
+}

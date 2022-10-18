@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'io.quarkus'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation 'io.quarkus:quarkus-jsonp'
+    implementation 'io.quarkus:quarkus-resteasy-jsonb'
+    implementation 'io.quarkus:quarkus-jsonb'
+    implementation 'io.quarkus:quarkus-arc'
+    implementation 'io.quarkus:quarkus-undertow'
+    
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+
+    testImplementation 'io.quarkus:quarkus-junit5'
+}
+
+group 'com.lucamartinelli.app'
+version '1.0.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
