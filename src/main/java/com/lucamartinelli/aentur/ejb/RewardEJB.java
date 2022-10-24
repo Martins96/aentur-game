@@ -20,17 +20,17 @@ public class RewardEJB {
 	@Inject
 	PlayerInventoryDB playerInv;
 	
-	private static final Random random = new Random();
-	private static final RewardBlueprintDTO rewardBPLvl1 = new RewardBlueprintDTO(2, 3, 1, 2);
-	private static final RewardBlueprintDTO rewardBPLvlSup = new RewardBlueprintDTO(3, 5, 2, 7);
-	private static final RewardBlueprintDTO rewardBPBoss = new RewardBlueprintDTO(8, 8, 5, 9);
-	private static final List<ItemDTO> itemsLvl1 = Arrays.stream(ItemsListDB.ITEMS)
+	private final Random random = new Random();
+	private final RewardBlueprintDTO rewardBPLvl1 = new RewardBlueprintDTO(2, 3, 1, 2);
+	private final RewardBlueprintDTO rewardBPLvlSup = new RewardBlueprintDTO(3, 5, 2, 7);
+	private final RewardBlueprintDTO rewardBPBoss = new RewardBlueprintDTO(8, 8, 5, 9);
+	private final List<ItemDTO> itemsLvl1 = Arrays.stream(ItemsListDB.ITEMS)
 			.filter(i -> i.getRarity() >= rewardBPLvl1.getMinLvlItem() && i.getRarity() <= rewardBPLvl1.getMaxBonusGold())
 			.collect(Collectors.toList());
-	private static final List<ItemDTO> itemsLvlSup = Arrays.stream(ItemsListDB.ITEMS)
+	private final List<ItemDTO> itemsLvlSup = Arrays.stream(ItemsListDB.ITEMS)
 			.filter(i -> i.getRarity() >= rewardBPLvlSup.getMinLvlItem() && i.getRarity() <= rewardBPLvlSup.getMaxBonusGold())
 			.collect(Collectors.toList());
-	private static final List<ItemDTO> itemsBoss = Arrays.stream(ItemsListDB.ITEMS)
+	private final List<ItemDTO> itemsBoss = Arrays.stream(ItemsListDB.ITEMS)
 			.filter(i -> i.getRarity() >= rewardBPBoss.getMinLvlItem() && i.getRarity() <= rewardBPBoss.getMaxBonusGold())
 			.collect(Collectors.toList());
 	

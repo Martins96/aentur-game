@@ -24,6 +24,10 @@ public class Locations {
 	private int[] frozenmountainsMonsterLVSup = new int[] {1,25,26,27,28,29,30,31,32,33,34};
 	private int[] flamevolcanoMonsterLV1 = new int[] {0,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24};
 	private int[] flamevolcanoMonsterLVSup = new int[] {26,27,28,29,30,31,32,33,34};
+	private int[] crimsoncaveMonsterLV1 = new int[] {0,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24};
+	private int[] crimsoncaveMonsterLVSup = new int[] {1,26,27,28,29,30,31,32,33,34};
+	private int[] hottendesertMonsterLV1 = new int[] {0,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24};
+	private int[] hottendesertMonsterLVSup = new int[] {26,27,28,29,30,31,32,33,34};
 	
 
 	
@@ -162,6 +166,66 @@ public class Locations {
 	public int getFlamevolcanoRandomLvlSup() {
 		final int randID = random.nextInt(this.flamevolcanoMonsterLVSup.length);
 		return this.flamevolcanoMonsterLVSup[randID];
+	}
+	
+	@GET
+	@Path("/crimsoncave/list/lvl1")
+	@Produces(MediaType.APPLICATION_JSON)
+	public int[] getCrimsoncaveMonsterLvl1() {
+		return this.crimsoncaveMonsterLV1;
+	}
+	
+	@GET
+	@Path("/crimsoncave/list/lvlsup")
+	@Produces(MediaType.APPLICATION_JSON)
+	public int[] getCrimsoncaveMonsterLvlSup() {
+		return this.crimsoncaveMonsterLVSup;
+	}
+	
+	@GET
+	@Path("/crimsoncave/random/lvl1")
+	@Produces(MediaType.APPLICATION_JSON)
+	public int getCrimsoncaveRandomLvl1() {
+		final int randID = random.nextInt(this.crimsoncaveMonsterLV1.length);
+		return this.crimsoncaveMonsterLV1[randID];
+	}
+	
+	@GET
+	@Path("/crimsoncave/random/lvlsup")
+	@Produces(MediaType.APPLICATION_JSON)
+	public int getCrimsoncaveRandomLvlSup() {
+		final int randID = random.nextInt(this.crimsoncaveMonsterLVSup.length);
+		return this.crimsoncaveMonsterLVSup[randID];
+	}
+	
+	@GET
+	@Path("/hottendesert/list/lvl1")
+	@Produces(MediaType.APPLICATION_JSON)
+	public int[] getHottendesertMonsterLvl1() {
+		return this.hottendesertMonsterLV1;
+	}
+	
+	@GET
+	@Path("/hottendesert/list/lvlsup")
+	@Produces(MediaType.APPLICATION_JSON)
+	public int[] getHottendesertMonsterLvlSup() {
+		return this.hottendesertMonsterLVSup;
+	}
+	
+	@GET
+	@Path("/hottendesert/random/lvl1")
+	@Produces(MediaType.APPLICATION_JSON)
+	public int getHottendesertRandomLvl1() {
+		final int randID = random.nextInt(this.hottendesertMonsterLV1.length);
+		return this.hottendesertMonsterLV1[randID];
+	}
+	
+	@GET
+	@Path("/hottendesert/random/lvlsup")
+	@Produces(MediaType.APPLICATION_JSON)
+	public int getHottendesertRandomLvlSup() {
+		final int randID = random.nextInt(this.hottendesertMonsterLVSup.length);
+		return this.hottendesertMonsterLVSup[randID];
 	}
 	
 	

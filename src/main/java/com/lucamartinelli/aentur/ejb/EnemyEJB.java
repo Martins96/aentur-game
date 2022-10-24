@@ -17,7 +17,7 @@ import com.lucamartinelli.aentur.vo.MonsterDTO;
 @ApplicationScoped
 public class EnemyEJB {
 	
-	final Random random = new Random();
+	private final Random random = new Random();
 	
 	@Inject
 	Logger log;

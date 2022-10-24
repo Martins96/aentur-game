@@ -65,7 +65,32 @@ public final class BossListDB {
 					+ "occasionalmente fare squadra, qualsiasi alleanza normalmente si rompe dopo che e' trascorso un "
 					+ "po' di tempo a causa della loro naturale competitivita'.",
 					new int[] {1,2,3,9,11,13}),
-			"", new BossDTO()	
+			"crimsoncave", new BossDTO(4, "crimsoncave", "Vampiro Lord",
+					"I vampiri sono esseri senzienti che hanno scambiato la loro anima per poteri magici: sono "
+					+ "sostenuti dalla magia del sangue. Sono senz'anima e quindi considerati esseri morti "
+					+ "sebbene siano ancora senzienti, con la magia del sangue che colpisce tutti i loro modi "
+					+ "di vita, inclusa la loro dieta e biologia. Dal momento che mancano di anima, l'unico modo "
+					+ "in cui possono sostenere la loro esistenza e' rubare la forza vitale di altri esseri "
+					+ "viventi.<br/>"
+					+ "I vampiri sceglievano spesso di nascondere il loro aspetto usando incantesimi di "
+					+ "illusione che li renderebbero tutti diversi nell'aspetto con l'eccezione della pelle "
+					+ "pallida e del colore degli occhi.<br/>"
+					+ "Sia le unghie delle mani che quelle dei piedi si ispessiscono e crescono a una velocita' "
+					+ "dieci volte superiore a quella normale. I vampiri generalmente mantengono le unghie "
+					+ "entro un centimetro di lunghezza e anche abbastanza affilate o appuntite per aiutarli "
+					+ "ad afferrare le vittime e ferire gli avversari.",
+					new int[] {5,9,10,13,14,15}),	
+			"hottendesert", new BossDTO(5, "hottendesert", "Verme di sabbia gigante",
+					"Il verme adulto e' composto da 100-400 segmenti. Ogni segmento possiede il proprio sistema nervoso "
+					+ "primitivo. La respirazione avviene attraverso i pori della dura pelle esterna grigio-argento.<br/>"
+					+ "Non esiste un sistema circolatorio in quanto tale, poiche' la maggior parte dei nutrienti sono "
+					+ "sotto forma di gas. Ogni segmento ha una serie di <i>deflettori</i> di membrana per assorbire i "
+					+ "nutrienti. Di conseguenza, il verme della sabbia e' estremamente difficile da sconfiggere.<br/>"
+					+ "Le creature sono straordinariamente brave a nascondersi tra le sabbie e le rocce del loro "
+					+ "terreno preferito e diabolicamente efficienti nel selezionare nemici che possono facilmente "
+					+ "sconfiggere.",
+					new int[] {0,2,7,9,11}),
+			"", new BossDTO()
 			);
 	
 	

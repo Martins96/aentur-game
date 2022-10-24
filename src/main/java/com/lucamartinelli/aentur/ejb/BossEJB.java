@@ -24,7 +24,7 @@ public class BossEJB {
 	@Inject
 	AdventureStatsDB adventureDB;
 	
-	private static final Random random = new Random();
+	private final Random random = new Random();
 
 	public BossActionResultVO selectAndExecuteAction(int rollD20) {
 		final BossDTO currentBoss = BossListDB.getById(adventureDB.getCurrentBossId());
@@ -71,6 +71,10 @@ public class BossEJB {
 			return "fm";
 		case "flamevolcano":
 			return "fv";
+		case "crimsoncave":
+			return "cc";
+		case "hottendesert":
+			return "hd";
 			
 		default:
 			return null;

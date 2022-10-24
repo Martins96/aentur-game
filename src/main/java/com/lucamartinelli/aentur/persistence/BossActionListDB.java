@@ -7,8 +7,10 @@ import com.lucamartinelli.aentur.boss.DardoMagicoAction;
 import com.lucamartinelli.aentur.boss.FendenteAction;
 import com.lucamartinelli.aentur.boss.FrustataAction;
 import com.lucamartinelli.aentur.boss.LancioAction;
+import com.lucamartinelli.aentur.boss.MagiaNeraAction;
 import com.lucamartinelli.aentur.boss.MazzataAction;
 import com.lucamartinelli.aentur.boss.MorsoVelenosoAction;
+import com.lucamartinelli.aentur.boss.OndataPipistrelliAction;
 import com.lucamartinelli.aentur.boss.RaggioGelidoAction;
 import com.lucamartinelli.aentur.boss.RuggitoPossenteAction;
 import com.lucamartinelli.aentur.boss.SguardoLaserAction;
@@ -69,6 +71,12 @@ public class BossActionListDB {
 					null, null),
 			new BossActionResultVO(13, "Fendente", 
 					"Il nemico sguaina la sua lama affilata come un rasoio e lancia un fendente contro di te", 
+					null, null),
+			new BossActionResultVO(14, "Ondata di Pipistrelli", 
+					"Dalle spalle del mostro si sollevano centinaia di pipistrelli che partono all'attacco", 
+					null, null),
+			new BossActionResultVO(15, "Magia nera", 
+					"Il mostro carica una sfera di magia oscura altamente energetica ed esplosiva", 
 					null, null)
 	};
 	
@@ -86,7 +94,9 @@ public class BossActionListDB {
 		new BossActionDTO(10, "Zampata", new ZampataAction()),
 		new BossActionDTO(11, "RuggitoPossente", new RuggitoPossenteAction()),
 		new BossActionDTO(12, "Lancio", new LancioAction()),
-		new BossActionDTO(13, "Fendente", new FendenteAction())
+		new BossActionDTO(13, "Fendente", new FendenteAction()),
+		new BossActionDTO(14, "Ondata di Pipistrelli", new OndataPipistrelliAction()),
+		new BossActionDTO(15, "Magia Nera", new MagiaNeraAction())
 	};
 
 }
