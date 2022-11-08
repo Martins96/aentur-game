@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.lucamartinelli.aentur.persistence.AdventureStatsDB;
+import com.lucamartinelli.aentur.persistence.EventEffectDB;
 
 @Path("/location")
 @ApplicationScoped()
@@ -31,14 +32,17 @@ public class Locations {
 	
 
 	
-	@Inject
+	@Inject()
 	AdventureStatsDB adventureStats;
+	@Inject
+	EventEffectDB eventEffectDB;
 	
 	
 	@GET
 	@Path("/reset-adventure-stats")
 	public void resetAdventureStats() {
 		adventureStats.resetAllStats();
+		eventEffectDB.reset();
 	}
 	
 	@GET

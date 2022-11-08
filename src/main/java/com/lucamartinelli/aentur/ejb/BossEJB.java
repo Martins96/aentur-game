@@ -15,6 +15,8 @@ import com.lucamartinelli.aentur.persistence.BossListDB;
 import com.lucamartinelli.aentur.vo.BossActionResultVO;
 import com.lucamartinelli.aentur.vo.BossDTO;
 
+import static com.lucamartinelli.aentur.persistence.LocationSigleListDB.locationSigle;
+
 @ApplicationScoped
 public class BossEJB {
 	
@@ -59,27 +61,6 @@ public class BossEJB {
 		return boss;
 	}
 	
-	
-	
-	private String locationSigle(String location) {
-		switch (location) {
-		case "darkwood":
-			return "dw";
-		case "iceland":
-			return "il";
-		case "frozenmountains":
-			return "fm";
-		case "flamevolcano":
-			return "fv";
-		case "crimsoncave":
-			return "cc";
-		case "hottendesert":
-			return "hd";
-			
-		default:
-			return null;
-		}
-	}
 	
 	
 	

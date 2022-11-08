@@ -20,7 +20,6 @@ public class RewardEJB {
 	@Inject
 	PlayerInventoryDB playerInv;
 	
-	private final Random random = new Random();
 	private final RewardBlueprintDTO rewardBPLvl1 = new RewardBlueprintDTO(2, 3, 1, 2);
 	private final RewardBlueprintDTO rewardBPLvlSup = new RewardBlueprintDTO(3, 5, 2, 7);
 	private final RewardBlueprintDTO rewardBPBoss = new RewardBlueprintDTO(8, 8, 5, 9);
@@ -44,16 +43,16 @@ public class RewardEJB {
 	}
 	
 	private RewardDTO getRewardLvl1() {
-		final int gold = random.nextInt(rewardBPLvl1.getMaxBonusGold()+1) + rewardBPLvl1.getMinGold();
-		final int itemNum = random.nextInt(itemsLvl1.size());
+		final int gold = new Random().nextInt(rewardBPLvl1.getMaxBonusGold()+1) + rewardBPLvl1.getMinGold();
+		final int itemNum = new Random().nextInt(itemsLvl1.size());
 		final ItemDTO item = itemsLvl1.get(itemNum);
 		
 		return new RewardDTO(gold, item);
 	}
 	
 	private RewardDTO getRewardLvlSup() {
-		final int gold = random.nextInt(rewardBPLvlSup.getMaxBonusGold()+1) + rewardBPLvlSup.getMinGold();
-		final int itemNum = random.nextInt(itemsLvlSup.size());
+		final int gold = new Random().nextInt(rewardBPLvlSup.getMaxBonusGold()+1) + rewardBPLvlSup.getMinGold();
+		final int itemNum = new Random().nextInt(itemsLvlSup.size());
 		final ItemDTO item = itemsLvlSup.get(itemNum);
 		
 		return new RewardDTO(gold, item);
@@ -63,7 +62,7 @@ public class RewardEJB {
 		
 		final Random rand = new Random();
 		final int selectedItem = rand.nextInt(itemsBoss.size());
-		final int gold = rewardBPBoss.getMinGold() + random.nextInt(rewardBPBoss.getMaxBonusGold()+1);
+		final int gold = rewardBPBoss.getMinGold() + new Random().nextInt(rewardBPBoss.getMaxBonusGold()+1);
 		final RewardDTO reward = new RewardDTO(gold, itemsBoss.get(selectedItem));
 		return reward;
 	}

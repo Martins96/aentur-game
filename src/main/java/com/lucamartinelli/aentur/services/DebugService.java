@@ -13,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.lucamartinelli.aentur.persistence.AdventureStatsDB;
+import com.lucamartinelli.aentur.persistence.EventEffectDB;
 import com.lucamartinelli.aentur.persistence.PlayerInventoryDB;
 import com.lucamartinelli.aentur.vo.StepDTO;
 
@@ -26,6 +27,7 @@ public class DebugService {
 	@Inject
 	PlayerInventoryDB playerDB;
 	@Inject
+	EventEffectDB eventEffectDB;
 	
 	
 	@Path("dump")
@@ -35,6 +37,7 @@ public class DebugService {
 		final JsonObjectBuilder rootBldr = Json.createObjectBuilder();
 		final JsonObjectBuilder adventureBldr = Json.createObjectBuilder();
 		final JsonObjectBuilder playerBldr = Json.createObjectBuilder();
+		final JsonObjectBuilder eventBldr = Json.createObjectBuilder();
 		
 		if (advDB != null) {
 			if (advDB.getCurrentLocationSigle() != null)
@@ -62,6 +65,11 @@ public class DebugService {
 			
 		}
 		rootBldr.add("AdventureStatsDB", adventureBldr.build());
+		if (eventEffectDB != null) {
+			if (eventEffectDB.getActiveEffect() != null)
+				eventBldr.add("ActiveEffect", eventEffectDB.getActiveEffect());
+		}
+		rootBldr.add("EventEffectDB", eventBldr.build());
 		if (playerDB != null) {
 			playerBldr.add("Gold", playerDB.getGold());
 			

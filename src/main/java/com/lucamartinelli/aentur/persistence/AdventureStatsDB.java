@@ -28,9 +28,13 @@ public class AdventureStatsDB implements Serializable {
 		this.playerHealth = playerHealth;
 	}
 	public void increasePlayerHealth() {
+		if (playerHealth == 3)
+			return;
 		this.playerHealth++;
 	}
 	public void decreasePlayerHealth() {
+		if (playerHealth == 0)
+			return;
 		this.playerHealth--;
 	}
 
@@ -41,9 +45,13 @@ public class AdventureStatsDB implements Serializable {
 		this.currentMonsterHealth = currentMonsterHealth;
 	}
 	public void increaseMonsterHealth() {
+		if (currentMonsterHealth == 2)
+			return;
 		this.currentMonsterHealth++;
 	}
 	public void decreaseMonsterHealth() {
+		if (currentMonsterHealth == 0)
+			return;
 		this.currentMonsterHealth--;
 	}
 	
