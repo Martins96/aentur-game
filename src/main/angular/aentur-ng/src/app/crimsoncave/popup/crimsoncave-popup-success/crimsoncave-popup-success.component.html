@@ -1,0 +1,22 @@
+<div *ngIf="reward" class="container">
+    <div class="head-msg">
+        <h2>Congratulazioni</h2>
+        <p>Il mostro e' stato sconfitto, ecco la tua ricompensa:</p>
+    </div>
+    <div class="gold-msg">
+        <p>
+            <img src="assets/worldmap/gold.png">
+            Oro: {{ reward.gold }}
+        </p>
+    </div>
+    <div class="item-msg">
+        <app-item-card [item]="reward.item" [equipable]="'N'"></app-item-card>
+    </div>
+    <div class="button">
+        <button (click)="close()"><span>Prossimo passo</span></button>
+    </div>
+
+</div>
+<div *ngIf="!reward">
+    <p>Uh oh, mi sa che ci sono stati problemi</p>
+</div>

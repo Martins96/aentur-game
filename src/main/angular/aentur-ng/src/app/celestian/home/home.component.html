@@ -1,0 +1,37 @@
+<div class="close-btn" (click)="backToMap()">
+    <img src="assets/worldmap/exit-icon.png" />
+    <h4>Esci</h4>
+</div>
+<div class="intro-img">
+    <h1>&lt;Casa&gt;</h1>
+</div>
+<div class="disclaimer">
+    <p>Nonostante tutto, tornare a casa e' sempre confortevole. <span>Uca</span> e' contento di vederti e ti chiede se ti serve
+    aiuto per gestire il tuo inventario.<br />
+    Mentre riposi vicino al caminetto Uca sistema il tuo equipaggiamento e ti chiede cosa intendi portare con te.</p>
+</div>
+
+<div class="equipment">
+    <h2>Equipaggiamento</h2>
+    <div class="equipment-inner">
+        <div><app-item-card [item]="playerWeapon" [equipable]="'N'"></app-item-card></div>
+        <div><app-item-card [item]="playerArmor" [equipable]="'N'"></app-item-card></div>
+        <div><app-item-card [item]="playerTalisman" [equipable]="'N'"></app-item-card></div>
+    </div>
+</div>
+
+<div class="gold">
+    <span>Oro posseduto:&nbsp;&nbsp;&nbsp;</span><span id="gold-num">{{ gold }}</span><img src="assets/worldmap/gold.png">
+</div>
+
+<div class="inventory">
+    <h2>Inventario</h2><br />
+    <div>
+        <div class="inventory-inner" *ngIf="playerInventory && playerInventory.length > 0">
+            <app-item-card *ngFor="let item of playerInventory" [item]="item" [equipable]="'Y'"></app-item-card>
+        </div>
+        <div class="inventory-inner" *ngIf="!playerInventory || playerInventory.length === 0">
+            <p><i>L'inventario è vuoto</i></p>
+        </div>
+    </div>
+</div>

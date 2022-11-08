@@ -1,0 +1,47 @@
+.background-img {
+    width: 100%;
+}
+
+.player-img {
+    position: absolute;
+    height: 200px;
+    margin-top: 250px;
+    margin-left: 200px;
+    transition: transform 1s;
+}
+.player-img:hover {
+    -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg);
+    -ms-transform:rotateY(180deg);
+    -o-transform:rotateY(180deg);
+    transform:rotateY(180deg);
+}
+
+button {
+    margin: 0 auto;
+    padding: 0 50px;
+    cursor: pointer;
+}
+
+.button {
+    display: flex;
+}
+
+@-moz-keyframes watchback { 
+    50% { -moz-transform: rotateY(150deg); } 
+    100% { -moz-transform: rotateY(180deg); } 
+}
+@-webkit-keyframes watchback { 
+    50% { -webkit-transform: rotateY(150deg); } 
+    100% { -webkit-transform: rotateY(180deg); } 
+}
+@keyframes watchback { 
+    50% { 
+        -webkit-transform: rotateY(150deg); 
+        transform: rotateY(150deg); 
+    } 
+    100% { 
+        -webkit-transform: rotateY(180deg); 
+        transform: rotateY(180deg); 
+    } 
+}

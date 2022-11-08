@@ -1,0 +1,66 @@
+<div class="intro-img">
+    <div class="close-btn" (click)="backToMap()">
+        <img src="assets/worldmap/exit-icon.png" />
+        <h4>Esci</h4>
+    </div>
+    <div class="info-battle-btn" (click)="openDialog()">
+        <h4 class="info-battle-txt">Informazioni sulla battaglia</h4>
+        <img src="assets/worldmap/info-battle-icon.png" />
+    </div>
+
+    <h1>&lt;Lande ghiacciate&gt;</h1>
+</div>
+<div class="disclaimer">
+    <p></p>
+</div>
+
+<div class="equipment">
+    <h2>Equipaggiamento</h2>
+    <div class="equipment-inner">
+        <div><app-item-card [item]="playerWeapon" [equipable]="'N'"></app-item-card></div>
+        <div><app-item-card [item]="playerArmor" [equipable]="'N'"></app-item-card></div>
+        <div><app-item-card [item]="playerTalisman" [equipable]="'N'"></app-item-card></div>
+    </div>
+</div>
+
+<div class="path" [style]="'background-image: url(assets/iceland/bg/img' + backgroundImgID + '-iceland.jpg);'">
+
+    <h2>Percorso del giocatore</h2>
+
+    <div class="player-path" >
+        <div class="point" id="fight1" [class]="stepPath.number === 1 ? 'active' : ''">
+            <span>Nemico 1</span>
+        </div>
+        <div class="line"></div>
+        <div class="point" id="event1" [class]="stepPath.number === 2 ? 'active' : ''">
+            <span>Evento 1</span>
+        </div>
+        <div class="line"></div>
+        <div class="point" id="fight1" [class]="stepPath.number === 3 ? 'active' : ''">
+            <span>Nemico 2</span>
+        </div>
+        <div class="line"></div>
+        <div class="point" id="event1" [class]="stepPath.number === 4 ? 'active' : ''">
+            <span>Evento 2</span>
+        </div>
+        <div class="line"></div>
+        <div class="point" id="boss" [class]="stepPath.number === 5 ? 'active' : ''">
+            <span>Boss</span>
+        </div>
+    </div>
+
+</div>
+
+<div class="adventure">
+    <div *ngIf="stepPath.type === 'ENEMY'">
+        <app-iceland-scenario-enemy (endScenario)="endScenario($event)" [monsterLvl]="currentMonsterLvl"></app-iceland-scenario-enemy>
+    </div>
+    <div *ngIf="stepPath.type === 'EVENT'">
+        <app-iceland-scenario-event (endScenario)="endScenario($event)"></app-iceland-scenario-event>
+    </div>
+    <div *ngIf="stepPath.type === 'BOSS'">
+        <app-iceland-scenario-boss></app-iceland-scenario-boss>
+    </div>
+
+
+</div>

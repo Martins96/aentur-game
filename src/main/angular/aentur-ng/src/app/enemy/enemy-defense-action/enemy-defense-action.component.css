@@ -1,0 +1,83 @@
+.turn-indicator {
+    position: absolute;
+    margin-left: 570px;
+    margin-top: -30px;
+}
+.turn-indicator img {
+    height: 50px;
+}
+
+.card {
+    width: 600px;
+    height: 350px;
+    border: 1px solid blue;
+    background-color: lightblue;
+    box-shadow: 0 0 5px black;
+}
+
+.title {
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.title h3 {
+    margin: 0;
+}
+
+.content {
+    display: flex;
+}
+
+.text {
+    width: 65%;
+    font-size: 1.2em;
+}
+.buttons .categories {
+    display: block;
+    text-align: right;
+}
+.categories span {
+    margin: 0;
+    padding-right: 2px;
+    font-size: 0.9em;
+    text-decoration: underline;
+    font-family: 'fantasy-mail';
+}
+
+.buttons {
+    width: 35%;
+}
+
+.buttons div {
+    width: 100%;
+    display: flex;
+}
+
+.buttons div button {
+    margin: auto;
+    margin-top: 50px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px groove darkslategrey;
+    font-family: 'fantasy-mail';
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+#success {
+    background-color: green;
+}
+#success:hover {
+    background-color: darkgreen;
+    cursor: pointer;
+}
+
+#fail {
+    background-color: crimson;
+}
+#fail:hover {
+    background-color: firebrick;
+    cursor: pointer;
+}
+

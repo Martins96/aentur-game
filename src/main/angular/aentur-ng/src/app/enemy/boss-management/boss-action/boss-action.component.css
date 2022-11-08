@@ -1,0 +1,33 @@
+.title h3 {
+    font-family: 'fantasy-alt';
+    font-size: 1.8em;
+    letter-spacing: 1px;
+}
+
+span {
+    font-size: 1.6em;
+    font-family: 'fantasy-mail';
+}
+
+p {
+    font-size: 1.5em;
+}
+
+.battle {
+    background-image: url('/assets/boss/battle-bg.jpg');
+    padding: 20px 10px;
+}
+
+.result {
+    display: flex;
+}
+.text {
+    width: 75%;
+    text-align: justify;
+}
+#act-description {
+    font-style: italic;
+}
+.input-sct button{
+    margin-left: 20px;
+}

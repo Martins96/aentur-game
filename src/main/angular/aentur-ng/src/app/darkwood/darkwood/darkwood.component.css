@@ -1,0 +1,81 @@
+span {
+    font-family: 'fantasy-alt';
+    font-size: 0.9em;
+}
+
+.equipment {
+    display: block;
+    background-color: #ccc;
+    box-shadow: 0 0 10px black;
+    padding: 20px 10px;
+    margin: 20px 0;
+}
+
+.equipment-inner {
+    display: flex;
+    justify-content: space-around;
+}
+
+.intro-img {
+    background-image: url('../../../assets/darkwood/headimg-darkwood.jpg');
+}
+
+.path {
+    margin: 50px 0;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    box-shadow: 0 0 5px black;
+    padding: 100px 0;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.player-path {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 50px auto;
+}
+
+.path h2 {
+    margin-left: 10px;
+    text-shadow: 0 0 5px white;
+}
+
+.player-path .line {
+    width: 200px;
+    height: 5px;
+    border: 10px;
+    margin: auto 5px;
+    background-color: black;
+}
+
+.player-path .point {
+    width: 120px;
+    height: 120px;
+    border-radius: 120px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: crosshair;
+}
+
+.player-path .point span {
+    padding: 0;
+    color: white;
+    text-align: center;
+    font-size: 1.7em;
+}
+
+.player-path .point.active {
+    border: 10px dashed green
+}
+
+.active-effect {
+    background-color: beige;
+    text-align: center;
+    padding: 10px 0;
+    margin-bottom: 50px;
+}
+

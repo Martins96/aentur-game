@@ -1,0 +1,49 @@
+<div class="close-btn" (click)="backToMap()">
+    <img src="assets/worldmap/exit-icon.png" />
+    <h4>Esci</h4>
+</div>
+<div class="intro-img">
+    <h1>&lt;Negozio&gt;</h1>
+</div>
+<div class="disclaimer">
+    <p>L'odore del ferro battuto riempie l'aria, dalla fucina escono rumori di martello e calore.<br />
+        Ti si avvicina il mercante offrendoti una vista completa della merce, non sembrano esserci molti clienti
+        e in questo modo riesci a vedere meglio il negozio.
+        "Sono merci di prima qualita'", dice il venditore, "Ne forgiamo di diverse ogni volta".
+    </p>
+</div>
+
+<div class="gold">
+    <span>Oro posseduto:&nbsp;&nbsp;&nbsp;</span><span id="gold-num">{{ gold }}</span><img src="assets/worldmap/gold.png">
+</div>
+
+<div class="merchant">
+    <h2>Acquista dal negozio</h2>
+    <div>
+        <div class="merchant-inner">
+            <app-item-card-shop *ngFor="let item of merchantItems" 
+                    [item]="item" 
+                    [merchant]="'Y'" 
+                    [gold]="gold"
+                    (itemEmitter)="itemBought($event)">
+            </app-item-card-shop>
+        </div>
+    </div>
+</div>
+
+<div class="inventory">
+    <h2>Vendi dall'inventario</h2><br />
+    <div>
+        <div class="inventory-inner" *ngIf="playerInventory && playerInventory.length > 0">
+            <app-item-card-shop *ngFor="let item of playerInventory" 
+                    [item]="item" 
+                    [merchant]="'N'" 
+                    [gold]="gold"
+                    (itemEmitter)="itemSold($event)">
+            </app-item-card-shop>
+        </div>
+        <div class="inventory-inner" *ngIf="!playerInventory || playerInventory.length === 0">
+            <p><i>L'inventario è vuoto</i></p>
+        </div>
+    </div>
+</div>

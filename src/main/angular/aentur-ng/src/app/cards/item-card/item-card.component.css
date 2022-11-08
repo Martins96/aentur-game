@@ -1,0 +1,61 @@
+.card-container {
+    height: 400px;
+    width: 300px;
+    border: 1px solid burlywood;
+    box-shadow: 0 0 5px black;
+    border-radius: 3px;
+    background-color: antiquewhite;
+}
+
+.title {
+    padding: 1px 10px;
+    margin: 0;
+    background-color: rgba(0,0,0,0.05);
+}
+
+.title h3 {
+    margin: 5px 0;
+}
+
+.image img{
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+.image {
+    border-bottom: 1px dotted lightgrey;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    text-align: justify;
+}
+
+.empty {
+    text-align: center;
+    color: gray;
+}
+
+.effect {
+    height: 90px;
+    margin: 5px 0;
+}
+
+.buttons {
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+}
+button {
+    padding: 5px 10px;
+    border: 2px solid saddlebrown;
+    background-color: chocolate;
+    border-radius: 2px;
+    outline: none;
+    transition: 0.5s;
+}
+button:hover {
+    background-color: brown;
+}
+button:active {
+    background-color: lightsalmon;
+}

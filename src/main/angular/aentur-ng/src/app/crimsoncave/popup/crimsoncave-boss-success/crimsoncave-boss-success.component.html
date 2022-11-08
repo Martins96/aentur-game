@@ -1,0 +1,25 @@
+<div *ngIf="reward" class="container">
+    <img src="assets/crimsoncave/boss-win-crimsoncave.jpg" class="head-img"/>
+    <p>
+        Con l'ultimo colpo scheggi un dente al vampiro che, piagnucolando, fugge lasciando la stanza.
+        Sulla parete di fondo noti un contenitore decorato in stile gotico e con varie placche d'oro.<br/>
+        Il contenitore sembra tanto una bara e dalle decorazioni sembra anche piuttosto preziosa.
+    </p>
+    <p>
+        La bara si apre colando un liquido rosso dai lati e all'interno trovi:
+    </p>
+    <div class="gold-msg">
+        <p>
+            <img src="assets/worldmap/gold.png">
+            Oro: {{ reward.gold }}
+        </p>
+    </div>
+    <div class="item-msg">
+        <app-item-card [item]="reward.item" [equipable]="'N'"></app-item-card>
+    </div>
+
+
+    <div class="button">
+        <button (click)="backToMap()"><h3>Esci dall'avventura</h3></button>
+    </div>
+</div>

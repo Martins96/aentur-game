@@ -1,0 +1,94 @@
+.container {
+    width: 100%;
+    display: block;
+}
+
+.new-stars {
+    position: absolute;
+    display: flex;
+    right: 0;
+}
+.new-stars img {
+    height: 50px;
+    cursor: pointer;
+}
+.new-stars-txt {
+    color: rgba(0,0,0,0);
+    visibility: hidden;
+    transition-duration: 1s;
+    transition-property: color;
+}
+
+.new-stars:hover .new-stars-txt {
+    color: rgba(0,0,0,1);
+    visibility: visible;
+}
+
+h1 {
+    text-align: center;
+}
+
+.map-section img {
+    z-index: 0;
+    display: block;
+    margin: 0 auto;
+    width: 99%;
+}
+
+.point-of-actions a {
+    z-index: 1;
+    width: 1%;
+    background-color: black;
+    border: 2px white solid;
+    border-radius: 100px;
+    position: absolute;
+    transition-duration: 1s;
+}
+
+.point-of-actions a img {
+    object-fit: cover;
+    height: 100%;
+}
+
+.point-of-actions a:hover,
+.point-of-actions a:focus,
+.point-of-actions a:active,
+.point-of-actions .active-point {
+    width: 3%;
+    transition-duration: 1s;
+}
+
+.point-of-actions #point-home {
+    margin-left: 17%;
+    margin-top: 24%;
+}
+
+.point-of-actions #point-darkwood {
+    margin-left: 36%;
+    margin-top: 21%;
+}
+
+.point-of-actions #point-iceland {
+    margin-left: 19%;
+    margin-top: 6%;
+}
+
+.point-of-actions #point-frozenmountains {
+    margin-left: 58%;
+    margin-top: 13%;
+}
+
+.point-of-actions #point-flamevolcano {
+    margin-left: 16%;
+    margin-top: 47%;
+}
+
+.point-of-actions #point-crimsoncave {
+    margin-left: 58%;
+    margin-top: 36%;
+}
+
+.point-of-actions #point-hottendesert {
+    margin-left: 37%;
+    margin-top: 56%;
+}

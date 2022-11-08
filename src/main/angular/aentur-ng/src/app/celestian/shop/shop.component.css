@@ -1,0 +1,92 @@
+span {
+    font-family: 'fantasy-alt';
+    font-size: 0.9em;
+}
+
+.intro-img {
+    background-image: url('../../../assets/shop/headimg-shop.jpg');
+    width: 100%;
+    height: 600px;
+    text-align: center;
+    color: rgba(0,0,0,0.5);
+    transition-duration: 2s;
+}
+
+.intro-img:hover {
+    color: rgba(0,0,0,0.95);
+}
+
+.intro-img h1 {
+    margin: 0;
+    padding-top: 100px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.9);
+    font-size: 3em;
+}
+
+.merchant {
+    background-color: darkgoldenrod;
+}
+
+.merchant,
+.inventory {
+    padding: 0 10px 100px 10px;
+}
+.merchant-inner,
+.inventory-inner {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.merchant-inner {
+    margin: 0;
+}
+.inventory-inner {
+    margin: 0 2%;
+}
+
+.merchant-inner app-item-card-shop {
+    margin: 10px 5px;
+}
+.inventory-inner app-item-card-shop {
+    margin: 10px 2%;
+}
+
+
+.close-btn {
+    position: absolute;
+    top: 1%;
+    left: 1%;
+    display: flex;
+    cursor: pointer;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 5px 15px;
+    transition: 0.5s;
+}
+.close-btn:hover {
+    background-color: rgba(255,255,255,0.6);
+    font-weight: bold;
+}
+.close-btn img {
+    height: 50px;
+    clear: both;
+}
+.close-btn h4 {
+    padding-left: 5px;
+}
+.gold {
+    display: flex;
+    font-size: 1.2em;
+}
+.gold span{
+    margin: 5px 0;
+}
+.gold img {
+    height: 25px;
+}
+.gold #gold-num {
+    padding-right: 0;
+    font-family: 'fantasy-title';
+    font-size: 1em;
+}

@@ -1,0 +1,7 @@
+.mat-raised-button {
+    position: absolute;
+    right: 8%;
+    top: 2%;
+    padding: 5px 10px;
+    border-radius: 50px;
+}

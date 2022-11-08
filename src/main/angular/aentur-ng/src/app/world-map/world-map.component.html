@@ -1,0 +1,46 @@
+<div class="container">
+
+    <div class="new-stars">
+        <h4 class="new-stars-txt">Mostra la storia di introduzione</h4>
+        <img class="new-stars-img" src="assets/worldmap/new-stars.png" (click)="openDialog()"/>
+    </div>
+
+
+    <div class="title">
+        <h1>&lt;Mappa del mondo - The dreaming haven&gt;</h1>
+    </div>
+    
+    <div class="map-section">
+        <div class="point-of-actions" id="map-points">
+            <a id="point-home" [class.active-point]="activePointId === 'home'">
+                <img src="assets/worldmap/home-map.png" name="Celestian" (click)="selectPoint($event)" id="home"/>
+            </a>
+            <a id="point-darkwood" [class.active-point]="activePointId === 'darkwood'">
+                <img src="assets/worldmap/darkwood-map.png" name="Foresta Oscura" (click)="selectPoint($event)" id="darkwood"/>
+            </a>
+            <a id="point-iceland" [class.active-point]="activePointId === 'iceland'">
+                <img src="assets/worldmap/iceland-map.png" name="Le lande ghiacciate" (click)="selectPoint($event)" id="iceland"/>
+            </a>
+            <a id="point-frozenmountains" [class.active-point]="activePointId === 'frozenmountains'">
+                <img src="assets/worldmap/frozenmountains-map.png" name="Montagne Gelide" (click)="selectPoint($event)" id="frozenmountains"/>
+            </a>
+            <a id="point-flamevolcano" [class.active-point]="activePointId === 'flamevolcano'">
+                <img src="assets/worldmap/flamevolcano-map.png" name="Vulcano Fiammante" (click)="selectPoint($event)" id="flamevolcano"/>
+            </a>
+            <a id="point-crimsoncave" [class.active-point]="activePointId === 'crimsoncave'">
+                <img src="assets/worldmap/crimsoncave-map.png" name="Caverna Cremisi" (click)="selectPoint($event)" id="crimsoncave"/>
+            </a>
+            <a id="point-hottendesert" [class.active-point]="activePointId === 'hottendesert'">
+                <img src="assets/worldmap/hottendesert-map.png" name="Deserto Cocente" (click)="selectPoint($event)" id="hottendesert"/>
+            </a>
+        </div>
+        <img src="assets/worldmap/map.jpg" name="world-map" />
+    </div>
+
+    <div class="menu-section">
+        <div>
+            <app-point-description [pointID]="activePointId"></app-point-description>
+        </div>
+    </div>
+
+</div>

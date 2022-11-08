@@ -1,0 +1,24 @@
+<div *ngIf="reward" class="container">
+    <img src="assets/hottendesert/boss-win-hottendesert.jpg" class="head-img"/>
+    <p>
+        Malconcio, il verme di sabbia sputa una vecchia cassa e si interra nella sabbia. 
+        Con curiosita' ti avvicini alla cassa un po' ricoperta dalla bava.
+    </p>
+    <p>
+        Forzi il coperchio della cassa e all'interno trovi:
+    </p>
+    <div class="gold-msg">
+        <p>
+            <img src="assets/worldmap/gold.png">
+            Oro: {{ reward.gold }}
+        </p>
+    </div>
+    <div class="item-msg">
+        <app-item-card [item]="reward.item" [equipable]="'N'"></app-item-card>
+    </div>
+
+
+    <div class="button">
+        <button (click)="backToMap()"><h3>Esci dall'avventura</h3></button>
+    </div>
+</div>

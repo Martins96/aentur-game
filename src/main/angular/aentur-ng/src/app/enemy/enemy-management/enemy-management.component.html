@@ -1,0 +1,19 @@
+<div class="container" *ngIf="enemy && !adventureEnd">
+    <div *ngIf="enemyTurn">
+        <app-enemy-attack-action [monsterId]="enemy.id" (completed)="turnCompleted($event)"></app-enemy-attack-action>
+    </div>
+    <div *ngIf="!enemyTurn">
+        <app-enemy-defense-action [monsterId]="enemy.id" (completed)="turnCompleted($event)"></app-enemy-defense-action>
+    </div>
+
+    <div class="stats">
+        <div class="player-health" *ngIf="playerHealth>-1">
+            <p>Vita del giocatore: </p>
+            <img [src]="'assets/icons/playerhealth-' + playerHealth + '.png'" />
+        </div>
+        <div class="monster-health" *ngIf="enemyHealth>-1">
+            <p>Vita del mostro: </p>
+            <img [src]="'assets/icons/monsterhealth-' + enemyHealth + '.png'" />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+<div class="container">
+
+    <mat-dialog-actions>
+        <button class="mat-raised-button"(click)="close()">X</button>
+    </mat-dialog-actions>
+
+    <div id="slide-1" class="slide" *ngIf="currentSlide === 1">
+        <div class="col-left">
+            <p>
+                Il tuo nome &egrave; <span>Ae</span> e la tua storia inizia tra mille peripezzie e difficili battaglie.<br />
+                Anni fa intrapresi un viaggio destinato a trovare una terra incontaminata e libera per poter finalmente vivere in pace.
+                Ma questo viaggio fu difficile e impegnativo, segnato da scontri violenti.<br />
+                Nonostante questo, la tua determinazione e quella dei tuoi compatri<i>topi</i> non cedette e arrivaste al fiume Celestian 
+                che scorre tranquillo in una landa fertile e pacifica.<br />
+                All'unisono avete deciso di stabilirvi e vivere qui.
+            </p>
+        </div>
+        <div class="col-right">
+            <img src="assets/worldmap/start-slide-1.jpg" />
+            
+        </div>
+
+    </div>
+
+    <div id="slide-2" class="slide" *ngIf="currentSlide === 2">
+        <div class="col-left">
+            <p>
+                La cittadina crebbe in fretta a causa della voglia di iniziare a vivere finalmente in pace.<br/>
+                Il villaggio era ormai completato e gli venne dato il nome del fiume che con tanta gentilezza vi aveva accolto.<br />
+                Durante la costruzione incontrasti <span>Uca</span>, uno strano e molto cauto, ma simpatico topo. 
+                Questo attirò molto la tua attenzione e decidesti di fidanzarti e vivere con lui.<br />
+                Sembrava che ogni sogno si fosse realizzato.
+            </p>
+        </div>
+        <div class="col-right">
+            <img src="assets/worldmap/start-slide-2.jpg" />
+            
+        </div>
+
+    </div>
+
+    <div id="slide-3" class="slide" *ngIf="currentSlide === 3">
+        <div class="col-left">
+            <p>
+                In quella piccola radura si lavorava e ci si divertiva, affrontavi ancora qualche piccola avventura 
+                e il tempo passava allegramente.<br />
+                Eppure qualcosa ti mancava, la sensazione del brivido, le avventure e l'esplorazione delle terre lontane...<br />
+                Ti mancava l'adrenalina della scoperta e del pericolo.
+            </p>
+        </div>
+        <div class="col-right">
+            <img src="assets/worldmap/start-slide-3.jpg" />
+            
+        </div>
+
+    </div>
+
+    <div id="slide-4" class="slide" *ngIf="currentSlide === 4">
+        <div class="col-left">
+            <p>
+                Un giorno, la regina mise un annuncio nella bacheca del paese. Parlava di un trofeo per chiunque avrebbe sconfitto i 
+                grandi mostri delle terre lontane, in questo modo il paese avrebbe potuto lavorare ed estrarre risorse pregiate.<br />
+                La ricompensa non era speciale, consisteva in una scatola con pregiate essenze per tisane. <br />
+                Ti piacevano le tisane, ma non lo facevi per quello, sentivi un desiderio di tornare all'avventura che
+                non richiedeva nessun premio in cambio.<br />
+                E così iniziò la tua avventura.
+            </p>
+        </div>
+        <div class="col-right">
+            <img src="assets/worldmap/start-slide-4.jpg" />
+            
+        </div>
+
+    </div>
+
+    <div id="slide-5" class="slide" *ngIf="currentSlide === 5">
+        <div class="col-left">
+            <p>
+                Prese le tue cose, salutato Uca e carica di coraggio, parti per una nuova avventura.<br />
+                Questo sara' la tua <span>Aentur</span>.
+            </p>
+        </div>
+        <div class="col-right">
+            <img src="assets/worldmap/start-slide-5.jpg" />
+            
+        </div>
+
+    </div>
+
+
+
+
+
+    <div id="go-prev" (click)="prev()">
+        &lt;
+    </div>
+    <div id="go-next" (click)="next()">
+        &gt;
+    </div>
+</div>

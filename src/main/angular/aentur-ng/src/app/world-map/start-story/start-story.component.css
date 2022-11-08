@@ -1,0 +1,55 @@
+.mat-raised-button {
+    position: absolute;
+    right: 8%;
+    top: 2%;
+    padding: 5px 10px;
+    border-radius: 50px;
+}
+
+.slide {
+    display: flex;
+}
+.col-left {
+    width: 30%;
+    padding: 0 1%;
+}
+.col-right {
+    width: 70%;
+}
+.col-right img {
+    width: 100%;
+    object-fit: cover;
+}
+
+p {
+    font-size: 1.6em;
+    text-shadow: 1px 1px white;
+}
+
+span {
+    font-family: 'fantasy-alt';
+    font-size: 1em;
+}
+
+#go-prev {
+    padding: 5px 15px;
+    border: 1px black solid;
+    border-radius: 50px;
+    background-color: white;
+    position: absolute;
+    font-size: 1.2em;
+    cursor: pointer;
+    bottom: 4%;
+    left: 8%;
+}
+#go-next {
+    padding: 5px 15px;
+    border: 1px black solid;
+    border-radius: 50px;
+    background-color: white;
+    position: absolute;
+    font-size: 1.2em;
+    cursor: pointer;
+    bottom: 4%;
+    right: 8%;
+}

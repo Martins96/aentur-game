@@ -1,0 +1,11 @@
+<div class="point-descr">
+    <app-location-home *ngIf="pointID === 'home'"></app-location-home>
+    <app-location-darkwood *ngIf="pointID === 'darkwood'"></app-location-darkwood>
+    <app-location-iceland *ngIf="pointID === 'iceland'"></app-location-iceland>
+    <app-location-frozenmountains *ngIf="pointID === 'frozenmountains'"></app-location-frozenmountains>
+    <app-location-flamevolcano *ngIf="pointID === 'flamevolcano'"></app-location-flamevolcano>
+    <app-location-crimsoncave *ngIf="pointID === 'crimsoncave'"></app-location-crimsoncave>
+    <app-location-hottendesert *ngIf="pointID === 'hottendesert'"></app-location-hottendesert>
+
+    <div *ngIf="pointID === ''" class="spacer"></div>
+</div>

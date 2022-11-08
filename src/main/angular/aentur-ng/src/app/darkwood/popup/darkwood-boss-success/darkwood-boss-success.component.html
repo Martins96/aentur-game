@@ -1,0 +1,25 @@
+<div *ngIf="reward" class="container">
+    <img src="assets/darkwood/boss-win-darkwood.jpg" class="head-img"/>
+    <p>
+        Con gran forza sfetti l'ultimo attacco che fa cadere il gigante, con un gesto della mano il mostro dichiara la
+        resa e ti aggiudica la vittoria. Con un grugnito indica un forziere ai piedi di un grande albero, quello e' il
+        tesoro del gigante ed ora e' tuo.
+    </p>
+    <p>
+        Il forziere si apre con un cigolio e all'interno trovi:
+    </p>
+    <div class="gold-msg">
+        <p>
+            <img src="assets/worldmap/gold.png">
+            Oro: {{ reward.gold }}
+        </p>
+    </div>
+    <div class="item-msg">
+        <app-item-card [item]="reward.item" [equipable]="'N'"></app-item-card>
+    </div>
+
+
+    <div class="button">
+        <button (click)="backToMap()"><h3>Esci dall'avventura</h3></button>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div *ngIf="defense">
+    <span>Tuo turno <i>ATTACCO - usi i bonus arma</i></span>
+    <div class="card">
+        <div class="turn-indicator"><img src="assets/worldmap/player-turn.png" /></div>
+        <div class="title"><h3>{{ defense.name }}</h3></div>
+        <div class="content">
+            <div class="text"><p [innerHTML]="defense.effect"></p></div>
+            <div class="buttons">
+                <div class="categories">
+                    <span><i>{{ defense.category }}</i></span>
+                </div>
+                <div>
+                    <button id="success" (click)="success()"  [disabled]="buttonDisabled">Successo</button>
+                </div>
+                <div>
+                    <button id="fail" (click)="failure()" [disabled]="buttonDisabled">Fallimento</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

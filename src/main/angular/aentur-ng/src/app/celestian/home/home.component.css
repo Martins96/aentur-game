@@ -1,0 +1,52 @@
+span {
+    font-family: 'fantasy-alt';
+    font-size: 0.9em;
+}
+
+.equipment {
+    display: block;
+    background-color: #ccc;
+    box-shadow: 0 0 10px black;
+    padding: 20px 10px;
+    margin: 20px 0;
+}
+
+.equipment-inner {
+    display: flex;
+    justify-content: space-around;
+}
+
+.intro-img {
+    background-image: url('../../../assets/home/headimg-home.jpg');
+}
+
+.inventory {
+    padding: 0 10px 100px 10px;
+}
+.inventory-inner {
+    margin: 0 4%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.inventory-inner app-item-card {
+    margin: 10px 3%;
+}
+
+
+.gold {
+    display: flex;
+    font-size: 1.2em;
+}
+.gold span{
+    margin: 5px 0;
+}
+.gold img {
+    height: 25px;
+}
+.gold #gold-num {
+    padding-right: 0;
+    font-family: 'fantasy-title';
+    font-size: 1em;
+}

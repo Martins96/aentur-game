@@ -1,0 +1,8 @@
+<div class="battlefield">
+    <div class="enemy-card" *ngIf="randomID">
+        <app-enemy-card [enemy]="randomID"></app-enemy-card>
+        <div>
+            <app-enemy-management [enemy]="randomID" (adventureIsOver)="adventureIsOver($event)"></app-enemy-management>
+        </div>
+    </div>
+</div>

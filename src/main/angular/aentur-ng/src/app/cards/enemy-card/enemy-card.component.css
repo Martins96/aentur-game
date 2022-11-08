@@ -1,0 +1,39 @@
+.card-container {
+    height: 400px;
+    width: 400px;
+    border: 1px solid tomato;
+    box-shadow: 0 0 5px black;
+    border-radius: 3px;
+    background-color: rgb(255, 177, 177);
+}
+
+.title {
+    padding: 1px 10px;
+    margin: 0;
+    background-color: rgba(0,0,0,0.05);
+}
+
+.title h3 {
+    margin: 5px 0;
+}
+
+.image img{
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
+}
+.image {
+    border-bottom: 1px dotted lightgrey;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    text-align: justify;
+}
+
+.empty {
+    text-align: center;
+    color: gray;
+}
+.description {
+    text-align: center;
+}

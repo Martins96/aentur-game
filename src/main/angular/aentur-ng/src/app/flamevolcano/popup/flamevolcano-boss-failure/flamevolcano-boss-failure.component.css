@@ -1,0 +1,14 @@
+.head-img {
+    width: 100%;
+    object-fit: cover;
+}
+
+button {
+    margin: 0 auto;
+    padding: 0 50px;
+    cursor: pointer;
+}
+
+.button {
+    display: flex;
+}

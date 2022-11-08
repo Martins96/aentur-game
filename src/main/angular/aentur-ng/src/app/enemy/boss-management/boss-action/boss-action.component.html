@@ -1,0 +1,36 @@
+<div class="battle">
+    <div class="title">
+        <h3>Combattimento</h3>
+    </div>
+    <div class="action-result" *ngIf="showActionResult">
+        <div class="result" *ngIf="bossAct">
+            <div class="text">
+                <span id="act-title">{{ bossAct.title }}</span>
+                <p id="act-description" [innerHTML]="bossAct.description"></p>
+                <p id="act-effect" [innerHTML]="bossAct.effect"></p>
+            </div>
+            <img src='{{ "assets/boss/actions/" + bossAct.img + ".jpg" }}'/>
+        </div>
+        <button (click)="closeActionResult()">Prossima azione</button>
+    </div>
+    <div class="action-form" *ngIf="!showActionResult">
+        <div class="form">
+            <p>Tira un D20 e inserisci il punteggio ottenuto</p>
+            <p>Usa i bonus: {{ bonusRoll }}</p>
+            <div class="input-sct">
+                <input type="text" id="rolld20" #rolld20/>
+                <button (click)="submitRoll(rolld20.value)">Invia tiro</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="stats">
+    <div class="player-health" *ngIf="playerHealth>-1">
+        <p>Vita del giocatore: </p>
+        <img [src]="'assets/icons/playerhealth-' + playerHealth + '.png'" />
+    </div>
+    <div class="monster-health" *ngIf="bossHealth>-1">
+        <p>Vita del boss: </p>
+        <img [src]="'assets/icons/bosshealth-' + bossHealth + '.png'" />
+    </div>
+</div>

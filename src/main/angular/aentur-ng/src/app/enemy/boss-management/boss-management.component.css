@@ -1,0 +1,14 @@
+.title {
+    text-align: center;
+    font-size: 1.5em;
+}
+.boss-presentation {
+    display: flex;
+}
+.boss-presentation img {
+    height: 500px;
+}
+.description {
+    text-align: justify;
+    margin: auto 10px;
+}
