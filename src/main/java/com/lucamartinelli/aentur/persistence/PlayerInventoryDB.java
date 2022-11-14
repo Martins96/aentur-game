@@ -46,6 +46,8 @@ public class PlayerInventoryDB implements Serializable {
 	}
 	public void removeGold(long gold) {
 		this.gold = this.gold - gold;
+		if (this.gold < 0)
+			this.gold = 0L;
 	}
 	public List<ItemDTO> getItems() {
 		return items;

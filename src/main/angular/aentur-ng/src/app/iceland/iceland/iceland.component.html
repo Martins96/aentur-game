@@ -51,6 +51,16 @@
 
 </div>
 
+<div class="active-effect">
+    <h4>Effetti aggiuntivi attivi:</h4>
+    <div *ngIf="activeEffect">
+        <u><span [innerHTML]="activeEffect"></span></u>
+    </div>
+    <div *ngIf="!activeEffect">
+        <span>Nessun effetto attivo</span>
+    </div>
+</div>
+
 <div class="adventure">
     <div *ngIf="stepPath.type === 'ENEMY'">
         <app-iceland-scenario-enemy (endScenario)="endScenario($event)" [monsterLvl]="currentMonsterLvl"></app-iceland-scenario-enemy>

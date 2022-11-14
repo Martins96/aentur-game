@@ -1,0 +1,43 @@
+.welcome-message {
+    display: flex;
+    padding: 0 1%;
+}
+
+.textual-message {
+    width: 40%;
+}
+
+.img-message {
+    width: 55%;
+}
+
+.choice-buttons {
+    display: block;
+    align-content: center;
+}
+
+.choice-buttons div {
+    width: fit-content;
+    margin: 25px auto;
+}
+
+.choice-buttons button {
+    padding: 10px 30px;
+    background-color: goldenrod;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.choice-buttons button label {
+    cursor: pointer;
+}
+
+.choice-buttons button:hover {
+    background-color: peru;
+    transition-duration: 0.5s;
+    border-radius: 10px;
+}
+
+.player-rolls {
+    display: flex;
+    justify-content: space-around;
+}

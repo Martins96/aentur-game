@@ -6,8 +6,8 @@ import com.lucamartinelli.aentur.vo.BossDTO;
 
 public final class BossListDB {
 	
-	public static final Map<String, BossDTO> BOSSES = Map.of(
-			"darkwood", new BossDTO(0, "darkwood", "Fomoriano", 
+	public static final Map<String, BossDTO> BOSSES = Map.ofEntries(
+			Map.entry("darkwood", new BossDTO(0, "darkwood", "Fomoriano", 
 					"Erano un popolo di semidei, hanno corpo umanoide orribilmente deformato da un'antica maledizione "
 					+ "Le calvizie erano relativamente comuni tra i Fomori di entrambi i sessi, sebbene alcuni fossero "
 					+ "noti per avere chiazze sparse di capelli resistenti come fili di ferro.<br/>"
@@ -23,8 +23,8 @@ public final class BossListDB {
 					+ "I folletti alla fine reagirono contro di loro e sottoposero la loro razza a una maledizione. "
 					+ "Questo ha deformato i loro corpi per riflettere il male nei loro cuori e li ha derubati "
 					+ "delle loro capacita' magiche.",
-					new int[] {0,1,2,3,4,5}),
-			"iceland", new BossDTO(1, "iceland", "Linnorm dei Ghiacci",
+					new int[] {0,1,2,3,4,5})),
+			Map.entry("iceland", new BossDTO(1, "iceland", "Linnorm dei Ghiacci",
 					"Un mostro enorme simile ad un serpente con la testa di drago si alza, facendo cadere cumuli "
 					+ "di neve e ghiaccio dai fianchi delle sue spire. <br/>"
 					+ "Il linnorm di ghiaccio dimora tra crepacci glaciali, in cima a cime montuose battute dal vento "
@@ -38,8 +38,8 @@ public final class BossListDB {
 					+ "mai stati ritenuti capaci di mostrare segni di compassione o empatia.<br/>"
 					+ "Alcuni studiosi credono che i linnorm siano serpenti minori che si sono evoluti da "
 					+ "un antenato comune ai draghi. In genere sanno come parlare abissale oltre che al draconico.",
-					new int[] {0,5,6,7,8,9,10}),
-			"frozenmountains", new BossDTO(2, "frozenmountain", "Yeti", 
+					new int[] {0,5,6,7,8,9,10})),
+			Map.entry("frozenmountains", new BossDTO(2, "frozenmountain", "Yeti", 
 					"A differenza del bigfoot, gli yeti sono camminatori completamente bipedi e camminano in modo "
 					+ "molto simile agli umani. La loro faccia e' anche molto piu' umana di quella di un bigfoot. E'"
 					+ " un carnivoro completo, che si nutre di cuccioli di leopardo delle nevi, umani, uova di "
@@ -49,8 +49,8 @@ public final class BossListDB {
 					+ "Sebbene l'aspetto selvaggio, possedevano una spiccata intelligenza e furbizia, "
 					+ "tanto che si dice che alcuni esemplari si travestissero da esseri umani per infiltrarsi "
 					+ "nei villaggi o tra i ranghi degli eserciti.",
-					new int[] {0,1,5,10,11,12}),
-			"flamevolcano", new BossDTO(3, "flamevolcano", "Balor",
+					new int[] {0,1,5,10,11,12})),
+			Map.entry("flamevolcano", new BossDTO(3, "flamevolcano", "Balor",
 					"I Balor sono i signori delle Isole Ebridi, incarnano le forze negative del male. I Balor "
 					+ "erano imponenti figure umanoidi che erano alte circa 3,7 metri e pesavano 2.000 chilogrammi. "
 					+ "Una potente aura di oscurita' avvolgeva le loro forme grottesche, mentre la loro pelle rosso "
@@ -64,8 +64,8 @@ public final class BossListDB {
 					+ "sotto del proprio potere piuttosto che deboli o eguali. Mentre due balor possono "
 					+ "occasionalmente fare squadra, qualsiasi alleanza normalmente si rompe dopo che e' trascorso un "
 					+ "po' di tempo a causa della loro naturale competitivita'.",
-					new int[] {1,2,3,9,11,13}),
-			"crimsoncave", new BossDTO(4, "crimsoncave", "Vampiro Lord",
+					new int[] {1,2,3,9,11,13})),
+			Map.entry("crimsoncave", new BossDTO(4, "crimsoncave", "Vampiro Lord",
 					"I vampiri sono esseri senzienti che hanno scambiato la loro anima per poteri magici: sono "
 					+ "sostenuti dalla magia del sangue. Sono senz'anima e quindi considerati esseri morti "
 					+ "sebbene siano ancora senzienti, con la magia del sangue che colpisce tutti i loro modi "
@@ -79,8 +79,8 @@ public final class BossListDB {
 					+ "dieci volte superiore a quella normale. I vampiri generalmente mantengono le unghie "
 					+ "entro un centimetro di lunghezza e anche abbastanza affilate o appuntite per aiutarli "
 					+ "ad afferrare le vittime e ferire gli avversari.",
-					new int[] {5,9,10,13,14,15}),	
-			"hottendesert", new BossDTO(5, "hottendesert", "Verme di sabbia gigante",
+					new int[] {5,9,10,13,14,15})),	
+			Map.entry("hottendesert", new BossDTO(5, "hottendesert", "Verme di sabbia gigante",
 					"Il verme adulto e' composto da 100-400 segmenti. Ogni segmento possiede il proprio sistema nervoso "
 					+ "primitivo. La respirazione avviene attraverso i pori della dura pelle esterna grigio-argento.<br/>"
 					+ "Non esiste un sistema circolatorio in quanto tale, poiche' la maggior parte dei nutrienti sono "
@@ -89,8 +89,7 @@ public final class BossListDB {
 					+ "Le creature sono straordinariamente brave a nascondersi tra le sabbie e le rocce del loro "
 					+ "terreno preferito e diabolicamente efficienti nel selezionare nemici che possono facilmente "
 					+ "sconfiggere.",
-					new int[] {0,2,7,9,11}),
-			"", new BossDTO()
+					new int[] {0,2,7,9,11}))
 			);
 	
 	

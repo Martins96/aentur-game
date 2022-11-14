@@ -24,6 +24,8 @@ export class IcelandComponent implements OnInit {
 
   stepPath:StepVO = new StepVO(1, 'ENEMY');
 
+  activeEffect: string|null=null;
+
   backgroundImgID: number = 0;
 
   ngOnInit(): void {
@@ -32,6 +34,7 @@ export class IcelandComponent implements OnInit {
     this.getEquipedWeapon();
     this.getEquipedArmor();
     this.getEquipedTalisman();
+    this.loadActiveEffects();
   }
 
   backToMap() {
@@ -156,10 +159,29 @@ export class IcelandComponent implements OnInit {
 
   endScenario(event: boolean): void {
     this.refreshPathStep();
+    this.loadActiveEffects();
   }
 
   async randomBackgroundImg(): Promise<void> {
     this.backgroundImgID = Math.floor(Math.random() * 10);
+  }
+
+  loadActiveEffects() {
+    const observ: Observable<HttpResponse<string>> = this.rest
+        .sendGetRawText("/event/active-effect", new HttpHeaders());
+
+    firstValueFrom(observ).then(
+      resp => {
+        if (!resp || !resp.ok) {
+          console.error("Call BE failed ", resp);
+          return;
+        }
+        
+        this.activeEffect = resp.body;
+      }, err => {
+        console.error("Call BE failed: ", err);
+      }
+    )
   }
 
 }

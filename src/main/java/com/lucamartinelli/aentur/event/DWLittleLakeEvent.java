@@ -72,7 +72,7 @@ public class DWLittleLakeEvent implements EventAction {
 				adventureDB.decreasePlayerHealth();
 				eventEffectDB.setActiveEffect("I tiri di <b>difesa</b> e <b>test armatura</b> sono diminuiti di 1");
 				return "Bevi l'acqua della sorgente e a poco a poco inizi a sentirti debole, la sorgente "
-						+ "e' maledetta e inizi a vomitare. Subisci una ferita e il tuo corpo e' debole "
+						+ "e' maledetta e inizi a vomitare. Subisci una ferita e il tuo corpo e' debole.<br/>"
 						+ "-Nuovo effetto attivo-";
 			} else if (!percentTest(rollD100 + 10)) {
 				adventureDB.decreasePlayerHealth();
