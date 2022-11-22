@@ -29,7 +29,7 @@ export class IcelandScenarioEnemyComponent implements OnInit {
 
   ngOnInit(): void {
     const observ: Observable<HttpResponse<number>> = this.rest
-        .sendGet<number>("/location/iceland/random/lvl"+this.monsterLvl, new HttpHeaders({
+        .sendGet<number>("/api/location/iceland/random/lvl"+this.monsterLvl, new HttpHeaders({
           "accept":"application/json"
         }));
 
@@ -41,7 +41,7 @@ export class IcelandScenarioEnemyComponent implements OnInit {
         }
 
         const observ: Observable<HttpResponse<EnemyVO>> = this.rest
-            .sendGet<EnemyVO>("/enemy/enemy-by-id/"+resp.body, new HttpHeaders());
+            .sendGet<EnemyVO>("/api/enemy/enemy-by-id/"+resp.body, new HttpHeaders());
 
         firstValueFrom(observ).then(
           resp2 => {
@@ -82,7 +82,7 @@ export class IcelandScenarioEnemyComponent implements OnInit {
 
   async nextPathStep(): Promise<void> {
     const observ: Observable<HttpResponse<void>> = this.rest
-        .sendGet<void>("/player/increase-step", new HttpHeaders({
+        .sendGet<void>("/api/player/increase-step", new HttpHeaders({
           "accept":"application/json"
         }));
 

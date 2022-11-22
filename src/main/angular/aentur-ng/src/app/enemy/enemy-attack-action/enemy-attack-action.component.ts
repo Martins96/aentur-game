@@ -26,7 +26,7 @@ export class EnemyAttackActionComponent implements OnInit {
   ngOnInit(): void {
     this.buttonDisabled = false;
     const observ: Observable<HttpResponse<EnemyAttackVO>> = this.rest
-        .sendGet<any>("/enemy/attack/random-for-monster/"+this.monsterId, new HttpHeaders({
+        .sendGet<any>("/api/enemy/attack/random-for-monster/"+this.monsterId, new HttpHeaders({
           'accept': 'application/json'
         }));
 
@@ -52,7 +52,7 @@ export class EnemyAttackActionComponent implements OnInit {
   async failure(): Promise<void> {
     this.buttonDisabled = true;
     const observ: Observable<HttpResponse<void>> = this.rest
-        .sendGet<any>("/player/decrease-health", new HttpHeaders({
+        .sendGet<any>("/api/player/decrease-health", new HttpHeaders({
           'accept': 'application/json'
         }));
 

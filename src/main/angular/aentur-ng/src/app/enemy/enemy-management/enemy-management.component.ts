@@ -32,7 +32,7 @@ export class EnemyManagementComponent implements OnInit {
 
   private refreshStats(): void {
     const observ: Observable<HttpResponse<number>> = this.rest
-        .sendGet<number>("/adventure/player-health", new HttpHeaders({
+        .sendGet<number>("/api/adventure/player-health", new HttpHeaders({
           'accept': 'application/json'
         }));
 
@@ -50,7 +50,7 @@ export class EnemyManagementComponent implements OnInit {
     )
 
     const observ2: Observable<HttpResponse<number>> = this.rest
-        .sendGet<number>("/adventure/monster-health", new HttpHeaders({
+        .sendGet<number>("/api/adventure/monster-health", new HttpHeaders({
           'accept': 'application/json'
         }));
 
@@ -97,7 +97,7 @@ export class EnemyManagementComponent implements OnInit {
 
   async isAdventureFailed(): Promise<boolean> {
     const observ: Observable<HttpResponse<boolean>> = this.rest
-        .sendGet<boolean>("/adventure/isfailed", new HttpHeaders({
+        .sendGet<boolean>("/api/adventure/isfailed", new HttpHeaders({
           'accept': 'application/json'
         }));
 
@@ -121,7 +121,7 @@ export class EnemyManagementComponent implements OnInit {
 
   async isAdventureSuccess(): Promise<boolean> {
     const observ: Observable<HttpResponse<boolean>> = this.rest
-        .sendGet<boolean>("/adventure/issuccess", new HttpHeaders({
+        .sendGet<boolean>("/api/adventure/issuccess", new HttpHeaders({
           'accept': 'application/json'
         }));
 

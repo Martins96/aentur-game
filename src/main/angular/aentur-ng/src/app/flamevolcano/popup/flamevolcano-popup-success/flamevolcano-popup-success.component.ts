@@ -24,7 +24,7 @@ export class FlamevolcanoPopupSuccessComponent implements OnInit {
   ngOnInit(): void {
 
     const observ: Observable<HttpResponse<RewardVO>> = this.rest
-        .sendGet<RewardVO>("/enemy/reward/assign-and-get/"+this.data.id, new HttpHeaders());
+        .sendGet<RewardVO>("/api/enemy/reward/assign-and-get/"+this.data.id, new HttpHeaders());
 
     firstValueFrom(observ).then(
       resp => {

@@ -28,7 +28,7 @@ export class BossManagementComponent implements OnInit {
 
   private init(): void {
     const observ: Observable<HttpResponse<void>> = this.rest
-        .sendGet<void>("/boss/init/"+this.bossLocation, new HttpHeaders({
+        .sendGet<void>("/api/boss/init/"+this.bossLocation, new HttpHeaders({
         }));
     firstValueFrom(observ).then(
       resp => {
@@ -45,7 +45,7 @@ export class BossManagementComponent implements OnInit {
 
   private getBoss(): void {
     const observ: Observable<HttpResponse<BossVO>> = this.rest
-        .sendGet<BossVO>("/boss/get-by-location/"+this.bossLocation, new HttpHeaders({
+        .sendGet<BossVO>("/api/boss/get-by-location/"+this.bossLocation, new HttpHeaders({
           'accept': 'application/json'
         }));
     firstValueFrom(observ).then(

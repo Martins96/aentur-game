@@ -55,7 +55,7 @@ export class HottendesertComponent implements OnInit {
 
   private async getEquipedWeapon() {
     const observ: Observable<HttpResponse<ItemVO|null>> = this.rest
-        .sendGet<ItemVO|null>("/player/equiped-weapon", new HttpHeaders({
+        .sendGet<ItemVO|null>("/api/player/equiped-weapon", new HttpHeaders({
           "Accept": "application/json"
         }));
 
@@ -76,7 +76,7 @@ export class HottendesertComponent implements OnInit {
 
   private async getEquipedArmor() {
     const observ: Observable<HttpResponse<ItemVO|null>> = this.rest
-        .sendGet<ItemVO|null>("/player/equiped-armor", new HttpHeaders({
+        .sendGet<ItemVO|null>("/api/player/equiped-armor", new HttpHeaders({
           "Accept": "application/json"
         }));
 
@@ -97,7 +97,7 @@ export class HottendesertComponent implements OnInit {
 
   private async getEquipedTalisman() {
     const observ: Observable<HttpResponse<ItemVO|null>> = this.rest
-        .sendGet<ItemVO|null>("/player/equiped-talisman", new HttpHeaders({
+        .sendGet<ItemVO|null>("/api/player/equiped-talisman", new HttpHeaders({
           "Accept": "application/json"
         }));
 
@@ -119,7 +119,7 @@ export class HottendesertComponent implements OnInit {
   refreshPathStep() {
     this.randomBackgroundImg();
     const observ: Observable<HttpResponse<StepVO>> = this.rest
-        .sendGet<StepVO>("/player/current-step", new HttpHeaders({
+        .sendGet<StepVO>("/api/player/current-step", new HttpHeaders({
           "accept":"application/json"
         }));
 
@@ -140,7 +140,7 @@ export class HottendesertComponent implements OnInit {
 
   resetStats(): void {
     const observ: Observable<HttpResponse<undefined>> = this.rest
-        .sendGet<undefined>("/location/reset-adventure-stats", new HttpHeaders());
+        .sendGet<undefined>("/api/location/reset-adventure-stats", new HttpHeaders());
 
     firstValueFrom(observ).then(
       resp => {
@@ -168,7 +168,7 @@ export class HottendesertComponent implements OnInit {
 
   loadActiveEffects() {
     const observ: Observable<HttpResponse<string>> = this.rest
-        .sendGetRawText("/event/active-effect", new HttpHeaders());
+        .sendGetRawText("/api/event/active-effect", new HttpHeaders());
 
     firstValueFrom(observ).then(
       resp => {

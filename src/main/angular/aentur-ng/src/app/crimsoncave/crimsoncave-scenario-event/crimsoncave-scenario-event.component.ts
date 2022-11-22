@@ -28,7 +28,7 @@ export class CrimsoncaveScenarioEventComponent implements OnInit {
 
   async nextPathStep(): Promise<void> {
     const observ: Observable<HttpResponse<void>> = this.rest
-        .sendGet<void>("/player/increase-step", new HttpHeaders({
+        .sendGet<void>("/api/player/increase-step", new HttpHeaders({
           "accept":"application/json"
         }));
 

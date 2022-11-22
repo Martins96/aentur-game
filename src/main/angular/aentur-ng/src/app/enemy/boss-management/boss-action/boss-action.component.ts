@@ -35,7 +35,7 @@ export class BossActionComponent {
 
   private async checkBossAdventure(): Promise<void> {
     const observ: Observable<HttpResponse<boolean>> = this.rest
-        .sendGet<boolean>("/boss/is-failed", new HttpHeaders({
+        .sendGet<boolean>("/api/boss/is-failed", new HttpHeaders({
           'accept': 'application/json'
         }));
 
@@ -58,7 +58,7 @@ export class BossActionComponent {
       return;
     }
     const observ2: Observable<HttpResponse<boolean>> = this.rest
-        .sendGet<boolean>("/boss/is-success", new HttpHeaders({
+        .sendGet<boolean>("/api/boss/is-success", new HttpHeaders({
           'accept': 'application/json'
         }));
 
@@ -96,7 +96,7 @@ export class BossActionComponent {
       return;
 
     const observ: Observable<HttpResponse<BossActionVO>> = this.rest
-        .sendPost<BossActionVO>("/boss/action", rolld20 ,new HttpHeaders({
+        .sendPost<BossActionVO>("/api/boss/action", rolld20 ,new HttpHeaders({
           'accept': 'application/json',
           'content-type': 'application/json'
         }));
@@ -120,7 +120,7 @@ export class BossActionComponent {
 
   private refreshStats(): void {
     const observ: Observable<HttpResponse<number>> = this.rest
-        .sendGet<number>("/adventure/player-health", new HttpHeaders({
+        .sendGet<number>("/api/adventure/player-health", new HttpHeaders({
           'accept': 'application/json'
         }));
 
@@ -138,7 +138,7 @@ export class BossActionComponent {
     )
 
     const observ2: Observable<HttpResponse<number>> = this.rest
-        .sendGet<number>("/adventure/boss-health", new HttpHeaders({
+        .sendGet<number>("/api/adventure/boss-health", new HttpHeaders({
           'accept': 'application/json'
         }));
 

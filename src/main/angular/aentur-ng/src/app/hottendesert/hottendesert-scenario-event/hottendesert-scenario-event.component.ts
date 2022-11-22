@@ -43,7 +43,7 @@ export class HottendesertScenarioEventComponent implements OnInit {
 
   async nextPathStep(): Promise<void> {
     const observ: Observable<HttpResponse<void>> = this.rest
-        .sendGet<void>("/player/increase-step", new HttpHeaders({
+        .sendGet<void>("/api/player/increase-step", new HttpHeaders({
           "accept":"application/json"
         }));
 
@@ -61,7 +61,7 @@ export class HottendesertScenarioEventComponent implements OnInit {
 
   async isAdventureFailed(): Promise<boolean> {
     const observ: Observable<HttpResponse<boolean>> = this.rest
-        .sendGet<boolean>("/adventure/isfailed", new HttpHeaders({
+        .sendGet<boolean>("/api/adventure/isfailed", new HttpHeaders({
           'accept': 'application/json'
         }));
 
@@ -84,7 +84,7 @@ export class HottendesertScenarioEventComponent implements OnInit {
 
   loadRandomEvent() {
     const observ: Observable<HttpResponse<EventVO>> = this.rest
-        .sendGet<EventVO>("/event/get-random-event/"+this.location, new HttpHeaders({
+        .sendGet<EventVO>("/api/event/get-random-event/"+this.location, new HttpHeaders({
           "accept": "application/json"
         }));
 
@@ -135,7 +135,7 @@ export class HottendesertScenarioEventComponent implements OnInit {
     eventRequest.setRollD100= rolld100;
 
     const observ: Observable<HttpResponse<string>> = this.rest
-        .sendPostGetRawText("/event/apply-effect", eventRequest, new HttpHeaders({
+        .sendPostGetRawText("/api/event/apply-effect", eventRequest, new HttpHeaders({
           "content-type": "application/json"
         }));
 

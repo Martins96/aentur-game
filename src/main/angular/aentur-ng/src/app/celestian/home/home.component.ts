@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
 
   private async getInventory() {
     const observ: Observable<HttpResponse<ItemVO[]>> = this.rest
-        .sendGet<ItemVO[]>("/player/inventory", new HttpHeaders({
+        .sendGet<ItemVO[]>("/api/player/inventory", new HttpHeaders({
           "Accept": "application/json"
         }));
 
@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
 
   private async getEquipedWeapon() {
     const observ: Observable<HttpResponse<ItemVO|null>> = this.rest
-        .sendGet<ItemVO|null>("/player/equiped-weapon", new HttpHeaders({
+        .sendGet<ItemVO|null>("/api/player/equiped-weapon", new HttpHeaders({
           "Accept": "application/json"
         }));
 
@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit {
 
   private async getEquipedArmor() {
     const observ: Observable<HttpResponse<ItemVO|null>> = this.rest
-        .sendGet<ItemVO|null>("/player/equiped-armor", new HttpHeaders({
+        .sendGet<ItemVO|null>("/api/player/equiped-armor", new HttpHeaders({
           "Accept": "application/json"
         }));
 
@@ -93,7 +93,7 @@ export class HomeComponent implements OnInit {
 
   private async getEquipedTalisman() {
     const observ: Observable<HttpResponse<ItemVO|null>> = this.rest
-        .sendGet<ItemVO|null>("/player/equiped-talisman", new HttpHeaders({
+        .sendGet<ItemVO|null>("/api/player/equiped-talisman", new HttpHeaders({
           "Accept": "application/json"
         }));
 
@@ -114,7 +114,7 @@ export class HomeComponent implements OnInit {
 
   private async loadGold() {
     const observ: Observable<HttpResponse<number>> = this.rest
-        .sendGet<number>("/player/gold", new HttpHeaders({
+        .sendGet<number>("/api/player/gold", new HttpHeaders({
           "Accept": "application/json"
         }));
 

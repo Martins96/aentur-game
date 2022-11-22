@@ -20,7 +20,7 @@ export class WorldMapComponent implements OnInit {
 
   ngOnInit(): void {
     const observ: Observable<HttpResponse<undefined>> = this.rest
-        .sendGet<undefined>("/location/reset-adventure-stats", new HttpHeaders());
+        .sendGet<undefined>("/api/location/reset-adventure-stats", new HttpHeaders());
 
     firstValueFrom(observ).then(
       resp => {

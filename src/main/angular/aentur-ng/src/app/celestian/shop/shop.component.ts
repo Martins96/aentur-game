@@ -29,7 +29,7 @@ export class ShopComponent implements OnInit {
 
   private async getInventory() {
     const observ: Observable<HttpResponse<ItemVO[]>> = this.rest
-        .sendGet<ItemVO[]>("/player/inventory", new HttpHeaders({
+        .sendGet<ItemVO[]>("/api/player/inventory", new HttpHeaders({
           "Accept": "application/json"
         }));
 
@@ -50,7 +50,7 @@ export class ShopComponent implements OnInit {
 
   private async getMerchant() {
     const observ: Observable<HttpResponse<ItemVO[]>> = this.rest
-        .sendGet<ItemVO[]>("/shop/items", new HttpHeaders({
+        .sendGet<ItemVO[]>("/api/shop/items", new HttpHeaders({
           "Accept": "application/json"
         }));
 
@@ -71,7 +71,7 @@ export class ShopComponent implements OnInit {
 
   private async loadGold() {
     const observ: Observable<HttpResponse<number>> = this.rest
-        .sendGet<number>("/player/gold", new HttpHeaders({
+        .sendGet<number>("/api/player/gold", new HttpHeaders({
           "Accept": "application/json"
         }));
 

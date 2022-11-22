@@ -40,7 +40,7 @@ export class ItemCardShopComponent implements OnInit {
       return;
 
     const observ: Observable<HttpResponse<ItemVO[]>> = this.rest
-        .sendPost<ItemVO[]>("/shop/sell/"+this.item?.id);
+        .sendPost<ItemVO[]>("/api/shop/sell/"+this.item?.id);
 
     firstValueFrom(observ).then(
       resp => {
@@ -59,7 +59,7 @@ export class ItemCardShopComponent implements OnInit {
       return;
 
     const observ: Observable<HttpResponse<ItemVO[]>> = this.rest
-        .sendPost<ItemVO[]>("/shop/buy/"+this.item?.id);
+        .sendPost<ItemVO[]>("/api/shop/buy/"+this.item?.id);
 
     firstValueFrom(observ).then(
       resp => {

@@ -25,7 +25,7 @@ export class FrozenmountainsBossSuccessComponent implements OnInit {
 
   private async getReward() {
     const observ: Observable<HttpResponse<RewardVO>> = this.rest
-        .sendGet<RewardVO>("/boss/reward", new HttpHeaders({
+        .sendGet<RewardVO>("/api/boss/reward", new HttpHeaders({
           "Accept": "application/json"
         }));
 

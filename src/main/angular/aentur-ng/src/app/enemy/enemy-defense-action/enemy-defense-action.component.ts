@@ -25,7 +25,7 @@ export class EnemyDefenseActionComponent implements OnInit {
   ngOnInit(): void {
     this.buttonDisabled = false;
     const observ: Observable<HttpResponse<EnemyDefenseVO>> = this.rest
-        .sendGet<any>("/enemy/defence/random-for-monster/"+this.monsterId, new HttpHeaders({
+        .sendGet<any>("/api/enemy/defence/random-for-monster/"+this.monsterId, new HttpHeaders({
           'accept': 'application/json'
         }));
 
@@ -47,7 +47,7 @@ export class EnemyDefenseActionComponent implements OnInit {
     this.buttonDisabled = false;
 
     const observ: Observable<HttpResponse<void>> = this.rest
-        .sendGet<any>("/enemy/decrease-health", new HttpHeaders({
+        .sendGet<any>("/api/enemy/decrease-health", new HttpHeaders({
           'accept': 'application/json'
         }));
 

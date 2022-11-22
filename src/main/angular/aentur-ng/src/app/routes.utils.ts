@@ -7,6 +7,7 @@ import { FlamevolcanoComponent } from "./flamevolcano/flamevolcano/flamevolcano.
 import { FrozenmountainsComponent } from "./frozenmountains/frozenmountains/frozenmountains.component";
 import { HottendesertComponent } from "./hottendesert/hottendesert/hottendesert.component";
 import { IcelandComponent } from "./iceland/iceland/iceland.component";
+import { GameOverCongratsComponent } from "./world-map/game-over-congrats/game-over-congrats.component";
 import { WorldMapComponent } from "./world-map/world-map.component";
 
 export class RoutesUtils {
@@ -52,6 +53,10 @@ export class RoutesUtils {
         {
           matcher: (u) => this.checkQSUrl(u, "hottendesert"),
           component: HottendesertComponent
+        },
+        {
+          matcher: (u) => this.checkQSUrl(u, "game-over"),
+          component: GameOverCongratsComponent
         },
         { path: "", component: WorldMapComponent }
       

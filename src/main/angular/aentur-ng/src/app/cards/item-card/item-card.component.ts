@@ -28,7 +28,7 @@ export class ItemCardComponent implements OnInit {
     if (!this.item)
       return;
     const observ: Observable<HttpResponse<any>> = this.rest
-        .sendPost<any>("/player/equip/"+this.item.id, "", new HttpHeaders());
+        .sendPost<any>("/api/player/equip/"+this.item.id, "", new HttpHeaders());
 
     firstValueFrom(observ).then(
       resp => {
@@ -49,7 +49,7 @@ export class ItemCardComponent implements OnInit {
       return;
 
     const observ: Observable<HttpResponse<any>> = this.rest
-        .sendDelete<any>("/player/delete/"+this.item.id);
+        .sendDelete<any>("/api/player/delete/"+this.item.id);
 
     firstValueFrom(observ).then(
       resp => {
