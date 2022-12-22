@@ -38,6 +38,11 @@ public interface EventAction {
 		return (new Random().nextInt(100) + 1) <= percentMinThreshold;
 	}
 	
+	/**
+	 * Returns a pseudorandom, uniformly distributed int value
+	 * between 0 (inclusive) 
+	 * and the specified bound (exclusive), 
+	 */
 	default int getRandomInt(int bound) {
 		return new Random().nextInt(bound);
 	}

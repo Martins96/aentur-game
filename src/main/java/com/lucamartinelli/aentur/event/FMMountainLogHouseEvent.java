@@ -7,11 +7,11 @@ import javax.ws.rs.core.Response;
 import com.lucamartinelli.aentur.vo.EventDTO;
 import com.lucamartinelli.aentur.vo.RewardDTO;
 
-@Named("event-fm-12")
+@Named("event-fm-15")
 @ApplicationScoped
 public class FMMountainLogHouseEvent implements EventAction {
 
-	private final EventDTO event = new EventDTO("event-fm-12", 
+	private final EventDTO event = new EventDTO("event-fm-15", 
 			"Camminando nella neve ti imbatti in una baita fatta di pietra e tronchi. Accanto alla casa "
 			+ "c'e' una piccola legnaia.",
 			new String[] {"Ignora il luogo", "Controlla la baita", "Controlla la legnaia"});
@@ -94,7 +94,7 @@ public class FMMountainLogHouseEvent implements EventAction {
 				return "Entri nella casa, sembra abbandonata da tempo, ma i mobili sono ancora integri. Trovi coperte e "
 						+ "dei ceppi di legna vicino al camino. Accendi un fuoco e riposi. Ti curi una ferita.";
 			} else {
-				return "Entri nella casa, sembra abbandonata da tempo, ma i mobili sono danneggiati però ancora integri. "
+				return "Entri nella casa, sembra abbandonata da tempo, ma i mobili sono danneggiati pero' ancora integri. "
 						+ "Qualche belva servaggia deve aver saccheggiato il posto, cerchi di accendere un fuoco con dei "
 						+ "ceppi trovati vicino al camino, ma la legna umida non fa partire il fuoco. Inoltre le "
 						+ "finestre rotte non consentono di ripararsi dal gelo. Continui per la tua strada";
