@@ -13,14 +13,20 @@ import { StartStoryComponent } from './start-story/start-story.component';
 export class WorldMapComponent implements OnInit {
 
   activePointId: string;
+  activePointCompleted: boolean;
+  locationDoneList: any = {};
 
   constructor(private dialog: MatDialog, private rest: RestService) {
     this.activePointId = "";
+    this.activePointCompleted = true;
   }
 
   ngOnInit(): void {
     const observ: Observable<HttpResponse<undefined>> = this.rest
         .sendGet<undefined>("/api/location/reset-adventure-stats", new HttpHeaders());
+
+    const observ2: Observable<HttpResponse<undefined>> = this.rest
+        .sendGet<undefined>("/api/completation/list", new HttpHeaders());
 
     firstValueFrom(observ).then(
       resp => {
@@ -32,13 +38,27 @@ export class WorldMapComponent implements OnInit {
         console.error("Call BE failed: ", err);
       }
     )
+
+    firstValueFrom(observ2).then(
+      resp => {
+        if (!resp || !resp.ok) {
+          console.error("Call BE failed ", resp);
+        }
+        if (resp.body)
+            this.locationDoneList = resp.body;
+      }, err => {
+        console.error("Call BE failed: ", err);
+      }
+    )
   }
 
 
 
 
   selectPoint(event: PointerEvent | MouseEvent): void {
-    this.activePointId = (event.target as Element).id;
+    var id: string = (event.target as Element).id;
+    this.activePointId = id;
+    this.activePointCompleted = this.locationDoneList[id];
   }
 
   openDialog() {

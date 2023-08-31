@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-
 import com.lucamartinelli.aentur.persistence.ItemsListDB;
 import com.lucamartinelli.aentur.persistence.PlayerInventoryDB;
 import com.lucamartinelli.aentur.vo.ItemDTO;
 import com.lucamartinelli.aentur.vo.RewardBlueprintDTO;
 import com.lucamartinelli.aentur.vo.RewardDTO;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 @ApplicationScoped
 public class RewardEJB {

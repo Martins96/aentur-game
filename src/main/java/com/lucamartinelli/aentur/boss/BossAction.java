@@ -1,11 +1,11 @@
 package com.lucamartinelli.aentur.boss;
 
-import javax.enterprise.inject.spi.CDI;
-
 import org.jboss.logging.Logger;
 
 import com.lucamartinelli.aentur.persistence.AdventureStatsDB;
 import com.lucamartinelli.aentur.vo.BossActionResultVO;
+
+import jakarta.enterprise.inject.spi.CDI;
 
 public abstract class BossAction {
 	

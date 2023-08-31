@@ -15,22 +15,34 @@
             <a id="point-home" [class.active-point]="activePointId === 'home'">
                 <img src="assets/worldmap/home-map.png" name="Celestian" (click)="selectPoint($event)" id="home"/>
             </a>
-            <a id="point-darkwood" [class.active-point]="activePointId === 'darkwood'">
+            <a id="point-darkwood" 
+                    [class.active-point]="activePointId === 'darkwood'"
+                    [ngStyle]="{'border-color':locationDoneList.darkwood ? 'lime' : 'white' }">
                 <img src="assets/worldmap/darkwood-map.png" name="Foresta Oscura" (click)="selectPoint($event)" id="darkwood"/>
             </a>
-            <a id="point-iceland" [class.active-point]="activePointId === 'iceland'">
+            <a id="point-iceland" 
+                    [class.active-point]="activePointId === 'iceland'"
+                    [ngStyle]="{'border-color':locationDoneList.iceland ? 'lime' : 'white' }">
                 <img src="assets/worldmap/iceland-map.png" name="Le lande ghiacciate" (click)="selectPoint($event)" id="iceland"/>
             </a>
-            <a id="point-frozenmountains" [class.active-point]="activePointId === 'frozenmountains'">
+            <a id="point-frozenmountains" 
+                    [class.active-point]="activePointId === 'frozenmountains'"
+                    [ngStyle]="{'border-color':locationDoneList.frozenmountains ? 'lime' : 'white' }">
                 <img src="assets/worldmap/frozenmountains-map.png" name="Montagne Gelide" (click)="selectPoint($event)" id="frozenmountains"/>
             </a>
-            <a id="point-flamevolcano" [class.active-point]="activePointId === 'flamevolcano'">
+            <a id="point-flamevolcano" 
+                    [class.active-point]="activePointId === 'flamevolcano'"
+                    [ngStyle]="{'border-color':locationDoneList.flamevolcano ? 'lime' : 'white' }">
                 <img src="assets/worldmap/flamevolcano-map.png" name="Vulcano Fiammante" (click)="selectPoint($event)" id="flamevolcano"/>
             </a>
-            <a id="point-crimsoncave" [class.active-point]="activePointId === 'crimsoncave'">
+            <a id="point-crimsoncave" 
+                    [class.active-point]="activePointId === 'crimsoncave'"
+                    [ngStyle]="{'border-color':locationDoneList.crimsoncave ? 'lime' : 'white' }">
                 <img src="assets/worldmap/crimsoncave-map.png" name="Caverna Cremisi" (click)="selectPoint($event)" id="crimsoncave"/>
             </a>
-            <a id="point-hottendesert" [class.active-point]="activePointId === 'hottendesert'">
+            <a id="point-hottendesert" 
+                    [class.active-point]="activePointId === 'hottendesert'"
+                    [ngStyle]="{'border-color':locationDoneList.hottendesert ? 'lime' : 'white' }">
                 <img src="assets/worldmap/hottendesert-map.png" name="Deserto Cocente" (click)="selectPoint($event)" id="hottendesert"/>
             </a>
         </div>
@@ -39,7 +51,7 @@
 
     <div class="menu-section">
         <div>
-            <app-point-description [pointID]="activePointId"></app-point-description>
+            <app-point-description [pointID]="activePointId" [pointCompleted]="activePointCompleted"></app-point-description>
         </div>
     </div>
 

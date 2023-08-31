@@ -2,10 +2,6 @@ package com.lucamartinelli.aentur.ejb;
 
 import java.util.Random;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.ws.rs.core.Response;
-
 import org.jboss.logging.Logger;
 
 import com.lucamartinelli.aentur.boss.BossAction;
@@ -14,6 +10,10 @@ import com.lucamartinelli.aentur.persistence.BossActionListDB;
 import com.lucamartinelli.aentur.persistence.BossListDB;
 import com.lucamartinelli.aentur.vo.BossActionResultVO;
 import com.lucamartinelli.aentur.vo.BossDTO;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.core.Response;
 
 import static com.lucamartinelli.aentur.persistence.LocationSigleListDB.locationSigle;
 

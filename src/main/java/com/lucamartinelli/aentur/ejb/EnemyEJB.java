@@ -2,9 +2,6 @@ package com.lucamartinelli.aentur.ejb;
 
 import java.util.Random;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-
 import org.jboss.logging.Logger;
 
 import com.lucamartinelli.aentur.persistence.MonsterAttacksListDB;
@@ -13,6 +10,9 @@ import com.lucamartinelli.aentur.persistence.MonstersListDB;
 import com.lucamartinelli.aentur.vo.AttackDTO;
 import com.lucamartinelli.aentur.vo.DefenseDTO;
 import com.lucamartinelli.aentur.vo.MonsterDTO;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 @ApplicationScoped
 public class EnemyEJB {

@@ -10,6 +10,9 @@ export class PointDescriptionComponent implements OnInit {
   @Input()
   pointID: string = '';
 
+  @Input()
+  pointCompleted: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {

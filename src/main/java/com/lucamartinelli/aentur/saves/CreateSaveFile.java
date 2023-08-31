@@ -5,20 +5,19 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.spi.CDI;
-import javax.inject.Inject;
-import javax.json.Json;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
-import javax.json.JsonValue;
-
 import org.jboss.logging.Logger;
 
 import com.lucamartinelli.aentur.persistence.PlayerInventoryDB;
 
 import io.quarkus.arc.Unremovable;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.spi.CDI;
+import jakarta.inject.Inject;
+import jakarta.json.Json;
+import jakarta.json.JsonArrayBuilder;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
+import jakarta.json.JsonValue;
 
 @Unremovable
 @ApplicationScoped
@@ -30,13 +29,20 @@ public class CreateSaveFile {
 	@Inject
 	PlayerInventoryDB playerDB;
 	
+	private boolean enableSaving;
+	
+	public CreateSaveFile() {
+		enableSaving = true;
+	}
+	
 	public static void saveAdventure() {
 		CDI.current().select(CreateSaveFile.class).get().save();
 	}
 	
 	public void save() {
 		try {
-			generateSaveFileAndStore();
+			if (this.enableSaving)
+				generateSaveFileAndStore();
 		} catch (IOException e) {
 			log.error("Error create and store the saving file:", e);
 		}
@@ -104,6 +110,10 @@ public class CreateSaveFile {
 		
 		
 		return bldr.build();
+	}
+	
+	public void setEnableSaving(final boolean enable) {
+		this.enableSaving = enable;
 	}
 
 }

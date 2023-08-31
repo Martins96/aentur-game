@@ -2,16 +2,6 @@ package com.lucamartinelli.aentur.services;
 
 import java.io.IOException;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-
 import org.apache.commons.lang3.math.NumberUtils;
 import org.jboss.logging.Logger;
 
@@ -23,6 +13,16 @@ import com.lucamartinelli.aentur.vo.AttackDTO;
 import com.lucamartinelli.aentur.vo.DefenseDTO;
 import com.lucamartinelli.aentur.vo.MonsterDTO;
 import com.lucamartinelli.aentur.vo.RewardDTO;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.MediaType;
 
 @Path("/enemy")
 @ApplicationScoped

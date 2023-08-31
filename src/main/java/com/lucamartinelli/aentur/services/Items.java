@@ -1,24 +1,23 @@
 package com.lucamartinelli.aentur.services;
 
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-
 import java.io.IOException;
 import java.util.Optional;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.GET;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.lang3.math.NumberUtils;
 import org.jboss.logging.Logger;
 
 import com.lucamartinelli.aentur.persistence.ItemsListDB;
 import com.lucamartinelli.aentur.vo.ItemDTO;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.MediaType;
 
 @Path("/items")
 @ApplicationScoped

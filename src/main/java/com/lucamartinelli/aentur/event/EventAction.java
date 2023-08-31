@@ -3,14 +3,14 @@ package com.lucamartinelli.aentur.event;
 import java.util.Random;
 import org.jboss.logging.Logger;
 
-import javax.enterprise.inject.spi.CDI;
-import javax.ws.rs.core.Response;
-
 import com.lucamartinelli.aentur.ejb.RewardEJB;
 import com.lucamartinelli.aentur.persistence.AdventureStatsDB;
 import com.lucamartinelli.aentur.persistence.EventEffectDB;
 import com.lucamartinelli.aentur.persistence.PlayerInventoryDB;
 import com.lucamartinelli.aentur.vo.EventDTO;
+
+import jakarta.enterprise.inject.spi.CDI;
+import jakarta.ws.rs.core.Response;
 
 
 public interface EventAction {

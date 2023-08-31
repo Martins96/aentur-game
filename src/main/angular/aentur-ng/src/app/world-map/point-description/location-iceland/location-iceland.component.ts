@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-location-iceland',
@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./location-iceland.component.css']
 })
 export class LocationIcelandComponent {
+
+  @Input()
+  isCompleted: boolean = false;
 
   constructor() { }
 

@@ -161,3 +161,30 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .close-btn h4 {
     padding-left: 5px;
 }
+
+.completation-ribbon {
+    content: url(assets/worldmap/completation-ribbon.png);
+    border: none;
+    width: 50px;
+}
+.compl-container {
+    position: absolute;
+    right: 1%;
+}
+
+
+.compl-container span {
+    visibility: hidden;
+    position: absolute;
+    right: 30%;
+    cursor: default;
+    width: fit-content;
+    background-color: lightgoldenrodyellow;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.compl-container:hover span {
+    visibility: visible;
+}
+  

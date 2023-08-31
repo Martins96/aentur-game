@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.inject.Singleton;
-
 import com.lucamartinelli.aentur.saves.CreateSaveFile;
 import com.lucamartinelli.aentur.vo.ItemDTO;
+
+import jakarta.inject.Singleton;
 
 @Singleton
 public class PlayerInventoryDB implements Serializable {

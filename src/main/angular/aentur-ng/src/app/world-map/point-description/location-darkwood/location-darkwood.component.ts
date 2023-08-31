@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-location-darkwood',
@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./location-darkwood.component.css']
 })
 export class LocationDarkwoodComponent {
+
+  @Input()
+  isCompleted: boolean = false;
 
   constructor() { }
 

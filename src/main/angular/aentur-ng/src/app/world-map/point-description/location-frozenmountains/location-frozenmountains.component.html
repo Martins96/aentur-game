@@ -13,6 +13,12 @@
             </p>
         </div>
         <div class="right-col">
+            
+            <div class="compl-container" *ngIf="isCompleted">
+                <img class="completation-ribbon" />
+                <span>Hai completato questa avventura, complimenti!</span>
+            </div>
+            
             <p>Inizia l'avventura:</p>
             <button (click)="moveTo('frozenmountains')">Montagne Gelide</button>
         </div>

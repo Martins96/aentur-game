@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-location-crimsoncave',
@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./location-crimsoncave.component.css']
 })
 export class LocationCrimsoncaveComponent {
+
+  @Input()
+  isCompleted: boolean = false;
 
   constructor() { }
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-location-hottendesert',
@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./location-hottendesert.component.css']
 })
 export class LocationHottendesertComponent {
+
+  @Input()
+  isCompleted: boolean = false;
 
   constructor() { }
 

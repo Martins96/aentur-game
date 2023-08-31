@@ -2,9 +2,9 @@ package com.lucamartinelli.aentur.persistence;
 
 import java.io.Serializable;
 
-import javax.inject.Singleton;
-
 import com.lucamartinelli.aentur.vo.StepDTO;
+
+import jakarta.inject.Singleton;
 
 @Singleton
 public class AdventureStatsDB implements Serializable {

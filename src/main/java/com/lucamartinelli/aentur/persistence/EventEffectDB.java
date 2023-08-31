@@ -2,7 +2,7 @@ package com.lucamartinelli.aentur.persistence;
 
 import java.io.Serializable;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 
 @Singleton
 public class EventEffectDB implements Serializable {

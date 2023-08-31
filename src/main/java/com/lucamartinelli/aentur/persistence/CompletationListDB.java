@@ -1,11 +1,17 @@
 package com.lucamartinelli.aentur.persistence;
 
-import javax.inject.Singleton;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
+import jakarta.inject.Singleton;
 
 @Singleton
-public class CompletationListDB {
+public class CompletationListDB implements Serializable {
 	
 	
+	private static final long serialVersionUID = -8887058626894529464L;
+
 	private boolean darkwood = false;
 	private boolean iceland = false;
 	private boolean frozenmountains = false;
@@ -13,28 +19,37 @@ public class CompletationListDB {
 	private boolean crimsoncave = false;
 	private boolean hottendesert = false;
 	
+	private final static String DARKWOOD_NAME = "darkwood";
+	private final static String ICELAND_NAME = "iceland";
+	private final static String FROZENMOUNTAINS_NAME = "frozenmountains";
+	private final static String FLAMEVOLCANO_NAME = "flamevolcano";
+	private final static String CRIMSONCAVE_NAME = "crimsoncave";
+	private final static String HOTTERDESERT_NAME = "hottendesert";
+	
+	public CompletationListDB() {
+	}
 	
 	public void setComplete(final String location) {
 		if (location == null)
 			return;
 			
 		switch (location.toLowerCase()) {
-		case "darkwood":
+		case DARKWOOD_NAME:
 			darkwood = true;
 			return;
-		case "iceland":
+		case ICELAND_NAME:
 			iceland = true;
 			return;
-		case "frozenmountains":
+		case FROZENMOUNTAINS_NAME:
 			frozenmountains = true;
 			return;
-		case "flamevolcano":
+		case FLAMEVOLCANO_NAME:
 			flamevolcano = true;
 			return;
-		case "crimsoncave":
+		case CRIMSONCAVE_NAME:
 			crimsoncave = true;
 			return;
-		case "hottendesert":
+		case HOTTERDESERT_NAME:
 			hottendesert = true;
 			return;
 			
@@ -48,22 +63,22 @@ public class CompletationListDB {
 			return;
 			
 		switch (location.toLowerCase()) {
-		case "darkwood":
+		case DARKWOOD_NAME:
 			darkwood = false;
 			return;
-		case "iceland":
+		case ICELAND_NAME:
 			iceland = false;
 			return;
-		case "frozenmountains":
+		case FROZENMOUNTAINS_NAME:
 			frozenmountains = false;
 			return;
-		case "flamevolcano":
+		case FLAMEVOLCANO_NAME:
 			flamevolcano = false;
 			return;
-		case "crimsoncave":
+		case CRIMSONCAVE_NAME:
 			crimsoncave = false;
 			return;
-		case "hottendesert":
+		case HOTTERDESERT_NAME:
 			hottendesert = false;
 			return;
 			
@@ -142,5 +157,15 @@ public class CompletationListDB {
 				this.hottendesert;
 	}
 	
+	public Map<String, Boolean> getList() {
+		final Map<String, Boolean> locations = new HashMap<>();
+		locations.put(DARKWOOD_NAME, this.darkwood);
+		locations.put(ICELAND_NAME, this.iceland);
+		locations.put(FROZENMOUNTAINS_NAME, this.frozenmountains);
+		locations.put(CRIMSONCAVE_NAME, this.crimsoncave);
+		locations.put(FLAMEVOLCANO_NAME, this.flamevolcano);
+		locations.put(HOTTERDESERT_NAME, this.hottendesert);
+		return locations;
+	}
 	
 }

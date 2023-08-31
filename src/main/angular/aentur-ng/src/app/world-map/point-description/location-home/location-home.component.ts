@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-location-home',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./location-home.component.css']
 })
 export class LocationHomeComponent implements OnInit {
+
+  @Input()
+  isCompleted: boolean = false;
 
   constructor() { }
 

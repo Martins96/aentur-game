@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-location-flamevolcano',
@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./location-flamevolcano.component.css']
 })
 export class LocationFlamevolcanoComponent {
+
+  @Input()
+  isCompleted: boolean = false;
 
   constructor() { }
 
