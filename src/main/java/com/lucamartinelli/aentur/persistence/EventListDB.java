@@ -7,7 +7,7 @@ public class EventListDB {
 	public static final Map<String, int[]> eventList = Map.ofEntries(
 			Map.entry("dw", new int[] {1,2,3,4,5}),
 			Map.entry("il", new int[] {6,7,8,9,10}),
-			Map.entry("fm", new int[] {15,16}),
+			Map.entry("fm", new int[] {15,16,17}),
 			Map.entry("fv", new int[] {}),
 			Map.entry("cc", new int[] {}),
 			Map.entry("hd", new int[] {11,12,13,14})

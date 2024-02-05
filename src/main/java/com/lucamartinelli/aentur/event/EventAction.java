@@ -26,7 +26,7 @@ public interface EventAction {
 	 * Check if the % test is passed, if the test is passed, the return will be <code>true</code>.
 	 * <br><i>Example:</i><br>
 	 * For input <b>20</b> means a test on 20% of success. The code generate a random 1-100 number
-	 * and compare if the input is major or equals to the generated one.<br><br>
+	 * and compare if the input is greater or equals to the generated one.<br><br>
 	 * <code>(random(1,100)) <= input;</code>
 	 * 
 	 * @param percentMinThreshold as number (1-100)
