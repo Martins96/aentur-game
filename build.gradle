@@ -15,17 +15,18 @@ dependencies {
     implementation 'io.quarkus:quarkus-jsonb'
     implementation 'io.quarkus:quarkus-arc'
     
-	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.13.0'
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.14.0'
 
     testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.rest-assured:rest-assured'
 }
 
 group 'com.lucamartinelli.app'
-version '0.1.4'
+version '0.1.5'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_22
+    targetCompatibility = JavaVersion.VERSION_22
 }
 
 test {

@@ -35,6 +35,8 @@ public interface EventAction {
 	default boolean percentTest(final int percentMinThreshold) {
 		if (percentMinThreshold > 99)
 			return true;
+		if (percentMinThreshold < 1)
+			return true;
 		return (new Random().nextInt(100) + 1) <= percentMinThreshold;
 	}
 	

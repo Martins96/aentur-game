@@ -1,6 +1,7 @@
 package com.lucamartinelli.aentur.vo;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class StepDTO implements Serializable {
 
@@ -31,6 +32,24 @@ public class StepDTO implements Serializable {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(number, type);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		StepDTO other = (StepDTO) obj;
+		return number == other.number && Objects.equals(type, other.type);
 	}
 	
 	

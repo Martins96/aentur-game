@@ -21,6 +21,7 @@ The following information are about how start and package the application.
 ### Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
+
 ```shell script
 ./gradlew quarkusDev
 ```
@@ -36,7 +37,7 @@ The application can be packaged using:
 ```
 
 It produces the `quarkus-run.jar` file in the `build/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `build/quarkus-app/lib/` directory.
+Be aware that it's not an *Uber-jar* as the dependencies are copied into the `build/quarkus-app/lib/` directory.
 
 The application is now runnable using `java -jar build/quarkus-app/quarkus-run.jar`.
 

@@ -45,11 +45,11 @@ public class Main {
         	log.debug("Active profiles: " + profiles);
         	if (profiles.contains("dev")) {
         		log.debug("DEV profile active, skip load the save file");
-        		createSaveFile.setEnableSaving(true);
+        		createSaveFile.setEnableSaving(false);
         		
         	} else if (profiles.contains("test")) {
         		log.debug("TEST profile active, skip load the save file");
-        		createSaveFile.setEnableSaving(true);
+        		createSaveFile.setEnableSaving(false);
         		TestProfile.loadTestDB();
         		// clean
         	} else {

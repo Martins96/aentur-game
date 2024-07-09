@@ -1,6 +1,7 @@
 package com.lucamartinelli.aentur.vo;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import com.lucamartinelli.aentur.persistence.ItemCategory;
 
@@ -78,6 +79,31 @@ public class ItemDTO implements Serializable {
 	}
 	public void setGoldValue(int goldValue) {
 		this.goldValue = goldValue;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(availableOnShop, category, effect, goldValue, id, name, rarity);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ItemDTO other = (ItemDTO) obj;
+		return availableOnShop == other.availableOnShop && category == other.category
+				&& Objects.equals(effect, other.effect) && goldValue == other.goldValue && id == other.id
+				&& Objects.equals(name, other.name) && rarity == other.rarity;
+	}
+
+	@Override
+	public String toString() {
+		return "ItemDTO [id=" + id + ", name=" + name + ", category=" + category + ", effect=" + effect + ", rarity="
+				+ rarity + ", availableOnShop=" + availableOnShop + ", goldValue=" + goldValue + "]";
 	}
 
 	
