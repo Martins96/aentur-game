@@ -28,7 +28,7 @@ public class Shop {
 		if (result)
 			return Response.status(204).build();
 		else
-			return Response.status(503).entity("Error on equipment").build();
+			return Response.status(503).entity("Error on sell equipment").build();
 		
 	}
 	
@@ -40,14 +40,14 @@ public class Shop {
 		if (result)
 			return Response.status(204).build();
 		else
-			return Response.status(503).entity("Error on equipment").build();
+			return Response.status(503).entity("Error on buy equipment").build();
 		
 	}
 	
 	@GET
 	@Path("/items")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ItemDTO[] items(@PathParam("id") String id) {
+	public ItemDTO[] items() {
 		return shopEJB.merchantItems().toArray(new ItemDTO[0]);
 		
 	}

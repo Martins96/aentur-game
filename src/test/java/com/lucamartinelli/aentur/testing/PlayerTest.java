@@ -95,8 +95,6 @@ public class PlayerTest {
 				.then().statusCode(200)
 				.extract().response().jsonPath().getList(".", ItemDTO.class);
 		
-		System.out.println(restItems);
-		
 		assertEquals(items.size(), restItems.size());
 		assertEquals(items.get(0).getId(), restItems.get(0).getId());
 		IntStream
