@@ -11,6 +11,10 @@
     width: 55%;
 }
 
+.img-message img {
+	width: 95%;
+}
+
 .choice-buttons {
     display: block;
     align-content: center;

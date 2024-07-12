@@ -9,7 +9,7 @@ public class EventListDB {
 			Map.entry("il", new int[] {6,7,8,9,10}),
 			Map.entry("fm", new int[] {15,16,17,18}),
 			Map.entry("fv", new int[] {}),
-			Map.entry("cc", new int[] {}),
+			Map.entry("cc", new int[] {19}),
 			Map.entry("hd", new int[] {11,12,13,14})
 	);
 	
