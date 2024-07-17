@@ -7,6 +7,7 @@ import org.jboss.logging.Logger;
 
 import com.lucamartinelli.aentur.ejb.EnemyEJB;
 import com.lucamartinelli.aentur.ejb.RewardEJB;
+import com.lucamartinelli.aentur.languagecontent.ResolveContentsUtils;
 import com.lucamartinelli.aentur.persistence.AdventureStatsDB;
 import com.lucamartinelli.aentur.persistence.MonstersListDB;
 import com.lucamartinelli.aentur.vo.AttackDTO;
@@ -70,8 +71,9 @@ public class Enemy {
 			setError(400);
 			return null;
 		}
-		final MonsterDTO monster = MonstersListDB.MONSTERS[id];
-		return monster;
+		log.debugf("Loading monster with id: %d", id);
+		final MonsterDTO monster = MonstersListDB.MONSTERS[id].clone();
+		return ResolveContentsUtils.resolveLabels(monster);
 		
 	}
 	

@@ -26,6 +26,8 @@ public class LabelTextContentsService {
 	@Inject
 	Logger log;
 	
+	@Inject
+	LabelTextContentEJB ltcEJB;
 	
 	@GET
 	@Path("/get")
@@ -53,8 +55,7 @@ public class LabelTextContentsService {
 	@GET
 	@Path("/setlanguage/{lang}")
 	public void setLanguage(@PathParam("lang") String lang) {
-		final LabelTextContentEJB ltcEJB = CDI.current().select(LabelTextContentEJB.class).get();
-		ltcEJB.setLanguage(lang);
+		this.ltcEJB.setLanguage(lang);
 	}
 	
 	

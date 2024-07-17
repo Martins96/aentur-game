@@ -1,6 +1,12 @@
 package com.lucamartinelli.aentur.vo;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Objects;
+
+import jakarta.json.Json;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonObject;
 
 public class MonsterDTO implements Serializable{
 
@@ -68,6 +74,56 @@ public class MonsterDTO implements Serializable{
 		this.defences = defences;
 	}
 	
-	
+	public MonsterDTO clone() {
+		return new MonsterDTO(this.id, this.name, this.description, this.difficulty, 
+				this.attacks, this.defences);
+	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(attacks);
+		result = prime * result + Arrays.hashCode(defences);
+		result = prime * result + Objects.hash(description, difficulty, id, name);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MonsterDTO other = (MonsterDTO) obj;
+		return Arrays.equals(attacks, other.attacks) && Arrays.equals(defences, other.defences)
+				&& Objects.equals(description, other.description) && difficulty == other.difficulty && id == other.id
+				&& Objects.equals(name, other.name);
+	}
+
+	@Override
+	public String toString() {
+		return "MonsterDTO [id=" + id + ", name=" + name + ", description=" + description + ", difficulty=" + difficulty
+				+ ", attacks=" + Arrays.toString(attacks) + ", defences=" + Arrays.toString(defences) + "]";
+	}
+	
+	public String toJson() {
+		return toJsonObject().toString();
+	}
+	
+	public JsonObject toJsonObject() {
+		final JsonArray atkList = Json.createArrayBuilder(Arrays.asList(attacks)).build();
+		final JsonArray defList = Json.createArrayBuilder(Arrays.asList(defences)).build();
+		return Json.createObjectBuilder()
+				.add("id", this.id)
+				.add("name", this.name)
+				.add("description", this.description)
+				.add("difficulty", this.difficulty)
+				.add("attacks", atkList)
+				.add("defences", defList)
+				.build();
+	}
+	
 }
