@@ -2,7 +2,6 @@ package com.lucamartinelli.aentur.event.crimsoncave;
 
 import com.lucamartinelli.aentur.event.EventAction;
 import com.lucamartinelli.aentur.vo.EventDTO;
-import com.lucamartinelli.aentur.vo.RewardDTO;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
@@ -11,7 +10,7 @@ import jakarta.ws.rs.core.Response;
 
 @Named("event-cc-19")
 @ApplicationScoped
-public class DCCBloodFountainEvent implements EventAction {
+public class CCBloodFountainEvent implements EventAction {
 	
 	private final EventDTO event = new EventDTO("event-cc-19", 
 			"Dopo un piccolo cunicolo ti trovi in una stanza creata nella roccia. Al centro della stanza"
@@ -67,25 +66,25 @@ public class DCCBloodFountainEvent implements EventAction {
 				return "Bevi dalla fontana... non sembra succedere nulla... Il non succede niente al gusto ciliegia";
 			}
 		} else if (rollD12 < 12) {
-			if (rollD100 < 11) { // Sei arrivato qui XXX
+			if (!percentTest(rollD100 + rollD12)) {
 				adventureDB.decreasePlayerHealth();
 				eventEffectDB.setActiveEffect("I tiri di <b>difesa</b> e <b>test armatura</b> sono diminuiti di 1");
-				return "Bevi l'acqua della sorgente e a poco a poco inizi a sentirti debole, la sorgente "
-						+ "e' maledetta e inizi a vomitare. Subisci una ferita e il tuo corpo e' debole.<br/>"
+				return "Bevi l'acqua della fonte e a poco a poco inizi a sentirti debole, la sorgente "
+						+ "e' maledetta da una magia vapirica. Subisci una ferita e il tuo corpo e' debole.<br/>"
 						+ "-Nuovo effetto attivo-";
 			} else if (!percentTest(rollD100 + 10)) {
 				adventureDB.decreasePlayerHealth();
-				return "Dopo aver bevuto senti girare la testa, la fonte e' avvelenata e subisci un danno";
+				return "Dopo aver bevuto senti girare la testa, la fontana e' avvelenata e subisci un danno";
 			} else {
 				adventureDB.increasePlayerHealth();
-				return "Bevi dell'acqua fresca e incontaminata, questa breve pausa ti ha consentito di tirare "
+				return "Bevi il liquido della fontana, &egrave; fresco e magico, questa breve pausa ti ha consentito di tirare "
 						+ "il fiato per un momento, ti curi di una ferita";
 			}
 		} else {
 			adventureDB.increasePlayerHealth();
 			adventureDB.increasePlayerHealth();
 			eventEffectDB.setActiveEffect("I tiri di <b>difesa</b> e <b>test armatura</b> sono aumentati di 1");
-			return "La fonte sembra magica, appena bevi senti la forza scorrere dentro di te, la tua pelle"
+			return "La fontana sembra magica, appena bevi senti la forza scorrere dentro di te, la tua pelle"
 					+ " diventa piu' resistente e le ferite si rimarginano -Nuovo effetto attivo-";
 		}
 	}
