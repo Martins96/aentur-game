@@ -1,5 +1,12 @@
 package com.lucamartinelli.aentur.vo;
 
+import java.util.Arrays;
+import java.util.Objects;
+
+import jakarta.json.Json;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonObject;
+
 public class DefenseDTO {
 	
 	private int id;
@@ -54,6 +61,52 @@ public class DefenseDTO {
 	public void setCategory(String[] category) {
 		this.category = category;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(category);
+		result = prime * result + Objects.hash(difficulty, effect, id, name);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DefenseDTO other = (DefenseDTO) obj;
+		return Arrays.equals(category, other.category) && difficulty == other.difficulty
+				&& Objects.equals(effect, other.effect) && id == other.id && Objects.equals(name, other.name);
+	}
 	
+	public DefenseDTO clone() {
+		return new DefenseDTO(this.id, this.name, this.effect, this.difficulty, this.category);
+	}
+
+	@Override
+	public String toString() {
+		return "DefenseDTO [id=" + id + ", name=" + name + ", effect=" + effect + ", difficulty=" + difficulty
+				+ ", category=" + Arrays.toString(category) + "]";
+	}
+	
+	public String toJson() {
+		return toJsonObject().toString();
+	}
+	
+	public JsonObject toJsonObject() {
+		final JsonArray categoryJA = Json.createArrayBuilder(Arrays.asList(this.category)).build();
+		return Json.createObjectBuilder()
+				.add("id", this.id)
+				.add("name", this.name)
+				.add("effect", this.effect)
+				.add("difficulty", this.difficulty)
+				.add("category", categoryJA)
+				.build();
+	}
 	
 }

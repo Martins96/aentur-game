@@ -83,7 +83,8 @@ public class Enemy {
 	@Produces(MediaType.APPLICATION_JSON)
 	public AttackDTO getRandomEnemyAttack(@PathParam("id") String monsterId) {
 		final MonsterDTO monster = getEnemyByID(monsterId);
-		return enemyEJB.getRandomEnemyAttack(monster);
+		final AttackDTO attack = enemyEJB.getRandomEnemyAttack(monster);
+		return ResolveContentsUtils.resolveLabels(attack);
 	}
 	
 	@Path("/defence/random-for-monster/{id}")
@@ -91,7 +92,8 @@ public class Enemy {
 	@Produces(MediaType.APPLICATION_JSON)
 	public DefenseDTO getRandomEnemyDefence(@PathParam("id") String monsterId) {
 		final MonsterDTO monster = getEnemyByID(monsterId);
-		return enemyEJB.getRandomEnemyDefence(monster);
+		final DefenseDTO defense = enemyEJB.getRandomEnemyDefence(monster);
+		return ResolveContentsUtils.resolveLabels(defense);
 	}
 	
 	@GET
