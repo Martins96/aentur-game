@@ -1,13 +1,13 @@
 <div class="container">
 
     <div class="new-stars">
-        <h4 class="new-stars-txt">Mostra la storia di introduzione</h4>
+        <h4 class="new-stars-txt"><app-dynamiccontents [key]="'world.map.story.button.text'"></app-dynamiccontents></h4>
         <img class="new-stars-img" src="assets/worldmap/new-stars.png" (click)="openDialog()"/>
     </div>
 
 
     <div class="title">
-        <h1>&lt;Mappa del mondo - The dreaming haven&gt;</h1>
+        <h1>&lt;<app-dynamiccontents [key]="'world.map.title'"></app-dynamiccontents>&gt;</h1>
     </div>
     
     <div class="map-section">

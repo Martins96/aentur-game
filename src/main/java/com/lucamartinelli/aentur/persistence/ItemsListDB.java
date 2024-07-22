@@ -8,8 +8,8 @@ public class ItemsListDB {
 	
 	private static final ItemDTO[] ITEMS = new ItemDTO[] {
 			new ItemDTO(0, "item.name.oldsword", ItemCategory.WEAPON, "item.effect.noeffect", 1, true, 4),
-			new ItemDTO(1, "item.name.dagger", ItemCategory.ARMOR, "item.effect.noeffect", 1, true, 2),
-			new ItemDTO(2, "item.name.cityclothes", ItemCategory.WEAPON, "item.effect.withdraw1odd", 2, true, 4),
+			new ItemDTO(1, "item.name.cityclothes", ItemCategory.ARMOR, "item.effect.noeffect", 1, true, 2),
+			new ItemDTO(2, "item.name.dagger", ItemCategory.WEAPON, "item.effect.withdraw1odd", 2, true, 4),
 			new ItemDTO(3, "item.name.oldaxe", ItemCategory.WEAPON, "item.effect.plus1odd", 2, true, 8),
 			new ItemDTO(4, "item.name.oldclub", ItemCategory.WEAPON, "item.effect.plus1even", 2, true, 8),
 			new ItemDTO(5, "item.name.mace", ItemCategory.WEAPON, "item.effect.plus1", 3, true, 14),

@@ -1,18 +1,16 @@
 <div class="close-btn" (click)="backToMap()">
     <img src="assets/worldmap/exit-icon.png" />
-    <h4>Esci</h4>
+    <h4><app-dynamiccontents [key]="'world.quit.button.text'"></app-dynamiccontents></h4>
 </div>
 <div class="intro-img">
-    <h1>&lt;Casa&gt;</h1>
+    <h1>&lt;<app-dynamiccontents [key]="'celestian.home.title.text'"></app-dynamiccontents>&gt;</h1>
 </div>
 <div class="disclaimer">
-    <p>Nonostante tutto, tornare a casa e' sempre confortevole. <span>Uca</span> e' contento di vederti e ti chiede se ti serve
-    aiuto per gestire il tuo inventario.<br />
-    Mentre riposi vicino al caminetto Uca sistema il tuo equipaggiamento e ti chiede cosa intendi portare con te.</p>
+    <p><app-dynamiccontents [key]="'celestian.home.subtitle.text'"></app-dynamiccontents></p>
 </div>
 
 <div class="equipment">
-    <h2>Equipaggiamento</h2>
+    <h2><app-dynamiccontents [key]="'celestian.home.equip.title'"></app-dynamiccontents></h2>
     <div class="equipment-inner">
         <div><app-item-card [item]="playerWeapon" [equipable]="'N'"></app-item-card></div>
         <div><app-item-card [item]="playerArmor" [equipable]="'N'"></app-item-card></div>
@@ -21,17 +19,18 @@
 </div>
 
 <div class="gold">
-    <span>Oro posseduto:&nbsp;&nbsp;&nbsp;</span><span id="gold-num">{{ gold }}</span><img src="assets/worldmap/gold.png">
+    <app-dynamiccontents [key]="'celestian.gold.owned'"></app-dynamiccontents>
+    <span id="gold-num">{{ gold }}</span><img src="assets/worldmap/gold.png">
 </div>
 
 <div class="inventory">
-    <h2>Inventario</h2><br />
+    <h2><app-dynamiccontents [key]="'celestian.home.inventory.title'"></app-dynamiccontents></h2><br />
     <div>
         <div class="inventory-inner" *ngIf="playerInventory && playerInventory.length > 0">
             <app-item-card *ngFor="let item of playerInventory" [item]="item" [equipable]="'Y'"></app-item-card>
         </div>
         <div class="inventory-inner" *ngIf="!playerInventory || playerInventory.length === 0">
-            <p><i>L'inventario è vuoto</i></p>
+            <p><i><app-dynamiccontents [key]="'celestian.home.inventory.empty'"></app-dynamiccontents></i></p>
         </div>
     </div>
 </div>

@@ -5,6 +5,7 @@ import org.jboss.logging.Logger;
 
 import com.lucamartinelli.aentur.ejb.BossEJB;
 import com.lucamartinelli.aentur.ejb.RewardEJB;
+import com.lucamartinelli.aentur.languagecontent.ResolveContentsUtils;
 import com.lucamartinelli.aentur.persistence.AdventureStatsDB;
 import com.lucamartinelli.aentur.vo.BossActionResultVO;
 import com.lucamartinelli.aentur.vo.BossDTO;
@@ -40,7 +41,8 @@ public class Boss {
 	@Produces(MediaType.APPLICATION_JSON)
 	@GET
 	public BossDTO getBoss(@PathParam("location") String location) {
-		return bossEJB.getBoss(location);
+		BossDTO boss = bossEJB.getBoss(location);
+		return ResolveContentsUtils.resolveLabels(boss);
 	}
 	
 	@Path("init/{location}")

@@ -4,6 +4,7 @@ import org.jboss.logging.Logger;
 
 import com.lucamartinelli.aentur.services.LabelTextContentsService;
 import com.lucamartinelli.aentur.vo.AttackDTO;
+import com.lucamartinelli.aentur.vo.BossDTO;
 import com.lucamartinelli.aentur.vo.DefenseDTO;
 import com.lucamartinelli.aentur.vo.ItemDTO;
 import com.lucamartinelli.aentur.vo.MonsterDTO;
@@ -24,21 +25,22 @@ public class ResolveContentsUtils {
 		return null;
 	}
 	
-	public static MonsterDTO resolveLabels(final MonsterDTO monDto) {
-		if (monDto == null)
+	public static MonsterDTO resolveLabels(final MonsterDTO monster) {
+		if (monster == null)
 			return null;
 		
-		if (monDto.getName() != null) {
-			monDto.setName(resolveKey(monDto.getName()));
+		if (monster.getName() != null) {
+			monster.setName(resolveKey(monster.getName()));
 		}
-		if (monDto.getDescription() != null) {
-			monDto.setDescription(resolveKey(monDto.getDescription()));
+		if (monster.getDescription() != null) {
+			monster.setDescription(resolveKey(monster.getDescription()));
 		}
 		
 		
-		return monDto;
+		return monster;
 	}
-
+	
+	
 	public static AttackDTO resolveLabels(AttackDTO atkDto) {
 		if (atkDto == null)
 			return null;
@@ -87,5 +89,19 @@ public class ResolveContentsUtils {
 		return itemDto;
 	}
 	
+	public static BossDTO resolveLabels(final BossDTO boss) {
+		if (boss == null)
+			return null;
+		
+		if (boss.getName() != null) {
+			boss.setName(resolveKey(boss.getName()));
+		}
+		if (boss.getDescription() != null) {
+			boss.setDescription(resolveKey(boss.getDescription()));
+		}
+		
+		
+		return boss;
+	}
 	
 }

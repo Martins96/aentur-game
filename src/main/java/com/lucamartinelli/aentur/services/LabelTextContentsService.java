@@ -13,7 +13,6 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.core.MediaType;
@@ -31,7 +30,6 @@ public class LabelTextContentsService {
 	
 	@GET
 	@Path("/get")
-	@Produces(MediaType.TEXT_PLAIN)
 	public Response getContentAPI(@QueryParam("key") final String key, @QueryParam("lang") final String lang) {
 		
 		log.debugf("Retriving content with key '%s' on language '%s'", key, lang);
@@ -42,13 +40,13 @@ public class LabelTextContentsService {
 				return Response.status(400).build();
 			}
 			
-			return Response.ok(Entity.text(label)).build();
+			return Response.ok(label, MediaType.TEXT_HTML_TYPE).build();
 		} catch (final IOException e) {
 			log.errorf("Error reading properties file: %s", e.getMessage());
-			return Response.serverError().entity(Entity.text(e.getMessage())).build();
+			return Response.serverError().entity(Entity.html(e.getMessage())).build();
 		} catch (final Exception e) {
 			log.errorf(e, "Exception retrieving content %s ", key);
-			return Response.serverError().entity(Entity.text(e.getMessage())).build();
+			return Response.serverError().entity(Entity.html(e.getMessage())).build();
 		}
 	}
 	

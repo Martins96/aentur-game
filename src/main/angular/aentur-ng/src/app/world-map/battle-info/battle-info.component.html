@@ -2,24 +2,18 @@
     <button class="mat-raised-button"(click)="close()">X</button>
 </mat-dialog-actions>
 
-<h2>Informazioni sul gioco</h2>
+<h2><app-dynamiccontents [key]="'world.map.infoguide.title'"></app-dynamiccontents></h2>
 
 <p>
-    La battaglia avviene lanciando il/i dado/i richiesto/i e indicando se il risultato rispetta la condizione
-    visualizzata, premi su Successo se il test viene superato, altrimenti premi Fallimento.
+    <app-dynamiccontents [key]="'world.map.infoguide.message1'"></app-dynamiccontents>
 </p>
 <p>
-    Se sconfiggi il nemico riceverai una ricompensa.<br />
-    Se vieni sconfitta, non ti preoccupare, dovrai lasciare l'avventura corrente, ma portai riprovarla subito dall'inizio
-    o tentarne una nuova.
+    <app-dynamiccontents [key]="'world.map.infoguide.message2'"></app-dynamiccontents>
 </p>
 <p>
-    I mostri sono casuali, ad ogni incontro potrebbero cambiare
+    <app-dynamiccontents [key]="'world.map.infoguide.message3'"></app-dynamiccontents>
 </p>
 
 <p>
-    Il tiro <b>D100</b> si effetua con un D10 per le unita' e un D10 per le decine. Nel caso in cui il risultato sia: 
-    00 per le decine e 0 per le unita' allora e' da considerare come 100, negli altri casi se le decine sono 00 e le 
-    unita' sono <u>diverse</u> da 0, allora e' da considerare come 0 nelle decine, ad esempio: 00 decine e 5 unita' 
-    sono un risultato di 5. 
+    <app-dynamiccontents [key]="'world.map.infoguide.message4'"></app-dynamiccontents>
 </p>

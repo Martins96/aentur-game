@@ -1,6 +1,8 @@
 package com.lucamartinelli.aentur.services;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.lucamartinelli.aentur.ejb.ShopEJB;
 import com.lucamartinelli.aentur.languagecontent.ResolveContentsUtils;
@@ -52,9 +54,13 @@ public class Shop {
 	@Produces(MediaType.APPLICATION_JSON)
 	public ItemDTO[] items() {
 		ItemDTO[] items = shopEJB.merchantItems().toArray(new ItemDTO[0]);
-		return Arrays.asList(items).stream()
-				.map(i -> ResolveContentsUtils.resolveLabels(i))
-				.toArray(size -> new ItemDTO[size]);
+		return Arrays.stream(items)
+				.collect(ArrayList::new, 
+						(newList, item) -> {
+							newList.add(ResolveContentsUtils.resolveLabels(item.clone()));
+						}, 
+						List::addAll)
+				.toArray(new ItemDTO[0]);
 		
 	}
 
