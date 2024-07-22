@@ -75,7 +75,7 @@ public class HDDesertMerchantEvent implements EventAction {
 				item = rewardEJB.getReward(1).getItem();
 			}
 		} else {
-			item = ItemsListDB.ITEMS[17];
+			item = ItemsListDB.getById(17);
 		}
 		playerInventoryDB.addItems(item);
 		return "Consegni le 20 monete al mercante, ti cede il pacchetto ridendo. Con ansia apri la scatola e all'interno "

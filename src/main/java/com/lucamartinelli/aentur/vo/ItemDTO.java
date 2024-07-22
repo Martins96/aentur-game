@@ -5,6 +5,9 @@ import java.util.Objects;
 
 import com.lucamartinelli.aentur.persistence.ItemCategory;
 
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
+
 public class ItemDTO implements Serializable {
 
 	private static final long serialVersionUID = -5505975039695748130L;
@@ -81,6 +84,11 @@ public class ItemDTO implements Serializable {
 		this.goldValue = goldValue;
 	}
 
+	public ItemDTO clone() {
+		return new ItemDTO(this.id, this.name, this.category, this.effect, 
+				this.rarity, this.availableOnShop, this.goldValue);
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(availableOnShop, category, effect, goldValue, id, name, rarity);
@@ -106,7 +114,22 @@ public class ItemDTO implements Serializable {
 				+ rarity + ", availableOnShop=" + availableOnShop + ", goldValue=" + goldValue + "]";
 	}
 
+	public JsonObject toJsonObject() {
+		return Json.createObjectBuilder()
+				.add("id", this.id)
+				.add("name", this.name)
+				.add("category", this.category.toString())
+				.add("effect", this.effect)
+				.add("rarity", this.rarity)
+				.add("availableOnShop", this.availableOnShop)
+				.add("goldValue", this.goldValue)
+				.build();
+	}
 	
+	public String toJson() {
+		return toJsonObject().toString();
+	}
+
 
 
 }

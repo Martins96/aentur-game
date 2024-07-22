@@ -1,11 +1,13 @@
 package com.lucamartinelli.aentur.services;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Optional;
 
 import org.apache.commons.lang3.math.NumberUtils;
 import org.jboss.logging.Logger;
 
+import com.lucamartinelli.aentur.languagecontent.ResolveContentsUtils;
 import com.lucamartinelli.aentur.persistence.ItemsListDB;
 import com.lucamartinelli.aentur.vo.ItemDTO;
 
@@ -33,7 +35,9 @@ public class Items {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public ItemDTO[] getItems() {
-		return ItemsListDB.ITEMS;
+		return Arrays.asList(ItemsListDB.getAll()).stream()
+				.map(i -> ResolveContentsUtils.resolveLabels(i))
+				.toArray(size -> new ItemDTO[size]);
 	}
 	
 	@Path("/{id}")
@@ -46,12 +50,13 @@ public class Items {
 			return null;
 		}
 		final int id = NumberUtils.toInt(idItem);
-		if (ItemsListDB.ITEMS.length <= id) {
+		if (ItemsListDB.getAll().length <= id) {
 			log.errorf("Id %s is too high", idItem);
 			setError(400, Optional.of(String.format("Id %s to high", idItem)));
 			return null;
 		}
-		return ItemsListDB.ITEMS[id];
+		ItemDTO itemDto = ItemsListDB.getById(id);
+		return ResolveContentsUtils.resolveLabels(itemDto);
 	}
 	
 	

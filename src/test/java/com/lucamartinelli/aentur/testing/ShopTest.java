@@ -31,17 +31,17 @@ public class ShopTest {
 	public static void initTest() {
 		final PlayerInventoryDB playerInventory = CDI.current().select(PlayerInventoryDB.class).get();
 		playerInventory.setItems(new ArrayList<ItemDTO>(3));
-		playerInventory.addItems(ItemsListDB.ITEMS[0]);
-		playerInventory.addItems(ItemsListDB.ITEMS[1]);
-		playerInventory.addItems(ItemsListDB.ITEMS[32]);
+		playerInventory.addItems(ItemsListDB.getById(0));
+		playerInventory.addItems(ItemsListDB.getById(1));
+		playerInventory.addItems(ItemsListDB.getById(32));
 		playerInventory.setGold(50L);
 	}
 	
 	@Test
 	public void testBuySell() {
-		testBuySellInternal(ItemsListDB.ITEMS[32]);
-		testBuySellInternal(ItemsListDB.ITEMS[1]);
-		testBuySellInternal(ItemsListDB.ITEMS[0]);
+		testBuySellInternal(ItemsListDB.getById(32));
+		testBuySellInternal(ItemsListDB.getById(1));
+		testBuySellInternal(ItemsListDB.getById(0));
 	}
 	
 	private void testBuySellInternal(ItemDTO itemTest) {

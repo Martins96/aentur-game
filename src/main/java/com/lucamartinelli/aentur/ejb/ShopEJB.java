@@ -35,7 +35,7 @@ public class ShopEJB {
 		}
 		final int itemID = NumberUtils.toInt(id);
 		
-		final ItemDTO toRemove = ItemsListDB.ITEMS[itemID];
+		final ItemDTO toRemove = ItemsListDB.getById(itemID);
 		
 		if (toRemove == null) {
 			log.errorf("Item with id %s not found in DB", id);
@@ -55,7 +55,7 @@ public class ShopEJB {
 		}
 		final int itemID = NumberUtils.toInt(id);
 		
-		final ItemDTO toAdd = ItemsListDB.ITEMS[itemID];
+		final ItemDTO toAdd = ItemsListDB.getById(itemID);
 		
 		if (toAdd == null) {
 			log.errorf("Item with id %s not found in DB", id);
@@ -76,7 +76,7 @@ public class ShopEJB {
 	}
 	
 	public List<ItemDTO> merchantItems() {
-		List<ItemDTO> tradableItems = Arrays.stream(ItemsListDB.ITEMS)
+		List<ItemDTO> tradableItems = Arrays.stream(ItemsListDB.getAll())
 				.filter(i -> i.isAvailableOnShop())
 				.collect(Collectors.toList());
 		

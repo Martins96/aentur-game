@@ -5,6 +5,7 @@ import org.jboss.logging.Logger;
 import com.lucamartinelli.aentur.services.LabelTextContentsService;
 import com.lucamartinelli.aentur.vo.AttackDTO;
 import com.lucamartinelli.aentur.vo.DefenseDTO;
+import com.lucamartinelli.aentur.vo.ItemDTO;
 import com.lucamartinelli.aentur.vo.MonsterDTO;
 
 public class ResolveContentsUtils {
@@ -70,6 +71,20 @@ public class ResolveContentsUtils {
 		}
 		
 		return defDto;
+	}
+	
+	public static ItemDTO resolveLabels(ItemDTO itemDto) {
+		if (itemDto == null)
+			return null;
+		
+		if (itemDto.getName() != null) {
+			itemDto.setName(resolveKey(itemDto.getName()));
+		}
+		if (itemDto.getEffect() != null) {
+			itemDto.setEffect(resolveKey(itemDto.getEffect()));
+		}
+		
+		return itemDto;
 	}
 	
 	

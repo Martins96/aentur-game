@@ -38,9 +38,9 @@ public class PlayerTest {
 	@BeforeAll
 	public static void initTest() {
 		final PlayerInventoryDB playerInventory = CDI.current().select(PlayerInventoryDB.class).get();
-		playerInventory.addItems(ItemsListDB.ITEMS[0]);
-		playerInventory.addItems(ItemsListDB.ITEMS[1]);
-		playerInventory.addItems(ItemsListDB.ITEMS[32]);
+		playerInventory.addItems(ItemsListDB.getById(0));
+		playerInventory.addItems(ItemsListDB.getById(1));
+		playerInventory.addItems(ItemsListDB.getById(32));
 	}
 	
 	@Test
@@ -75,7 +75,7 @@ public class PlayerTest {
 	@Test
 	public void testEquipedTalisman() {
 		playerInventory.setEquipedTalisman(null);
-		final ItemDTO talisman = ItemsListDB.ITEMS[32];
+		final ItemDTO talisman = ItemsListDB.getById(32);
 		given()
 				.when().get("/api/player/equiped-talisman")
 				.then().statusCode(204);

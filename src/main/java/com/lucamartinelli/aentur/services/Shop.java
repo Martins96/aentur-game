@@ -1,6 +1,9 @@
 package com.lucamartinelli.aentur.services;
 
+import java.util.Arrays;
+
 import com.lucamartinelli.aentur.ejb.ShopEJB;
+import com.lucamartinelli.aentur.languagecontent.ResolveContentsUtils;
 import com.lucamartinelli.aentur.vo.ItemDTO;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -48,7 +51,10 @@ public class Shop {
 	@Path("/items")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ItemDTO[] items() {
-		return shopEJB.merchantItems().toArray(new ItemDTO[0]);
+		ItemDTO[] items = shopEJB.merchantItems().toArray(new ItemDTO[0]);
+		return Arrays.asList(items).stream()
+				.map(i -> ResolveContentsUtils.resolveLabels(i))
+				.toArray(size -> new ItemDTO[size]);
 		
 	}
 

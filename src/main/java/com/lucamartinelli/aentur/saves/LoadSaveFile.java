@@ -21,7 +21,7 @@ import jakarta.json.JsonStructure;
 import jakarta.json.JsonValue;
 import jakarta.json.JsonValue.ValueType;
 
-import static com.lucamartinelli.aentur.persistence.ItemsListDB.ITEMS;
+import static com.lucamartinelli.aentur.persistence.ItemsListDB.getById;
 
 @Unremovable
 @ApplicationScoped
@@ -85,7 +85,7 @@ public class LoadSaveFile {
 			final JsonValue val = rootPlayerDB.get("equipedArmor");
 			if (val != JsonValue.NULL && val.getValueType() == ValueType.NUMBER) {
 				final int itemID = ((JsonNumber) val).numberValue().intValue();
-				playerDB.setEquipedArmor(ITEMS[itemID]);
+				playerDB.setEquipedArmor(getById(itemID));
 			}
 		}
 		
@@ -93,7 +93,7 @@ public class LoadSaveFile {
 			final JsonValue val = rootPlayerDB.get("equipedWeapon");
 			if (val != JsonValue.NULL && val.getValueType() == ValueType.NUMBER) {
 				final int itemID = ((JsonNumber) val).numberValue().intValue();
-				playerDB.setEquipedWeapon(ITEMS[itemID]);
+				playerDB.setEquipedWeapon(getById(itemID));
 			}
 		}
 		
@@ -101,7 +101,7 @@ public class LoadSaveFile {
 			final JsonValue val = rootPlayerDB.get("equipedTalisman");
 			if (val != JsonValue.NULL && val.getValueType() == ValueType.NUMBER) {
 				final int itemID = ((JsonNumber) val).numberValue().intValue();
-				playerDB.setEquipedTalisman(ITEMS[itemID]);
+				playerDB.setEquipedTalisman(getById(itemID));
 			}
 		}
 		
@@ -118,7 +118,7 @@ public class LoadSaveFile {
 			items.forEach(val ->  {
 				if (val != JsonValue.NULL && val.getValueType() == ValueType.NUMBER) {
 					final int itemID = ((JsonNumber) val).numberValue().intValue();
-					playerDB.addItems(ITEMS[itemID]);
+					playerDB.addItems(getById(itemID));
 				}
 			});
 		}

@@ -37,8 +37,8 @@ public class Main {
         @Override
         public int run(String... args) throws Exception {
         	playerInventory.setGold(5L);
-        	playerInventory.setEquipedWeapon(ItemsListDB.ITEMS[0]);
-        	playerInventory.setEquipedArmor(ItemsListDB.ITEMS[1]);
+        	playerInventory.setEquipedWeapon(ItemsListDB.getById(0));
+        	playerInventory.setEquipedArmor(ItemsListDB.getById(0));
         	
         	final List<String> profiles = ConfigUtils.getProfiles();
         	

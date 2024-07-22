@@ -1,6 +1,7 @@
 package com.lucamartinelli.aentur.services;
 
 import com.lucamartinelli.aentur.ejb.PlayerEJB;
+import com.lucamartinelli.aentur.languagecontent.ResolveContentsUtils;
 import com.lucamartinelli.aentur.persistence.AdventureStatsDB;
 import com.lucamartinelli.aentur.persistence.PlayerInventoryDB;
 import com.lucamartinelli.aentur.vo.ItemDTO;
@@ -33,28 +34,30 @@ public class Player {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public ItemDTO getEquipedWeapon() {
-		return playerInventory.getEquipedWeapon();
+		return ResolveContentsUtils.resolveLabels(playerInventory.getEquipedWeapon());
 	}
 	
 	@Path("equiped-armor")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public ItemDTO getEquipedArmor() {
-		return playerInventory.getEquipedArmor();
+		return ResolveContentsUtils.resolveLabels(playerInventory.getEquipedArmor());
 	}
 	
 	@Path("equiped-talisman")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public ItemDTO getEquipedTalisman() {
-		return playerInventory.getEquipedTalisman();
+		return ResolveContentsUtils.resolveLabels(playerInventory.getEquipedTalisman());
 	}
 	
 	@Path("inventory")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public ItemDTO[] getInventory() {
-		return playerInventory.getItems().toArray(new ItemDTO[0]);
+		return playerInventory.getItems().stream()
+				.map(i -> ResolveContentsUtils.resolveLabels(i))
+				.toArray(size -> new ItemDTO[size]);
 	}
 	
 	@Path("gold")

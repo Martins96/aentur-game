@@ -34,7 +34,7 @@ public class PlayerEJB {
 		if (!isInInventory) {
 			log.errorf("Id %s is not in player inventory", id);
 		}
-		final ItemDTO equipableItem = ItemsListDB.ITEMS[itemID];
+		final ItemDTO equipableItem = ItemsListDB.getById(itemID);
 		
 		if (equipableItem == null) {
 			log.errorf("Item with id %s not found in DB");
@@ -75,7 +75,7 @@ public class PlayerEJB {
 		}
 		final int itemID = NumberUtils.toInt(id);
 		
-		final ItemDTO toRemove = ItemsListDB.ITEMS[itemID];
+		final ItemDTO toRemove = ItemsListDB.getById(itemID);
 		
 		if (toRemove == null) {
 			log.errorf("Item with id %s not found in DB",id);
