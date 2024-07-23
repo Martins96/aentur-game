@@ -11,7 +11,7 @@
 
 @font-face {
     font-family: 'fantasy-font';
-    src: url('assets/fonts/WhiteStorm.otf');
+    src: url('assets/fonts/dumbledor.ttf');
 }
 
 @font-face {
@@ -22,6 +22,11 @@
 @font-face {
     font-family: 'fantasy-mail';
     src: url('assets/fonts/SHERWOOD.TTF');
+}
+
+@font-face {
+    font-family: 'fantasy-consumed';
+    src: url('assets/fonts/Shivers.ttf');
 }
 
 body, head, footer {

@@ -2,15 +2,17 @@
     <img src="assets/iceland/boss-fail-iceland.jpg" class="head-img"/>
     <div class="disclaimer">
         <p>
-            All'improvviso il serpente soffia piu' forte e genera una tormenta di neve, e' impossibile vedere a piu' di un metro
-            di distanza. Ferita sei costretta a lasciare l'isola e a ritirarti in un posto sicuro per curarti e riscaldarti.
+            <app-dynamiccontents [key]="'location.iceland.popup.bossfailure.description'"></app-dynamiccontents>
         </p>
         <p>
-            Questa volta non e' andata bene, ma potrai riprovare quando sarai pronta.
+            <app-dynamiccontents [key]="'location.popup.failure.courtesymessage'"></app-dynamiccontents>
+            
         </p>
     </div>
     <div class="button">
-        <button (click)="backToMap()"><h3>Esci dall'avventura</h3></button>
+        <button (click)="backToMap()"><h3>
+            <app-dynamiccontents [key]="'location.popup.quit'"></app-dynamiccontents>
+        </h3></button>
     </div>
 
 </div>

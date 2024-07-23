@@ -63,4 +63,8 @@ public class MonsterAttacksListDB {
 			new AttackDTO(29, "name", "effect", 1, new String[] {})
 	};
 	
+	public static AttackDTO getAttackById(int id) {
+		return ATTACKS[id].clone();
+	}
+	
 }

@@ -46,6 +46,8 @@
     justify-content: space-between;
 }
 button {
+    font-family: 'fantasy-consumed';
+    font-size:  1.3em;
     padding: 5px 10px;
     border: 2px solid saddlebrown;
     background-color: chocolate;
@@ -68,7 +70,7 @@ button:disabled {
 
 .gold {
     display: flex;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 .gold img {
     height: 25px;

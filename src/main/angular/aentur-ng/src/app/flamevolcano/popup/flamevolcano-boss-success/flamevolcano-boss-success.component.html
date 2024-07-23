@@ -1,17 +1,15 @@
 <div *ngIf="reward" class="container">
     <img src="assets/flamevolcano/boss-win-flamevolcano.jpg" class="head-img"/>
     <p>
-        Riesci ad estinguere le fiamme del gigantesco Balor, il bestione abbassa la testa e indietreggia con passo incerto.
-        Un tonfo secco rimbomba nella zona, un grosso masso rotola e mostra cosa celava dietro di se'. E' una specie di 
-        cassa in pietra.
+        <app-dynamiccontents [key]="'location.flamevolcano.popup.bosssuccess.description'"></app-dynamiccontents>
     </p>
     <p>
-        Ci sono sassi lavici, ma spostando vedi in profondità qualcosa che attira il tuo interesse, all'interno della cassa trovi:
+        <app-dynamiccontents [key]="'location.flamevolcano.popup.bosssuccess.message'"></app-dynamiccontents>
     </p>
     <div class="gold-msg">
         <p>
             <img src="assets/worldmap/gold.png">
-            Oro: {{ reward.gold }}
+            <app-dynamiccontents [key]="'location.popup.gold'"></app-dynamiccontents> {{ reward.gold }}
         </p>
     </div>
     <div class="item-msg">
@@ -20,6 +18,8 @@
 
 
     <div class="button">
-        <button (click)="backToMap()"><h3>Esci dall'avventura</h3></button>
+        <button (click)="backToMap()"><h3>
+            <app-dynamiccontents [key]="'location.popup.quit'"></app-dynamiccontents>
+        </h3></button>
     </div>
 </div>

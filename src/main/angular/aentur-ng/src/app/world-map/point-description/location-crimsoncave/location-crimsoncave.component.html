@@ -6,21 +6,20 @@
     <div class="body">
         <div class="left-col">
             <p>
-                Cosa c'e' di piu' pauroso di una grotta buia e fredda? Beh una grotta buia, fredda e con pareti
-                insanguinate. Esistono diverse storie su questo posto, c'e' chi dice che siano solo alghe rosse formate
-                con l'umidita', altri pensano sia il colore naturale della roccia, alcuni pero' dicono che sia 
-                opera di antichi e pericolosi vampiri. Ma tu non ci credi a queste cose, giusto?
+                <app-dynamiccontents [key]="'world.map.location.crimsoncave.description'"></app-dynamiccontents>
             </p>
         </div>
         <div class="right-col">
             
             <div class="compl-container" *ngIf="isCompleted">
                 <img class="completation-ribbon" />
-                <span>Hai completato questa avventura, complimenti!</span>
+                <app-dynamiccontents [key]="'world.map.location.completated'"></app-dynamiccontents>
             </div>
             
-            <p>Inizia l'avventura:</p>
-            <button (click)="moveTo('crimsoncave')">Caverna Cremisi</button>
+            <p><app-dynamiccontents [key]="'world.map.location.beginadventure'"></app-dynamiccontents></p>
+            <button (click)="moveTo('crimsoncave')">
+                <app-dynamiccontents [key]="'world.map.location.crimsoncave.name'"></app-dynamiccontents>
+            </button>
         </div>
     </div>
 

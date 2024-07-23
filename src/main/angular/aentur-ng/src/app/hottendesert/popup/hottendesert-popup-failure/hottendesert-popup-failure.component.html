@@ -1,6 +1,6 @@
 <div class="container">
     <div class="head-msg">
-        <h2>Disfatta, in fuga</h2>
+        <h2><app-dynamiccontents [key]="'location.popup.failure.title'"></app-dynamiccontents></h2>
     </div>
     <div class="image">
     	<div>
@@ -12,12 +12,13 @@
     </div>
     <div class="disclaimer">
         <p>
-            Assetata e stanca, decidi di rinunciare all'avventura nel deserto, torni indietro e ti riposi
-            al fiume dove eri partita. Curi le ferite e pensi alla prossima azione da fare.
+            <app-dynamiccontents [key]="'location.hottendesert.popup.failure.message'"></app-dynamiccontents>
         </p>
     </div>
     <div class="button">
-        <button (click)="backToMap()"><h3>Esci dall'avventura</h3></button>
+        <button (click)="backToMap()"><h3>
+            <app-dynamiccontents [key]="'location.popup.quit'"></app-dynamiccontents>
+        </h3></button>
     </div>
 
 </div>

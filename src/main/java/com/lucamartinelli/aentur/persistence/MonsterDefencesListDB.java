@@ -56,4 +56,8 @@ public class MonsterDefencesListDB {
 					1, new String[] {})
 	};
 	
+	public static DefenseDTO getAttackById(int id) {
+		return DEFENCES[id].clone();
+	}
+	
 }

@@ -73,7 +73,7 @@ public class Enemy {
 		}
 		log.debugf("Loading monster with id: %d", id);
 		// This because the DB must be immutable
-		final MonsterDTO monster = MonstersListDB.MONSTERS[id].clone();
+		final MonsterDTO monster = MonstersListDB.getById(id);
 		return ResolveContentsUtils.resolveLabels(monster);
 		
 	}

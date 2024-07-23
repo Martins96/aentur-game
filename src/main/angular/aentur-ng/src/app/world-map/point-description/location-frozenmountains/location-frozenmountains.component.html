@@ -6,21 +6,20 @@
     <div class="body">
         <div class="left-col">
             <p>
-                Freddo e perennemente coperto da nebbia e nuvole, il luogo delle Montagne Gelide e' stato da sempre poco
-                esplorato per via delle condizione avverse della zona.<br/>
-                Il clima cambia con rapidita' e le bufere di neve o la nebbia possono essere estremamente pericolose anche 
-                per esploratori esperti.
+                <app-dynamiccontents [key]="'world.map.location.frozenmountains.description'"></app-dynamiccontents>
             </p>
         </div>
         <div class="right-col">
             
             <div class="compl-container" *ngIf="isCompleted">
                 <img class="completation-ribbon" />
-                <span>Hai completato questa avventura, complimenti!</span>
+                <app-dynamiccontents [key]="'world.map.location.completated'"></app-dynamiccontents>
             </div>
             
-            <p>Inizia l'avventura:</p>
-            <button (click)="moveTo('frozenmountains')">Montagne Gelide</button>
+            <p><app-dynamiccontents [key]="'world.map.location.beginadventure'"></app-dynamiccontents></p>
+            <button (click)="moveTo('frozenmountains')">
+                <app-dynamiccontents [key]="'world.map.location.frozenmountains.name'"></app-dynamiccontents>
+            </button>
         </div>
     </div>
 

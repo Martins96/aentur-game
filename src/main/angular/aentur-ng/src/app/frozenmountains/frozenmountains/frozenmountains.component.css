@@ -59,13 +59,11 @@ span {
     align-items: center;
     justify-content: center;
     cursor: crosshair;
-}
-
-.player-path .point span {
     padding: 0;
     color: white;
     text-align: center;
-    font-size: 1.7em;
+    font-family: 'fantasy-consumed';
+    font-size: 1.9em;
 }
 
 .player-path .point.active {

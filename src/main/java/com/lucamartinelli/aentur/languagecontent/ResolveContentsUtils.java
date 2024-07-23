@@ -28,80 +28,85 @@ public class ResolveContentsUtils {
 	public static MonsterDTO resolveLabels(final MonsterDTO monster) {
 		if (monster == null)
 			return null;
+		final MonsterDTO monsterNew = monster.clone();
 		
-		if (monster.getName() != null) {
-			monster.setName(resolveKey(monster.getName()));
+		if (monsterNew.getName() != null) {
+			monsterNew.setName(resolveKey(monsterNew.getName()));
 		}
-		if (monster.getDescription() != null) {
-			monster.setDescription(resolveKey(monster.getDescription()));
+		if (monsterNew.getDescription() != null) {
+			monsterNew.setDescription(resolveKey(monster.getDescription()));
 		}
 		
 		
-		return monster;
+		return monsterNew;
 	}
 	
 	
 	public static AttackDTO resolveLabels(AttackDTO atkDto) {
 		if (atkDto == null)
 			return null;
+		final AttackDTO attackNew = atkDto.clone();
 		
-		if (atkDto.getName() != null) {
-			atkDto.setName(resolveKey(atkDto.getName()));
+		if (attackNew.getName() != null) {
+			attackNew.setName(resolveKey(attackNew.getName()));
 		}
-		if (atkDto.getEffect() != null) {
-			atkDto.setEffect(resolveKey(atkDto.getEffect()));
+		if (attackNew.getEffect() != null) {
+			attackNew.setEffect(resolveKey(attackNew.getEffect()));
 		}
-		for(int i = 0; i < atkDto.getCategory().length; i++) {
-			atkDto.getCategory()[i] = resolveKey(atkDto.getCategory()[i]);
+		for(int i = 0; i < attackNew.getCategory().length; i++) {
+			attackNew.getCategory()[i] = resolveKey(attackNew.getCategory()[i]);
 		}
 		
-		return atkDto;
+		return attackNew;
 	}
 
 	public static DefenseDTO resolveLabels(DefenseDTO defDto) {
 		if (defDto == null)
 			return null;
+		final DefenseDTO defenseNew = defDto.clone();
 		
-		if (defDto.getName() != null) {
-			defDto.setName(resolveKey(defDto.getName()));
+		if (defenseNew.getName() != null) {
+			defenseNew.setName(resolveKey(defenseNew.getName()));
 		}
-		if (defDto.getEffect() != null) {
-			defDto.setEffect(resolveKey(defDto.getEffect()));
+		if (defenseNew.getEffect() != null) {
+			defenseNew.setEffect(resolveKey(defenseNew.getEffect()));
 		}
 		for(int i = 0; i < defDto.getCategory().length; i++) {
-			defDto.getCategory()[i] = resolveKey(defDto.getCategory()[i]);
+			defenseNew.getCategory()[i] = resolveKey(defenseNew.getCategory()[i]);
 		}
 		
-		return defDto;
+		return defenseNew;
 	}
 	
 	public static ItemDTO resolveLabels(ItemDTO itemDto) {
 		if (itemDto == null)
 			return null;
+		final ItemDTO itemNew = itemDto.clone();
 		
-		if (itemDto.getName() != null) {
-			itemDto.setName(resolveKey(itemDto.getName()));
+		if (itemNew.getName() != null) {
+			itemNew.setName(resolveKey(itemNew.getName()));
 		}
-		if (itemDto.getEffect() != null) {
-			itemDto.setEffect(resolveKey(itemDto.getEffect()));
+		if (itemNew.getEffect() != null) {
+			itemNew.setEffect(resolveKey(itemNew.getEffect()));
 		}
 		
-		return itemDto;
+		return itemNew;
 	}
 	
 	public static BossDTO resolveLabels(final BossDTO boss) {
 		if (boss == null)
 			return null;
+		final BossDTO bossNew = boss.clone();
 		
-		if (boss.getName() != null) {
-			boss.setName(resolveKey(boss.getName()));
+		if (bossNew.getName() != null) {
+			bossNew.setName(resolveKey(bossNew.getName()));
 		}
-		if (boss.getDescription() != null) {
-			boss.setDescription(resolveKey(boss.getDescription()));
+		if (bossNew.getDescription() != null) {
+			bossNew.setDescription(resolveKey(bossNew.getDescription()));
 		}
 		
 		
-		return boss;
+		return bossNew;
 	}
 	
 }

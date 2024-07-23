@@ -6,21 +6,20 @@
     <div class="body">
         <div class="left-col">
             <p>
-                La temperatura e' davvero elevata e spesso schizzano gocce di lava e pietra qua e la'.<br/>
-                Il vulcano e' da sempre un luogo pericoloso, nessuno ha mai cercato di costruire vicino a causa delle 
-                colate laviche che cambiano percorso ad ogni eruzione.<br/>
-                Girano voci su enormi creature e mostri demoniaci in questi luoghi.
+                <app-dynamiccontents [key]="'world.map.location.flamevolcano.description'"></app-dynamiccontents>
             </p>
         </div>
         <div class="right-col">
             
             <div class="compl-container" *ngIf="isCompleted">
                 <img class="completation-ribbon" />
-                <span>Hai completato questa avventura, complimenti!</span>
+                <app-dynamiccontents [key]="'world.map.location.completated'"></app-dynamiccontents>
             </div>
             
-            <p>Inizia l'avventura:</p>
-            <button (click)="moveTo('flamevolcano')">Vulcano Fiammante</button>
+            <p><app-dynamiccontents [key]="'world.map.location.beginadventure'"></app-dynamiccontents></p>
+            <button (click)="moveTo('flamevolcano')">
+                <app-dynamiccontents [key]="'world.map.location.flamevolcano.name'"></app-dynamiccontents>
+            </button>
         </div>
     </div>
 

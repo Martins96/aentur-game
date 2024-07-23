@@ -1,14 +1,12 @@
 <div *ngIf="reward" class="container">
     <img src="assets/iceland/boss-win-iceland.jpg" class="head-img"/>
     <p>
-        Il serpentone ora e' a terra, come se si fosse sciolto al tuo incredibile calore. Lentamente striscia in 
-        un angolo della grotta e lascia la stanza libera di essere esplorata, al suo interno trovi un antico barile, 
-        probabilmente lasciato qui da qualche sventurato marinaio. Lo apri e all'interno trovi:
+        <app-dynamiccontents [key]="'location.iceland.popup.bosssuccess.description'"></app-dynamiccontents>
     </p>
     <div class="gold-msg">
         <p>
             <img src="assets/worldmap/gold.png">
-            Oro: {{ reward.gold }}
+            <app-dynamiccontents [key]="'location.popup.gold'"></app-dynamiccontents> {{ reward.gold }}
         </p>
     </div>
     <div class="item-msg">
@@ -17,6 +15,8 @@
 
 
     <div class="button">
-        <button (click)="backToMap()"><h3>Esci dall'avventura</h3></button>
+        <button (click)="backToMap()"><h3>
+            <app-dynamiccontents [key]="'location.popup.quit'"></app-dynamiccontents>
+        </h3></button>
     </div>
 </div>

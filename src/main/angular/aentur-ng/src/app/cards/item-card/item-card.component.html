@@ -1,7 +1,7 @@
 <div class="card-container">
     <div *ngIf="item">
         <div class="title">
-            <h3>{{ item.name }}</h3>
+            <h3 [innerHTML]="item.name"></h3>
         </div>
         <div class="image">
             <img [src]="'assets/items/'+item.id+'.png'"/>
@@ -11,12 +11,16 @@
         </div>
 
         <div class="buttons" *ngIf="equipable === 'Y'">
-            <button (click)="equip()"><span>Equipaggia</span></button>
-            <button (click)="delete()"><span>Elimina</span></button>
+            <button (click)="equip()">
+                <app-dynamiccontents [key]="'inventory.item.equip'"></app-dynamiccontents>
+            </button>
+            <button (click)="delete()">
+                <app-dynamiccontents [key]="'inventory.item.delete'"></app-dynamiccontents>
+            </button>
         </div>
     </div>
     <div *ngIf="!item" class="empty">
-        <p>Slot Vuoto</p>
+        <p><app-dynamiccontents [key]="'inventory.item.emptyslot'"></app-dynamiccontents></p>
     </div>
 
 </div>

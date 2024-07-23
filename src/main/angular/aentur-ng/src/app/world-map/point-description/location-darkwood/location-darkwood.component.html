@@ -6,21 +6,20 @@
     <div class="body">
         <div class="left-col">
             <p>
-                Da sempre evitato, questo luogo e' famoso per essere infestato da spiriti e mostri. Solo i piu'
-                coraggiosi si avventurerebbero qui dentro.<br />
-                Si dice che piu' ci si addentra piu' la luce diminuisce e gli alberi nascondono il sentiero, come se
-                si muovessero.
+                <app-dynamiccontents [key]="'world.map.location.darkwood.description'"></app-dynamiccontents>
             </p>
         </div>
         <div class="right-col">
             
             <div class="compl-container" *ngIf="isCompleted">
                 <img class="completation-ribbon" />
-                <span>Hai completato questa avventura, complimenti!</span>
+                <app-dynamiccontents [key]="'world.map.location.completated'"></app-dynamiccontents>
             </div>
             
-            <p>Inizia l'avventura:</p>
-            <button (click)="moveTo('darkwood')">Foresta Oscura</button>
+            <p><app-dynamiccontents [key]="'world.map.location.beginadventure'"></app-dynamiccontents></p>
+            <button (click)="moveTo('darkwood')">
+                <app-dynamiccontents [key]="'world.map.location.darkwood.name'"></app-dynamiccontents>
+            </button>
         </div>
     </div>
 

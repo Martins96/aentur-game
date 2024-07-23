@@ -16,7 +16,9 @@
                 <label id="gold-sell-val">{{ goldSell }}</label>
                 <img src="assets/worldmap/gold.png">
             </div>
-            <button (click)="sell()"><span>Vendi</span></button>
+            <button (click)="sell()">
+                <app-dynamiccontents [key]="'inventory.item.sell'"></app-dynamiccontents>
+            </button>
         </div>
         <div class="trade" *ngIf="merchant==='Y'">
             <div class="gold">
@@ -24,11 +26,13 @@
                 <label id="gold-val">{{ goldBuy }}</label>
                 <img src="assets/worldmap/gold.png">
             </div>
-            <button (click)="buy()" [disabled]="playerGold < goldBuy"><span>Compra</span></button>
+            <button (click)="buy()" [disabled]="playerGold < goldBuy">
+                <app-dynamiccontents [key]="'inventory.item.buy'"></app-dynamiccontents>
+            </button>
         </div>
     </div>
     <div *ngIf="!item" class="empty">
-        <p>Slot Vuoto</p>
+        <p><app-dynamiccontents [key]="'inventory.item.emptyslot'"></app-dynamiccontents></p>
     </div>
 
 </div>

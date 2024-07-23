@@ -37,7 +37,7 @@ public class EnemyEJB {
 		final int arrayPoint = random.nextInt(attacks.length);
 		final int id = attacks[arrayPoint];
 		
-		return MonsterAttacksListDB.ATTACKS[id].clone();
+		return MonsterAttacksListDB.getAttackById(id);
 	}
 	
 	public DefenseDTO getRandomEnemyDefence(MonsterDTO monster) {
@@ -48,7 +48,7 @@ public class EnemyEJB {
 		final int arrayPoint = random.nextInt(defence.length);
 		final int id = defence[arrayPoint];
 		
-		return MonsterDefencesListDB.DEFENCES[id].clone();
+		return MonsterDefencesListDB.getAttackById(id);
 	}
 	
 	

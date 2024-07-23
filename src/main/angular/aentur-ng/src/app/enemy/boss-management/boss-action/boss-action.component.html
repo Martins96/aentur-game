@@ -1,6 +1,8 @@
 <div class="battle">
     <div class="title">
-        <h3>Combattimento</h3>
+        <h3>
+            <app-dynamiccontents [key]="'boss.fight.card.title'"></app-dynamiccontents>
+        </h3>
     </div>
     <div class="action-result" *ngIf="showActionResult">
         <div class="result" *ngIf="bossAct">
@@ -11,26 +13,30 @@
             </div>
             <img src='{{ "assets/boss/actions/" + bossAct.img + ".jpg" }}'/>
         </div>
-        <button (click)="closeActionResult()">Prossima azione</button>
+        <button (click)="closeActionResult()">
+            <app-dynamiccontents [key]="'boss.fight.card.nextaction'"></app-dynamiccontents>
+        </button>
     </div>
     <div class="action-form" *ngIf="!showActionResult">
         <div class="form">
-            <p>Tira un D20 e inserisci il punteggio ottenuto</p>
+            <p><app-dynamiccontents [key]="'boss.fight.d20.roll'"></app-dynamiccontents></p>
             <p>Usa i bonus: {{ bonusRoll }}</p>
             <div class="input-sct">
                 <input type="text" id="rolld20" #rolld20/>
-                <button (click)="submitRoll(rolld20.value)">Invia tiro</button>
+                <button (click)="submitRoll(rolld20.value)">
+                    <app-dynamiccontents [key]="'boss.fight.submit.roll'"></app-dynamiccontents>
+                </button>
             </div>
         </div>
     </div>
 </div>
 <div class="stats">
     <div class="player-health" *ngIf="playerHealth>-1">
-        <p>Vita del giocatore: </p>
+        <p><app-dynamiccontents [key]="'adventure.location.player.life'"></app-dynamiccontents></p>
         <img [src]="'assets/icons/playerhealth-' + playerHealth + '.png'" />
     </div>
     <div class="monster-health" *ngIf="bossHealth>-1">
-        <p>Vita del boss: </p>
+        <p><app-dynamiccontents [key]="'adventure.location.boss.life'"></app-dynamiccontents></p>
         <img [src]="'assets/icons/bosshealth-' + bossHealth + '.png'" />
     </div>
 </div>

@@ -52,6 +52,8 @@ button {
     border-radius: 2px;
     outline: none;
     transition: 0.5s;
+    font-family: 'fantasy-consumed';
+    font-size: 1.3em;
 }
 button:hover {
     background-color: brown;

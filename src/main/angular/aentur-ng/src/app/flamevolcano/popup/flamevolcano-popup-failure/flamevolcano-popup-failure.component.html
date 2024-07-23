@@ -1,6 +1,6 @@
 <div class="container">
     <div class="head-msg">
-        <h2>Disfatta, in fuga</h2>
+        <h2><app-dynamiccontents [key]="'location.popup.failure.title'"></app-dynamiccontents></h2>
     </div>
     <div class="image">
     	<div>
@@ -12,12 +12,13 @@
     </div>
     <div class="disclaimer">
         <p>
-            Le minacce scottano qui. Ti senti sciogliere con tutte le ferite che hai, quindi ti ritiri e curi scappando da 
-            quel posto.
+            <app-dynamiccontents [key]="'location.flamevolcano.popup.failure.message'"></app-dynamiccontents>
         </p>
     </div>
     <div class="button">
-        <button (click)="backToMap()"><h3>Esci dall'avventura</h3></button>
+        <button (click)="backToMap()"><h3>
+            <app-dynamiccontents [key]="'location.popup.quit'"></app-dynamiccontents>
+        </h3></button>
     </div>
 
 </div>

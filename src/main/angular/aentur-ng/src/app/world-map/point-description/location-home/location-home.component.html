@@ -6,22 +6,18 @@
     <div class="body">
         <div class="left-col">
             <p>
-                Il tranquillo villaggio di Celestian sorge alla riva del omonimo fiume. 
-                Grazie al clima temperato ed al ricco bosco vicino, il villaggio ha sempre vissuto tranquillo e libero.<br />
-                I piccoli topini che coltivano questo posto vivono una vita operosa e serena, molti di loro avevano affrontato
-                grandi battaglie per poter finalmente avere la pace.
+                <app-dynamiccontents [key]="'world.map.location.celestian.description'"></app-dynamiccontents>
             </p>
         </div>
         <div class="right-col">
             
-            <div class="compl-container" *ngIf="isCompleted">
-                <img class="completation-ribbon" />
-                <span>Hai completato questa avventura, complimenti!</span>
-            </div>
-            
-            <p>Visita:</p>
-            <button (click)="moveTo('home')">Casa</button>
-            <button (click)="moveTo('shop')">Centro Commerciale</button>
+            <p><app-dynamiccontents [key]="'world.map.location.moveto'"></app-dynamiccontents></p>
+            <button (click)="moveTo('home')">
+                <app-dynamiccontents [key]="'world.map.location.celestian.home'"></app-dynamiccontents>
+            </button>
+            <button (click)="moveTo('shop')">
+                <app-dynamiccontents [key]="'world.map.location.celestian.shop'"></app-dynamiccontents>
+            </button>
         </div>
     </div>
 

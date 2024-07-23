@@ -114,5 +114,10 @@ public class MonstersListDB {
 					new Integer[]{}, 
 					new Integer[]{}),
 	};
+	
+	public static MonsterDTO getById(int id) {
+		return MONSTERS[id].clone();
+		
+	}
 
 }

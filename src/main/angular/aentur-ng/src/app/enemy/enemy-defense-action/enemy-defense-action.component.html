@@ -1,5 +1,5 @@
 <div *ngIf="defense">
-    <span>Tuo turno <i>ATTACCO - usi i bonus arma</i></span>
+    <p class="effect-title"><app-dynamiccontents [key]="'adventure.location.battle.enemy.defence.effecttitle'"></app-dynamiccontents></p>
     <div class="card">
         <div class="turn-indicator"><img src="assets/worldmap/player-turn.png" /></div>
         <div class="title"><h3>{{ defense.name }}</h3></div>
@@ -10,10 +10,14 @@
                     <span><i>{{ defense.category }}</i></span>
                 </div>
                 <div>
-                    <button id="success" (click)="success()"  [disabled]="buttonDisabled">Successo</button>
+                    <button id="success" (click)="success()"  [disabled]="buttonDisabled">
+                        <app-dynamiccontents [key]="'adventure.location.battle.success.button.text'"></app-dynamiccontents>
+                    </button>
                 </div>
                 <div>
-                    <button id="fail" (click)="failure()" [disabled]="buttonDisabled">Fallimento</button>
+                    <button id="fail" (click)="failure()" [disabled]="buttonDisabled">
+                        <app-dynamiccontents [key]="'adventure.location.battle.failure.button.text'"></app-dynamiccontents>
+                    </button>
                 </div>
             </div>
         </div>

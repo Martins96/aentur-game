@@ -1,5 +1,7 @@
 package com.lucamartinelli.aentur.services;
 
+import org.jboss.logging.Logger;
+
 import com.lucamartinelli.aentur.ejb.PlayerEJB;
 import com.lucamartinelli.aentur.languagecontent.ResolveContentsUtils;
 import com.lucamartinelli.aentur.persistence.AdventureStatsDB;
@@ -30,18 +32,25 @@ public class Player {
 	@Inject
 	PlayerEJB playerEJB;
 	
+	@Inject
+	Logger log;
+	
 	@Path("equiped-weapon")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public ItemDTO getEquipedWeapon() {
-		return ResolveContentsUtils.resolveLabels(playerInventory.getEquipedWeapon());
+		final ItemDTO item = playerInventory.getEquipedWeapon();
+		log.debug("Player weapon equiped: " + item);
+		return ResolveContentsUtils.resolveLabels(item);
 	}
 	
 	@Path("equiped-armor")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public ItemDTO getEquipedArmor() {
-		return ResolveContentsUtils.resolveLabels(playerInventory.getEquipedArmor());
+		final ItemDTO item = playerInventory.getEquipedArmor();
+		log.debug("Player weapon equiped: " + item);
+		return ResolveContentsUtils.resolveLabels(item);
 	}
 	
 	@Path("equiped-talisman")

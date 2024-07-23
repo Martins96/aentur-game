@@ -57,7 +57,7 @@ public class Shop {
 		return Arrays.stream(items)
 				.collect(ArrayList::new, 
 						(newList, item) -> {
-							newList.add(ResolveContentsUtils.resolveLabels(item.clone()));
+							newList.add(ResolveContentsUtils.resolveLabels(item));
 						}, 
 						List::addAll)
 				.toArray(new ItemDTO[0]);

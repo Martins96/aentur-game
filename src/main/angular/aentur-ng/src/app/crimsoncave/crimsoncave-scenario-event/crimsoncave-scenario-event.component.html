@@ -8,11 +8,15 @@
             <p [innerHTML]="event.eventMessage"></p>
             <div class="player-rolls">
                 <div>
-                    <div class="label-div"><label for="rolld12">Tira un D12</label></div>
+                    <div class="label-div"><label for="rolld12">
+                        <app-dynamiccontents [key]="'adventure.event.roll12'"></app-dynamiccontents>
+                    </label></div>
                     <input type="number" name="D12" id="rolld12" #rolld12/>
                 </div>
                 <div>
-                    <div class="label-div"><label for="rolld100">Tira un D100</label></div>
+                    <div class="label-div"><label for="rolld100">
+                        <app-dynamiccontents [key]="'adventure.event.roll100'"></app-dynamiccontents>
+                    </label></div>
                     <input type="number" name="D100" id="rolld100" #rolld100/>
                 </div>
             </div>
@@ -26,7 +30,7 @@
         <div *ngIf="eventResult" class="textual-message">
             <p [innerHTML]="eventResult"></p>
             <button style="padding: 10px" (click)="nextStepAction()" [disabled]="disableButton">
-                <span>Vai avanti</span>
+                <app-dynamiccontents [key]="'adventure.event.goahead'"></app-dynamiccontents>
             </button>
         </div>
     </div>

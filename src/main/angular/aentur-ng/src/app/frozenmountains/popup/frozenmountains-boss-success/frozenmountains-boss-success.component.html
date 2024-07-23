@@ -1,17 +1,15 @@
 <div *ngIf="reward" class="container">
     <img src="assets/frozenmountains/boss-win-frozenmountains.jpg" class="head-img"/>
     <p>
-        Colpo dopo colpo, la difficile battaglia finisce con uno Yeti ferito e stremato. Sei riuscita a dominare
-        il gigante che fugge all'interno di una grotta lasciando un antico e decurato baule un po' coperto dalla neve.<br/>
-        Pulisci la neve superficiale e con forza sollevi il coperchio.
+        <app-dynamiccontents [key]="'location.frozenmountains.popup.bosssuccess.description'"></app-dynamiccontents>
     </p>
     <p>
-        Le vecchie cerniere scricchiolano e una si rompe per il troppo freddo, all'interno del baule trovi:
+        <app-dynamiccontents [key]="'location.frozenmountains.popup.bosssuccess.message'"></app-dynamiccontents>
     </p>
     <div class="gold-msg">
         <p>
             <img src="assets/worldmap/gold.png">
-            Oro: {{ reward.gold }}
+            <app-dynamiccontents [key]="'location.popup.gold'"></app-dynamiccontents> {{ reward.gold }}
         </p>
     </div>
     <div class="item-msg">
@@ -20,6 +18,8 @@
 
 
     <div class="button">
-        <button (click)="backToMap()"><h3>Esci dall'avventura</h3></button>
+        <button (click)="backToMap()"><h3>
+            <app-dynamiccontents [key]="'location.popup.quit'"></app-dynamiccontents>
+        </h3></button>
     </div>
 </div>

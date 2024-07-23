@@ -6,21 +6,20 @@
     <div class="body">
         <div class="left-col">
             <p>
-                Freddo da far ripensare un orso polare di essere uscito dalla tana, l'isolotto di Iceland contiene alberi
-                resistenti a queste temperature dal legno incredibilemnte duro, una grande grotta ed immense avventure.<br/>
-                Il sentiero non e' visibile a causa della neve che continua a mutare il terreno, puoi solo affidarti sulla
-                bussola e sulle stelle. Il punto indicato e' proprio la grande grotta all'estremita' settentrionale dell'isola.
+                <app-dynamiccontents [key]="'world.map.location.iceland.description'"></app-dynamiccontents>
             </p>
         </div>
         <div class="right-col">
             
             <div class="compl-container" *ngIf="isCompleted">
                 <img class="completation-ribbon" />
-                <span>Hai completato questa avventura, complimenti!</span>
+                <app-dynamiccontents [key]="'world.map.location.completated'"></app-dynamiccontents>
             </div>
             
             <p>Inizia l'avventura:</p>
-            <button (click)="moveTo('iceland')">Le lande ghiacciate</button>
+            <button (click)="moveTo('iceland')">
+                <app-dynamiccontents [key]="'world.map.location.iceland.name'"></app-dynamiccontents>
+            </button>
         </div>
     </div>
 

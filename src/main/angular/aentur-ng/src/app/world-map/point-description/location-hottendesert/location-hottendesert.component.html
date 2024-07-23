@@ -6,20 +6,20 @@
     <div class="body">
         <div class="left-col">
             <p>
-                Arido, caldo e interminabile. Il deserto situato a sud ovest e' un posto indisponibile alle 
-                forme di vita normali. Nonostante questo, non e' difficile incontrare mostri nascosti tra le 
-                sue dune. Il sole e la sete non saranno le uniche cose di cui dovrai preoccuparti.
+                <app-dynamiccontents [key]="'world.map.location.hottendesert.description'"></app-dynamiccontents>
             </p>
         </div>
         <div class="right-col">
             
             <div class="compl-container" *ngIf="isCompleted">
                 <img class="completation-ribbon" />
-                <span>Hai completato questa avventura, complimenti!</span>
+                <app-dynamiccontents [key]="'world.map.location.completated'"></app-dynamiccontents>
             </div>
             
-            <p>Inizia l'avventura:</p>
-            <button (click)="moveTo('hottendesert')">Deserto Cocente</button>
+            <p><app-dynamiccontents [key]="'world.map.location.beginadventure'"></app-dynamiccontents></p>
+            <button (click)="moveTo('hottendesert')">
+                <app-dynamiccontents [key]="'world.map.location.hottendesert.name'"></app-dynamiccontents>
+            </button>
         </div>
     </div>
 

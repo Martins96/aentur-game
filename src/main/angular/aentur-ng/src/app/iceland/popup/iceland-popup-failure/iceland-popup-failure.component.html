@@ -1,6 +1,6 @@
 <div class="container">
     <div class="head-msg">
-        <h2>Disfatta, in fuga</h2>
+        <h2><app-dynamiccontents [key]="'location.popup.failure.title'"></app-dynamiccontents></h2>
     </div>
     <div class="image">
     	<div>
@@ -12,13 +12,14 @@
     </div>
     <div class="disclaimer">
         <p>
-            Le minacce sono state troppo difficili per la piccola avventuriera, con qualche ammaccatura riesci a lasciare
-            il luogo oscuro e pericoloso e tornata all'entrata ti riesci a rimettere in sesto.<br/>
-            Riapri la tua mappa e painifichi la tua prossima mossa.
+            <app-dynamiccontents [key]="'location.iceland.popup.failure.message'"></app-dynamiccontents>
+            
         </p>
     </div>
     <div class="button">
-        <button (click)="backToMap()"><h3>Esci dall'avventura</h3></button>
+        <button (click)="backToMap()"><h3>
+            <app-dynamiccontents [key]="'location.popup.quit'"></app-dynamiccontents>
+        </h3></button>
     </div>
 
 </div>

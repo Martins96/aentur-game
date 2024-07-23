@@ -8,11 +8,11 @@
 
     <div class="stats">
         <div class="player-health" *ngIf="playerHealth>-1">
-            <p>Vita del giocatore: </p>
+            <p><app-dynamiccontents [key]="'adventure.location.player.life'"></app-dynamiccontents></p>
             <img [src]="'assets/icons/playerhealth-' + playerHealth + '.png'" />
         </div>
         <div class="monster-health" *ngIf="enemyHealth>-1">
-            <p>Vita del mostro: </p>
+            <p><app-dynamiccontents [key]="'adventure.location.monster.life'"></app-dynamiccontents></p>
             <img [src]="'assets/icons/monsterhealth-' + enemyHealth + '.png'" />
         </div>
     </div>
