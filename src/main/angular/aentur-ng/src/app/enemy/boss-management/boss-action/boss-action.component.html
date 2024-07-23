@@ -7,7 +7,7 @@
     <div class="action-result" *ngIf="showActionResult">
         <div class="result" *ngIf="bossAct">
             <div class="text">
-                <span id="act-title">{{ bossAct.title }}</span>
+                <span id="act-title" [innerHTML]="bossAct.title"></span>
                 <p id="act-description" [innerHTML]="bossAct.description"></p>
                 <p id="act-effect" [innerHTML]="bossAct.effect"></p>
             </div>

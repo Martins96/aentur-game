@@ -92,3 +92,10 @@ h1 {
     margin-left: 37%;
     margin-top: 56%;
 }
+
+.lang-selector {
+    z-index: 10;
+    position: absolute;
+    left: 5%;
+    top: 5px;
+}

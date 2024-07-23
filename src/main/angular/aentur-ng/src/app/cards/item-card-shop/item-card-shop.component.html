@@ -1,7 +1,7 @@
 <div class="card-container">
     <div *ngIf="item">
         <div class="title">
-            <h3>{{ item.name }}</h3>
+            <h3 [innerHTML]="item.name"></h3>
         </div>
         <div class="image">
             <img [src]="'assets/items/'+item.id+'.png'"/>
@@ -12,7 +12,7 @@
 
         <div class="trade" *ngIf="merchant==='N'">
             <div class="gold">
-                <label>Vendi a:&nbsp;</label>
+                <label><app-dynamiccontents [key]="'inventory.item.sell.label'"></app-dynamiccontents></label>
                 <label id="gold-sell-val">{{ goldSell }}</label>
                 <img src="assets/worldmap/gold.png">
             </div>
@@ -22,7 +22,7 @@
         </div>
         <div class="trade" *ngIf="merchant==='Y'">
             <div class="gold">
-                <label>Compra a:&nbsp;</label>
+                <label><app-dynamiccontents [key]="'inventory.item.buylabel'"></app-dynamiccontents></label>
                 <label id="gold-val">{{ goldBuy }}</label>
                 <img src="assets/worldmap/gold.png">
             </div>

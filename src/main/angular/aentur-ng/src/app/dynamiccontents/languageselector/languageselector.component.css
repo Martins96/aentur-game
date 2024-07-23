@@ -1,0 +1,48 @@
+.flag-selection {
+    height: 0;
+    opacity: 0;
+    transition-duration: 1s;
+}
+.language-selector:hover + .flag-selection,
+.language-selector-container:hover .flag-selection,
+.flag-selection:hover {
+    height: auto;
+    opacity: 1;
+}
+
+.language-selector-container {
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 5px;
+    transition-duration: 1s;
+}
+
+.language-selector {
+    width: fit-content;
+    padding: 10px;
+    border-radius: 50px;
+    background-color: rgba(255,255,255,0.3);
+}
+img {
+    width: 45px;
+    cursor: pointer;
+}
+
+.flag-selection div{
+    margin: 5px auto;
+    width: fit-content;
+}
+
+.change-lang-txt {
+    color: rgba(0,0,0,0);
+    visibility: hidden;
+    transition-duration: 1s;
+    transition-property: color;
+}
+
+.container {
+    display: flex;
+}
+.language-selector-container:hover + .change-lang-txt {
+    color: rgba(0,0,0,1);
+    visibility: visible;
+}

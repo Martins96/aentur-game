@@ -9,6 +9,7 @@
 .equipment-inner {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .intro-img {
@@ -49,4 +50,11 @@
 .big {
     font-family: 'fantasy-alt';
     font-size: 0.9em;
+}
+
+.lang-selector {
+    z-index: 10;
+    position: absolute;
+    left: 120px;
+    top: 5px;
 }

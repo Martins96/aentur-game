@@ -26,7 +26,9 @@ public class LabelTextContentEJB {
 	private static Map.Entry<String, Properties> propertiesFileEntry = null;
 	
 	public void setLanguage(final String lang) {
+		log.debug("Received change language request for lang: " + lang);
 		final LanguagesVO language = LanguagesVO.convertStringToLanguage(lang);
+		log.debug("Setting language: " + language);
 		textDB.setLanguage(language);
 	}
 	
@@ -42,8 +44,10 @@ public class LabelTextContentEJB {
 		if(lang.isPresent() && lang.get() != null) {
 			return LanguagesVO.convertStringToLanguage(lang.get());
 		} else if (textDB.getLanguage() != null) {
+			log.debug("Getting lang from session: " + textDB.getLanguage());
 			return textDB.getLanguage();
 		} else {
+			log.debug("Getting lang by default: " + LanguagesVO.getDefault());
 			return LanguagesVO.getDefault();
 		}
 	}
@@ -52,7 +56,7 @@ public class LabelTextContentEJB {
 		if (lang == null)
 			return null;
 		
-		if (propertiesFileEntry == null || lang.fileSuffix.equals(propertiesFileEntry.getKey())) {
+		if (propertiesFileEntry == null || !lang.fileSuffix.equals(propertiesFileEntry.getKey())) {
 			final InputStream is = getClass().getClassLoader()
 			 		.getResourceAsStream(String.format("META-INF/lang/contents-%s.properties", lang.fileSuffix));
 			final Properties props = new Properties();

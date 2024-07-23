@@ -2,12 +2,12 @@
     <p class="effect-title"><app-dynamiccontents [key]="'adventure.location.battle.enemy.attack.effecttitle'"></app-dynamiccontents></p>
     <div class="card">
         <div class="turn-indicator"><img src="assets/worldmap/enemy-turn.png" /></div>
-        <div class="title"><h3>{{ attack.name }}</h3></div>
+        <div class="title"><h3 [innerHTML]="attack.name"></h3></div>
         <div class="content">
             <div class="text"><p [innerHTML]="attack.effect"></p></div>
             <div class="buttons">
                 <div class="categories">
-                    <span><i>{{ attack.category }}</i></span>
+                    <span><i [innerHTML]="attack.category"></i></span>
                 </div>
                 <div>
                     <button id="success" (click)="success()" [disabled]="buttonDisabled">

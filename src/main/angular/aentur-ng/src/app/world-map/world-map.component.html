@@ -1,5 +1,9 @@
 <div class="container">
 
+    <div class="lang-selector">
+        <app-languageselector></app-languageselector>
+    </div>
+
     <div class="new-stars">
         <h4 class="new-stars-txt"><app-dynamiccontents [key]="'world.map.story.button.text'"></app-dynamiccontents></h4>
         <img class="new-stars-img" src="assets/worldmap/new-stars.png" (click)="openDialog()"/>

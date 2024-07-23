@@ -1,3 +1,22 @@
-<div>
-    
+<div class="container">
+    <div class="language-selector-container">
+        <div class="language-selector">
+            <img src="assets/dynamiccontents/translation-icon.png" />
+        </div>
+        <div id="flag-selection" class="flag-selection">
+            <div (click)="setLanguage('it')">
+                <img src="assets/dynamiccontents/it.png" />
+            </div>
+            <div (click)="setLanguage('en')">
+                <img src="assets/dynamiccontents/en.png" />
+            </div>
+            <div (click)="setLanguage('es')">
+                <img src="assets/dynamiccontents/es.png" />
+            </div>
+            <div (click)="setLanguage('fr')">
+                <img src="assets/dynamiccontents/fr.png" />
+            </div>
+        </div>
+    </div>
+    <h4 class="change-lang-txt"><app-dynamiccontents [key]="'settings.lang.selector'"></app-dynamiccontents></h4>
 </div>
