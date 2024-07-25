@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RoutesUtils } from './routes.utils';
-import { WorldMapComponent } from './world-map/world-map.component';
 
 const routes: Routes = RoutesUtils.getRoutes();
 

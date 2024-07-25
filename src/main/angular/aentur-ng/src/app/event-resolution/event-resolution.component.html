@@ -1,1 +1,4 @@
-<p>event-resolution works!</p>
+<p [innerHTML]="eventResult"></p>
+<button style="padding: 10px" (click)="nextStepAction()" [disabled]="disableButton">
+    <app-dynamiccontents [key]="'adventure.event.goahead'"></app-dynamiccontents>
+</button>

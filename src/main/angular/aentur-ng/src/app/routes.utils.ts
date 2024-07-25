@@ -1,12 +1,12 @@
 import { Routes, UrlMatchResult, UrlSegment } from "@angular/router";
 import { HomeComponent } from "./celestian/home/home.component";
 import { ShopComponent } from "./celestian/shop/shop.component";
-import { CrimsoncaveComponent } from "./crimsoncave/crimsoncave/crimsoncave.component";
-import { DarkwoodComponent } from "./darkwood/darkwood/darkwood.component";
-import { FlamevolcanoComponent } from "./flamevolcano/flamevolcano/flamevolcano.component";
-import { FrozenmountainsComponent } from "./frozenmountains/frozenmountains/frozenmountains.component";
-import { HottendesertComponent } from "./hottendesert/hottendesert/hottendesert.component";
-import { IcelandComponent } from "./iceland/iceland/iceland.component";
+import { CrimsoncaveComponent } from "./locations/crimsoncave/crimsoncave/crimsoncave.component";
+import { DarkwoodComponent } from "./locations/darkwood/darkwood/darkwood.component";
+import { FlamevolcanoComponent } from "./locations/flamevolcano/flamevolcano/flamevolcano.component";
+import { FrozenmountainsComponent } from "./locations/frozenmountains/frozenmountains/frozenmountains.component";
+import { HottendesertComponent } from "./locations/hottendesert/hottendesert/hottendesert.component";
+import { IcelandComponent } from "./locations/iceland/iceland/iceland.component";
 import { GameOverCongratsComponent } from "./world-map/game-over-congrats/game-over-congrats.component";
 import { WorldMapComponent } from "./world-map/world-map.component";
 

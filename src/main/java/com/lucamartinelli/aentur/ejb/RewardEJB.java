@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import com.lucamartinelli.aentur.languagecontent.ResolveContentsUtils;
 import com.lucamartinelli.aentur.persistence.ItemsListDB;
 import com.lucamartinelli.aentur.persistence.PlayerInventoryDB;
 import com.lucamartinelli.aentur.vo.ItemDTO;
@@ -45,7 +46,7 @@ public class RewardEJB {
 	private RewardDTO getRewardLvl1() {
 		final int gold = new Random().nextInt(rewardBPLvl1.getMaxBonusGold()+1) + rewardBPLvl1.getMinGold();
 		final int itemNum = new Random().nextInt(itemsLvl1.size());
-		final ItemDTO item = itemsLvl1.get(itemNum);
+		final ItemDTO item = ResolveContentsUtils.resolveLabels(itemsLvl1.get(itemNum).clone());
 		
 		return new RewardDTO(gold, item);
 	}
@@ -53,7 +54,7 @@ public class RewardEJB {
 	private RewardDTO getRewardLvlSup() {
 		final int gold = new Random().nextInt(rewardBPLvlSup.getMaxBonusGold()+1) + rewardBPLvlSup.getMinGold();
 		final int itemNum = new Random().nextInt(itemsLvlSup.size());
-		final ItemDTO item = itemsLvlSup.get(itemNum);
+		final ItemDTO item =  ResolveContentsUtils.resolveLabels(itemsLvlSup.get(itemNum).clone());
 		
 		return new RewardDTO(gold, item);
 	}
@@ -63,7 +64,8 @@ public class RewardEJB {
 		final Random rand = new Random();
 		final int selectedItem = rand.nextInt(itemsBoss.size());
 		final int gold = rewardBPBoss.getMinGold() + new Random().nextInt(rewardBPBoss.getMaxBonusGold()+1);
-		final RewardDTO reward = new RewardDTO(gold, itemsBoss.get(selectedItem));
+		final ItemDTO item =  ResolveContentsUtils.resolveLabels(itemsBoss.get(selectedItem).clone());
+		final RewardDTO reward = new RewardDTO(gold, item);
 		return reward;
 	}
 	
