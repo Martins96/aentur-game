@@ -78,6 +78,7 @@ import { HottendesertPopupFailureComponent } from './hottendesert/popup/hottende
 import { GameOverCongratsComponent } from './world-map/game-over-congrats/game-over-congrats.component';
 import { DynamiccontentsComponent } from './dynamiccontents/dynamiccontents/dynamiccontents.component';
 import { LanguageselectorComponent } from './dynamiccontents/languageselector/languageselector.component';
+import { EventResolutionComponent } from './event-resolution/event-resolution.component';
 
 @NgModule({
   declarations: [
@@ -153,7 +154,8 @@ import { LanguageselectorComponent } from './dynamiccontents/languageselector/la
     HottendesertPopupFailureComponent,
     GameOverCongratsComponent,
     DynamiccontentsComponent,
-    LanguageselectorComponent
+    LanguageselectorComponent,
+    EventResolutionComponent
   ],
   imports: [
     BrowserModule,

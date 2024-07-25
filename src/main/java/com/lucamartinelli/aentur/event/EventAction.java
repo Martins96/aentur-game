@@ -49,6 +49,15 @@ public interface EventAction {
 		return new Random().nextInt(bound);
 	}
 	
+	/**
+	 * Returns a pseudorandom, uniformly distributed int value
+	 * between 0 (inclusive) 
+	 * and the specified bound (exclusive), 
+	 */
+	default long getRandomLong(long bound) {
+		return new Random().nextLong(bound);
+	}
+	
 	
 	public abstract EventDTO getWelcomeMessage();
 	

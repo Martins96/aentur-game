@@ -138,7 +138,8 @@ public class CCCoffinEvent implements EventAction {
 					+ "Vedi delle ombre fuoriuscire e e contorcersi al contatto dell'aria e della luce. "
 					+ "Dopo qualche istante queste ombre e capisci di aver appena distrutto un sigillo di magia "
 					+ "nera. L'area viene quindi liberata dal male e nuova forza si infonde a te. Senti la tua energia "
-					+ "rigenerarsi e una protezione mistica avvolgerti. -Nuovo effetto attivo-";
+					+ "rigenerarsi e una protezione mistica avvolgerti.<br />"
+					+ " -Nuovo effetto attivo-";
 		}
 	}
 	

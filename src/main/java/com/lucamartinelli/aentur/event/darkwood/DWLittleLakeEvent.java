@@ -43,45 +43,67 @@ public class DWLittleLakeEvent implements EventAction {
 	}
 	
 	private String ignoreAction(int rollD100, int rollD12) {
+		String eventResultMessage;
+		String eventResultImage;
+		
 		if (rollD12 < 4) {
 			if (!percentTest(rollD100)) {
 				adventureDB.decreasePlayerHealth();
-				return "Decidi di andartene, ma appena metti un piede tra le foglie scatta una piccola trappola "
+				eventResultImage = "event-dw-1-ignore-1";
+				eventResultMessage = "Decidi di andartene, ma appena metti un piede tra le foglie scatta una piccola trappola "
 						+ "per orsi che ti ferisce al piede.";
+				return eventResultMessage;
 			}
-			return "Appena lasci la zona senti strani rumori provvenire dalle rocce della sorgente, rapidamente "
+			eventResultImage = "event-dw-1-ignore-2";
+			eventResultMessage = "Appena lasci la zona senti strani rumori provvenire dalle rocce della sorgente, rapidamente "
 					+ "te ne vai";
+			return eventResultMessage;
 		} else {
-			return "Decidi di ignorare la pozza e lasci alla natura quel posto apparentemente rilassante";
+			eventResultImage = "event-dw-1-ignore-2";
+			eventResultMessage = "Decidi di ignorare la pozza e lasci alla natura quel posto apparentemente rilassante";
+			return eventResultMessage;
 		}
 		
 	}
 
 	private String drinkAction(int rollD100, int rollD12) {
+		String eventResultMessage;
+		String eventResultImage;
+		
 		if (rollD12 < 7) {
 			if (!percentTest(rollD100/2)) {
 				adventureDB.decreasePlayerHealth();
-				return "Stai per bere dalla sorgente, quando un grosso granchio della sabbia che si era"
+				eventResultImage = "event-dw-1-drink-1";
+				eventResultMessage = "Stai per bere dalla sorgente, quando un grosso granchio della sabbia che si era"
 						+ " mimetizzato fra le rocce ti colpisce con la chela e ti procura una ferita.";
+				return eventResultMessage;
 			} else {
-				return "Avvicinandoti alla sorgente vedi dei piccoli movimenti tra le rocce, capisci subito "
+				eventResultImage = "event-dw-1-drink-1";
+				eventResultMessage = "Avvicinandoti alla sorgente vedi dei piccoli movimenti tra le rocce, capisci subito "
 						+ "che il posto e' un nido di granchi della sabbia. Indietreggi e ignori la sorgente "
 						+ "pericolosa.";
+				return eventResultMessage;
 			}
 		} else if (rollD12 < 12) {
 			if (rollD100 < 11) {
 				adventureDB.decreasePlayerHealth();
 				eventEffectDB.setActiveEffect("I tiri di <b>difesa</b> e <b>test armatura</b> sono diminuiti di 1");
-				return "Bevi l'acqua della sorgente e a poco a poco inizi a sentirti debole, la sorgente "
+				eventResultImage = "event-dw-1-drink-2";
+				eventResultMessage = "Bevi l'acqua della sorgente e a poco a poco inizi a sentirti debole, la sorgente "
 						+ "e' maledetta e inizi a vomitare. Subisci una ferita e il tuo corpo e' debole.<br/>"
 						+ "-Nuovo effetto attivo-";
+				return eventResultMessage;
 			} else if (!percentTest(rollD100 + 10)) {
 				adventureDB.decreasePlayerHealth();
-				return "Dopo aver bevuto senti girare la testa, la fonte e' avvelenata e subisci un danno";
+				eventResultImage = "event-dw-1-drink-2";
+				eventResultMessage = "Dopo aver bevuto senti girare la testa, la fonte e' avvelenata e subisci un danno";
+				return eventResultMessage;
 			} else {
 				adventureDB.increasePlayerHealth();
-				return "Bevi dell'acqua fresca e incontaminata, questa breve pausa ti ha consentito di tirare "
+				eventResultImage = "event-dw-1-drink-2";
+				eventResultMessage = "Bevi dell'acqua fresca e incontaminata, questa breve pausa ti ha consentito di tirare "
 						+ "il fiato per un momento, ti curi di una ferita";
+				return eventResultMessage;
 			}
 		} else {
 			adventureDB.increasePlayerHealth();
@@ -93,43 +115,60 @@ public class DWLittleLakeEvent implements EventAction {
 	}
 
 	private String searchAction(int rollD100, int rollD12) {
+		String eventResultMessage;
+		String eventResultImage;
+		
 		if (rollD12 < 5) {
 			if (!percentTest(rollD100)) {
 				adventureDB.decreasePlayerHealth();
-				return "Un grosso pesce salta fuori dall'acqua appena metti il muso sopra. Con dei denti affilati "
+				eventResultImage = "event-dw-1-search-1";
+				eventResultMessage = "Un grosso pesce salta fuori dall'acqua appena metti il muso sopra. Con dei denti affilati "
 						+ "ti provoca una ferita";
+				return eventResultMessage;
 			} else {
-				return "Cerchi sotto la superficie dell'acqua, quando un grosso pesce salta fuori e cerca di morderti. "
+				eventResultImage = "event-dw-1-search-1";
+				eventResultMessage = "Cerchi sotto la superficie dell'acqua, quando un grosso pesce salta fuori e cerca di morderti. "
 						+ "Con riflessi pronti schivi il mostro e spaventato, ma incolume, te ne vai";
+				return eventResultMessage;
 			}
 		} else if (rollD12 < 12) {
 			if (rollD100 < 40) {
-				return "Cerchi nel lago, ma trovi solo sabbia. Delusa, te ne vai";
+				eventResultImage = "event-dw-1-search-2";
+				eventResultMessage = "Cerchi nel lago, ma trovi solo sabbia. Delusa, te ne vai";
+				return eventResultMessage;
 			} else {
 				if (!percentTest(rollD100/2)) {
 					final int gold = getRandomInt(6) + 1;
 					playerInventoryDB.addGold(gold);
-					return "Vedi qualcosa brillare sul fondo del lago, sono monete d'oro. Metti in tasca "
+					eventResultImage = "event-dw-1-search-3";
+					eventResultMessage = "Vedi qualcosa brillare sul fondo del lago, sono monete d'oro. Metti in tasca "
 							+ gold + " monete.";
+					return eventResultMessage;
 				} else {
 					final RewardDTO reward = rewardEJB.getReward(1);
 					playerInventoryDB.addItems(reward.getItem());
 					if (!percentTest(rollD100)) {
 						adventureDB.decreasePlayerHealth();
-						return "Trovi nel lago un vecchio oggetto, ma quando lo sollevi dall'acqua scopri che era "
+						eventResultImage = "event-dw-1-drink-1";
+						eventResultMessage = "Trovi nel lago un vecchio oggetto, ma quando lo sollevi dall'acqua scopri che era "
 								+ "una copertura per un grosso granchio della sabbia che ti colpisce. Nonostante il danno"
 								+ " ricevi comunque un nuovo oggetto: " + reward.getItem().getName();
+						return eventResultMessage;
 					} else {
-						return "Cercando nel lago trovi qualcosa abbandonato da tempo, lo sollevi dall'acqua e"
-								+ " ricevi un nuovo oggetto: " + reward.getItem().getName();
+						eventResultImage = "event-dw-1-search-4";
+						eventResultMessage = String.format("Cercando nel lago trovi qualcosa abbandonato da tempo, "
+								+ "lo sollevi dall'acqua e ricevi un nuovo oggetto <i>'%s'</i> ", reward.getItem().getName());
+						return eventResultMessage;
 					}
 				}
 			}
 		} else {
 			final RewardDTO reward = rewardEJB.getReward(1);
 			playerInventoryDB.addItems(reward.getItem());
-			return "Noti subito qualcosa sotterrato nella sabbia dentro al lago, lo sollevi dall'acqua e"
-					+ " ricevi un nuovo oggetto: " + reward.getItem().getName();
+			eventResultImage = "event-dw-1-search-5";
+			eventResultMessage = String.format("Noti subito qualcosa sotterrato nella sabbia dentro al lago, "
+					+ "lo sollevi dall'acqua e ricevi un nuovo oggetto: <i>'%s'</i>", reward.getItem().getName());
+			return eventResultMessage;
 		}
 	}
 
