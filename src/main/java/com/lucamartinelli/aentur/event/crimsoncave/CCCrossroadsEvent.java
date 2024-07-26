@@ -1,6 +1,6 @@
 package com.lucamartinelli.aentur.event.crimsoncave;
 
-import com.lucamartinelli.aentur.event.EventAction;
+import com.lucamartinelli.aentur.event.EventActionOld;
 import com.lucamartinelli.aentur.vo.EventDTO;
 import com.lucamartinelli.aentur.vo.ItemDTO;
 
@@ -11,7 +11,7 @@ import jakarta.ws.rs.core.Response;
 
 @Named("event-cc-21")
 @ApplicationScoped
-public class CCCrossroadsEvent implements EventAction {
+public class CCCrossroadsEvent implements EventActionOld {
 	
 	private final EventDTO event = new EventDTO("event-cc-21", 
 			"Dopo un corridoio roccioso ti trovi in una piccola stanza. Davanti a te ci sono "

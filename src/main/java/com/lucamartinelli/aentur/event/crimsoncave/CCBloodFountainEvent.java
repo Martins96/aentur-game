@@ -1,6 +1,6 @@
 package com.lucamartinelli.aentur.event.crimsoncave;
 
-import com.lucamartinelli.aentur.event.EventAction;
+import com.lucamartinelli.aentur.event.EventActionOld;
 import com.lucamartinelli.aentur.vo.EventDTO;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -10,7 +10,7 @@ import jakarta.ws.rs.core.Response;
 
 @Named("event-cc-19")
 @ApplicationScoped
-public class CCBloodFountainEvent implements EventAction {
+public class CCBloodFountainEvent implements EventActionOld {
 	
 	private final EventDTO event = new EventDTO("event-cc-19", 
 			"Dopo un piccolo cunicolo ti trovi in una stanza creata nella roccia. Al centro della stanza"

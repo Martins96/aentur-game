@@ -1,6 +1,6 @@
 package com.lucamartinelli.aentur.event.hottendesert;
 
-import com.lucamartinelli.aentur.event.EventAction;
+import com.lucamartinelli.aentur.event.EventActionOld;
 import com.lucamartinelli.aentur.vo.EventDTO;
 import com.lucamartinelli.aentur.vo.RewardDTO;
 
@@ -10,7 +10,7 @@ import jakarta.ws.rs.core.Response;
 
 @Named("event-hd-13")
 @ApplicationScoped
-public class HDSandStormEvent implements EventAction {
+public class HDSandStormEvent implements EventActionOld {
 
 	private final EventDTO event = new EventDTO("event-hd-13", 
 			"Mentre cammini senti il vento alzarsi e in poco tempo una tempesta di sabbia si crea dal nulla", 

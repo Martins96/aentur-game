@@ -1,6 +1,6 @@
 package com.lucamartinelli.aentur.event.frozenmountains;
 
-import com.lucamartinelli.aentur.event.EventAction;
+import com.lucamartinelli.aentur.event.EventActionOld;
 import com.lucamartinelli.aentur.vo.EventDTO;
 import com.lucamartinelli.aentur.vo.RewardDTO;
 
@@ -10,7 +10,7 @@ import jakarta.ws.rs.core.Response;
 
 @Named("event-fm-15")
 @ApplicationScoped
-public class FMMountainLogHouseEvent implements EventAction {
+public class FMMountainLogHouseEvent implements EventActionOld {
 
 	private final EventDTO event = new EventDTO("event-fm-15", 
 			"Camminando nella neve ti imbatti in una baita fatta di pietra e tronchi. Accanto alla casa "

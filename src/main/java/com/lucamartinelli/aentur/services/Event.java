@@ -3,6 +3,7 @@ package com.lucamartinelli.aentur.services;
 import org.jboss.logging.Logger;
 
 import com.lucamartinelli.aentur.event.EventAction;
+import com.lucamartinelli.aentur.event.EventActionOld;
 import com.lucamartinelli.aentur.persistence.EventEffectDB;
 import com.lucamartinelli.aentur.persistence.EventListDB;
 import com.lucamartinelli.aentur.vo.EventChoiceDTO;
@@ -36,6 +37,9 @@ public class Event {
 	EventEffectDB eventEffectDB;
 	
 	@Inject
+	Instance<EventActionOld> eventActionOldCDI;
+	
+	@Inject
 	Instance<EventAction> eventActionCDI;
 	
 	
@@ -54,7 +58,64 @@ public class Event {
 	@Path("get-random-event/{location}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public EventDTO getActiveEffect(@PathParam("location") String location) {
+	@Deprecated
+	public EventDTO getRandomEvent(@PathParam("location") String location) {
+		final String locSigle = locationSigle(location);
+		log.debug("Selected location for event " + locSigle);
+		if (locSigle == null)
+			return null;
+		
+		final Random rand = new Random();
+		final int[] eventIDs = EventListDB.eventList.get(locSigle);
+		if (eventIDs == null || eventIDs.length == 0)
+			return null;
+		
+		final int eventIndex = rand.nextInt(eventIDs.length);
+		final int eventID = eventIDs[eventIndex];
+		log.debugf("Selected id for event " + eventID);
+		final String qualifierName = "event-"+locSigle+"-"+eventID;
+		log.debugf("Searching qualifier named [%s]", qualifierName);
+		
+		// Load dynamically different beans selected by @Named annotation
+		// All beans implements the same interface
+		EventActionOld eventAction = eventActionOldCDI.select(NamedLiteral.of(qualifierName)).get();
+
+		return eventAction.getWelcomeMessage();
+	}
+	
+	@Path("apply-effect")
+	@POST
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Deprecated
+	public Response applyEffect(EventChoiceDTO playerChoice) {
+		if (playerChoice == null ||
+				playerChoice.getEventID() == null ||
+				playerChoice.getEventID().isEmpty() ||
+				playerChoice.getRollD12() > 12 ||
+				playerChoice.getRollD100() > 100 ||
+				playerChoice.getRollD12() < 1 ||
+				playerChoice.getRollD100() < 1 ||
+				playerChoice.getChoice() < 1) {
+			log.warn("Input is not valid: " + playerChoice);
+			return Response.status(400, "Invalid input").build();
+		}
+		
+		final Instance<EventActionOld> eventActionInstance = eventActionOldCDI
+				.select(NamedLiteral.of(playerChoice.getEventID()));
+		
+		if (eventActionInstance.isUnsatisfied()) {
+			return Response.status(400, "Invalid ID " + playerChoice.getEventID()).build();
+		}
+		
+		return eventActionInstance.get()
+				.apply(playerChoice.getChoice(), playerChoice.getRollD100(), playerChoice.getRollD12());
+	}
+	
+	@Path("get-random-event-new/{location}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public EventDTO getRandomEventNew(@PathParam("location") String location) {
 		final String locSigle = locationSigle(location);
 		log.debug("Selected location for event " + locSigle);
 		if (locSigle == null)
@@ -78,11 +139,11 @@ public class Event {
 		return eventAction.getWelcomeMessage();
 	}
 	
-	@Path("apply-effect")
+	@Path("apply-effect-new")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response applyEffect(EventChoiceDTO playerChoice) {
+	public Response applyEffectNew(EventChoiceDTO playerChoice) {
 		if (playerChoice == null ||
 				playerChoice.getEventID() == null ||
 				playerChoice.getEventID().isEmpty() ||
@@ -95,6 +156,7 @@ public class Event {
 			return Response.status(400, "Invalid input").build();
 		}
 		
+		log.debugf("Searching event with annotation name [%s]", playerChoice.getEventID());
 		final Instance<EventAction> eventActionInstance = eventActionCDI
 				.select(NamedLiteral.of(playerChoice.getEventID()));
 		
@@ -103,7 +165,7 @@ public class Event {
 		}
 		
 		return eventActionInstance.get()
-				.apply(playerChoice.getChoice(), playerChoice.getRollD100(), playerChoice.getRollD12());
+				.resolveEvent(playerChoice.getChoice(), playerChoice.getRollD100(), playerChoice.getRollD12());
 	}
 	
 	

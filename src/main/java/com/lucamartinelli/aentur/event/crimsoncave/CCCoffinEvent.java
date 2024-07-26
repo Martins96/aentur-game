@@ -1,6 +1,6 @@
 package com.lucamartinelli.aentur.event.crimsoncave;
 
-import com.lucamartinelli.aentur.event.EventAction;
+import com.lucamartinelli.aentur.event.EventActionOld;
 import com.lucamartinelli.aentur.vo.EventDTO;
 import com.lucamartinelli.aentur.vo.ItemDTO;
 
@@ -11,7 +11,7 @@ import jakarta.ws.rs.core.Response;
 
 @Named("event-cc-20")
 @ApplicationScoped
-public class CCCoffinEvent implements EventAction {
+public class CCCoffinEvent implements EventActionOld {
 	
 	private final EventDTO event = new EventDTO("event-cc-20", 
 			"In una stretta insenatura trovi una bara in legno con attorno delle candele."

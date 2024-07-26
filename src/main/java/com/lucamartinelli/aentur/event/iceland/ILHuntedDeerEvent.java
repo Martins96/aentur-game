@@ -1,6 +1,6 @@
 package com.lucamartinelli.aentur.event.iceland;
 
-import com.lucamartinelli.aentur.event.EventAction;
+import com.lucamartinelli.aentur.event.EventActionOld;
 import com.lucamartinelli.aentur.vo.EventDTO;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -9,7 +9,7 @@ import jakarta.ws.rs.core.Response;
 
 @Named("event-il-10")
 @ApplicationScoped
-public class ILHuntedDeerEvent implements EventAction {
+public class ILHuntedDeerEvent implements EventActionOld {
 
 	private final EventDTO event = new EventDTO("event-il-10", 
 			"Durante il cammino ti imbatti in un cervo ferito e morente, diverse frecce lo han ferito ed ora e' "

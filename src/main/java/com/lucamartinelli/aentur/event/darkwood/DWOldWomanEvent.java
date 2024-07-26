@@ -1,12 +1,17 @@
 package com.lucamartinelli.aentur.event.darkwood;
 
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
 import com.lucamartinelli.aentur.event.EventAction;
 import com.lucamartinelli.aentur.vo.EventDTO;
+import com.lucamartinelli.aentur.vo.EventResponseVO;
 import com.lucamartinelli.aentur.vo.RewardDTO;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
-import jakarta.ws.rs.core.Response;
 
 @Named("event-dw-4")
 @ApplicationScoped
@@ -28,19 +33,19 @@ public class DWOldWomanEvent implements EventAction {
 	}
 
 	@Override
-	public Response apply(int choice, int rollD100, int rollD12) {
+	public ImmutablePair<EventResponseVO, Entry<Integer, String>> apply(int choice, int rollD100, int rollD12) {
 		switch (choice) {
 		case 1:
-			return Response.ok(ignoreAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(ignoreAction(rollD100, rollD12), null);
 		case 2:
-			return Response.ok(betAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(betAction(rollD100, rollD12), null);
 
 		default:
-			return Response.status(400, "Invalid choice id").build();
+			return ImmutablePair.of(null, Map.entry(400, "Invalid choice id"));
 		}
 	}
 
-	private Object ignoreAction(int rollD100, int rollD12) {
+	private EventResponseVO ignoreAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -50,24 +55,24 @@ public class DWOldWomanEvent implements EventAction {
 				eventResultMessage = "Un po' spaventata dalla sua posa cupa e dall'aura apparentemente malvagia della donna preferisci "
 						+ "non tentare la sorte e ringraziandola te ne vai. <i>'Peccato, avremmo potuto divertirci...'</i> "
 						+ "sussurra mentre ti allontani";
-				return eventResultMessage;
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			} else {
 				adventureDB.decreasePlayerHealth();
 				eventResultImage = "event-dw-4-ignore-2";
 				eventResultMessage = "Ringrazi e te ne vai, quando senti un ringhio alle spalle: <i>'Nessuno rifiuta le mie offerte "
 						+ "senza essere punito!'</i>, appena ti giri vedi un demone sotto a quel mantello che con un "
 						+ "fendente ti ferisce. <br/>Terrorizzata fuggi e lo semini";
-				return eventResultMessage;
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			}
 		} else {
 			eventResultImage = "event-dw-4-ignore-1";
 			eventResultMessage = "Ringrazi cortsemente la signora e prosegui. <i>'Va bene, poteva tornarti utile forse, "
 					+ "ma come vuoi tu'</i> ti risponde mentre te ne vai";
-			return eventResultMessage;
+			return new EventResponseVO(eventResultMessage, eventResultImage);
 		}
 	}
 	
-	private Object betAction(int rollD100, int rollD12) {
+	private EventResponseVO betAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -83,13 +88,13 @@ public class DWOldWomanEvent implements EventAction {
 						+ "un demone che lancia una magia di assorbimento su di te. La magia ti ferisce e senti la tua "
 						+ "forza svanire<br/>"
 						+ "-Nuovo effetto attivo-";
-				return eventResultMessage;
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			} else {
 				eventResultImage = "event-dw-4-bet-2";
 				eventResultMessage = response + "Ma non appena ti avvicini vedi degli occhi rossi e dei denti da vampiro nel suo ghigno. "
 						+ "Corn rapidita' spingi la donna e scappi velocemente. <i>Sei stato furbo questa volta, la sorte "
 						+ "ti e' stata favorevole'</i>";
-				return eventResultMessage;
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			}
 		} else if (!percentTest(rollD12 * 8)) {
 			if (!percentTest(rollD100)) {
@@ -98,14 +103,14 @@ public class DWOldWomanEvent implements EventAction {
 				eventResultMessage = response + "Infili la mano e peschi una perlina viola con un teschio sopra. <i>'Oh, hai vinto "
 						+ "una pozione velenosa, non ti preoccupare &egrave; gratis'</i>. Di colpo, la donna ti lancia "
 						+ "boccetta con un liquido nero e fumi ti avvolgono e ti feriscono";
-				return eventResultMessage;
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			} else {
 				if (percentTest(rollD100)) {
 					eventResultImage = "event-dw-4-bet-4";
 					eventResultMessage = response + "Infili una mano e peschi una perlina di vetro trasparente. <i>'Oh guarda, una "
 							+ "perlina vuota, mi sa che per questa volta non vinci niente, buona fortuna per il futuro'"
 							+ "</i> La donna sembra piu' delusa di te e se ne va";
-					return eventResultMessage;
+					return new EventResponseVO(eventResultMessage, eventResultImage);
 				} else {
 					eventEffectDB.setActiveEffect("I tiri <b>difesa</b> e per i <b>test armatura</b> sono diminuiti di 1");
 					eventResultImage = "event-dw-4-bet-5";
@@ -114,7 +119,7 @@ public class DWOldWomanEvent implements EventAction {
 							+ "questa escono dei fumi che ti avvolgono, sembra che ti entrino nella pelle e nelle ossa. "
 							+ "Ti senti debole e le ossa ti fanno male<br/>"
 							+ "-Nuovo effetto attivo-";
-					return eventResultMessage;
+					return new EventResponseVO(eventResultMessage, eventResultImage);
 				}
 			}
 		} else {
@@ -135,7 +140,7 @@ public class DWOldWomanEvent implements EventAction {
 									+ "Purtroppo le dici di non avere abbastanza denaro. <i>'Un altro poveraccio, "
 									+ "allora smetti di farmi perdere tempo, avevo una cosa sicuramente utile, e' un vero "
 									+ "peccato...'</i>. Un po' arrabbiata la donna se ne va borbottando.";
-							return eventResultMessage;
+							return new EventResponseVO(eventResultMessage, eventResultImage);
 						} else {
 							playerInventoryDB.removeGold(gold);
 							eventEffectDB.setActiveEffect("I tiri <b>difesa</b> e per i <b>test armatura</b> sono aumentati di 1");
@@ -144,7 +149,7 @@ public class DWOldWomanEvent implements EventAction {
 									+ "Porgi le monete e lei ti fa bere una pozione di un blu intenso, senti la pelle "
 									+ "indurirsi e le ossa rafforzarsi, la tua protezione e' aumentata<br/>"
 									+ "-Nuovo effetto attivo-";
-							return eventResultMessage;
+							return new EventResponseVO(eventResultMessage, eventResultImage);
 						}
 					} else {
 						eventResultImage = "event-dw-4-bet-7";
@@ -152,7 +157,7 @@ public class DWOldWomanEvent implements EventAction {
 								+ "Purtroppo le dici di che &egrave; un prezzo assurdo. <i>'Un altro poveraccio, "
 								+ "allora smetti di farmi perdere tempo, avevo un oggetto fantastico per te, &egrave; un vero "
 								+ "peccato...'</i>. Un po' arrabbiata la donna se ne va borbottando.";
-						return eventResultMessage;
+						return new EventResponseVO(eventResultMessage, eventResultImage);
 					}
 					
 				} else {
@@ -164,7 +169,7 @@ public class DWOldWomanEvent implements EventAction {
 							+ reward.getItem().getName()
 							+ ", ringrazi e prosegui. <br/>Senti l'anziana parlare fra se' e se' <i>'Finalmente mi sono "
 							+ "librata di quel peso e ci ho anche guadagnato qualche moneta!'</i>";
-					return eventResultMessage;
+					return new EventResponseVO(eventResultMessage, eventResultImage);
 				}
 				
 				
@@ -177,7 +182,7 @@ public class DWOldWomanEvent implements EventAction {
 							+ "dici di non avere abbastanza denaro. <i>'Un altro poveraccio, allora smetti di farmi "
 							+ "perdere tempo e levati dalla mia strada'</i>. Un po' arrabbiata la donna se ne va "
 							+ "borbottando.";
-					return eventResultMessage;
+					return new EventResponseVO(eventResultMessage, eventResultImage);
 				} else {
 					if (adventureDB.getPlayerHealth() == 3) {
 						playerInventoryDB.removeGold(gold);
@@ -189,7 +194,7 @@ public class DWOldWomanEvent implements EventAction {
 								+ "ti fa bere una pozione color rosso intenso, dopo pochi secondi questa pozione ti inonda di nuova "
 								+ "forza, le tue braccia e i tuoi muscoli sono piu' attivi e vigorosi<br/>"
 								+ "-Nuovo effetto attivo-";
-						return eventResultMessage;
+						return new EventResponseVO(eventResultMessage, eventResultImage);
 					} else {
 						adventureDB.increasePlayerHealth();
 						playerInventoryDB.removeGold(gold);
@@ -198,7 +203,7 @@ public class DWOldWomanEvent implements EventAction {
 								+ "accordi, le consegni alla donna e lei ti consegna ua pozione della salute che bevi. Viene "
 								+ "curata una ferita. <i>'Nulla e' piu' importante della salute, dico bene?'</i>. Con questa "
 								+ "frase ti saluta e se ne va";
-						return eventResultMessage;
+						return new EventResponseVO(eventResultMessage, eventResultImage);
 					}
 				}
 			}

@@ -1,12 +1,17 @@
 package com.lucamartinelli.aentur.event.darkwood;
 
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
 import com.lucamartinelli.aentur.event.EventAction;
 import com.lucamartinelli.aentur.vo.EventDTO;
+import com.lucamartinelli.aentur.vo.EventResponseVO;
 import com.lucamartinelli.aentur.vo.RewardDTO;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
-import jakarta.ws.rs.core.Response;
 
 @Named("event-dw-3")
 @ApplicationScoped
@@ -24,21 +29,21 @@ public class DWTreeCrossEvent implements EventAction {
 	}
 
 	@Override
-	public Response apply(int choice, int rollD100, int rollD12) {
+	public ImmutablePair<EventResponseVO, Entry<Integer, String>> apply(int choice, int rollD100, int rollD12) {
 		switch (choice) {
 		case 1:
-			return Response.ok(ignoreAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(ignoreAction(rollD100, rollD12), null);
 		case 2:
-			return Response.ok(searchAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(searchAction(rollD100, rollD12), null);
 		case 3:
-			return Response.ok(digAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(digAction(rollD100, rollD12), null);
 
 		default:
-			return Response.status(400, "Invalid choice id").build();
+			return ImmutablePair.of(null, Map.entry(400, "Invalid choice id"));
 		}
 	}
 
-	private Object ignoreAction(int rollD100, int rollD12) {
+	private EventResponseVO ignoreAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -59,10 +64,10 @@ public class DWTreeCrossEvent implements EventAction {
 			eventResultMessage = "Decidi di ignorare il segno sull'albero, sembrava vecchio e probabilmente non indicava nulla "
 					+ "di utile";
 		}
-		return eventResultMessage;
+		return new EventResponseVO(eventResultMessage, eventResultImage);
 	}
 
-	private Object searchAction(int rollD100, int rollD12) {
+	private EventResponseVO searchAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -112,10 +117,10 @@ public class DWTreeCrossEvent implements EventAction {
 					+ "monete d'oro, il contenuto &egrave; di %d monete", gold);
 		}
 		
-		return eventResultMessage;
+		return new EventResponseVO(eventResultMessage, eventResultImage);
 	}
 
-	private Object digAction(int rollD100, int rollD12) {
+	private EventResponseVO digAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -123,7 +128,7 @@ public class DWTreeCrossEvent implements EventAction {
 			eventResultImage = "event-dw-3-dig-1";
 			eventResultMessage = "Cerchi di scavare ai piedi dell'albero, ma il terreno &egrave; troppo duro "
 					+ "e fallisci nel tuo intento";
-			return eventResultMessage;
+			return new EventResponseVO(eventResultMessage, eventResultImage);
 		}
 		
 		if (rollD12 == 1) {
@@ -132,26 +137,24 @@ public class DWTreeCrossEvent implements EventAction {
 				eventResultImage = "event-dw-3-dig-1";
 				eventResultMessage = "Mentre scavi il terreno vicino all'albero, questo si anima e tenta di colpirti con le radici.<br/>"
 						+ "Subisci una ferita";
-				return eventResultMessage;
 			} else {
 				adventureDB.decreasePlayerHealth();
 				adventureDB.decreasePlayerHealth();
 				eventResultImage = "event-dw-3-dig-1";
 				eventResultMessage = "Mentre scavi il terreno vicino all'albero, questo si anima e le radici si aggrovigliano su di te.";
-				return eventResultMessage;
 			}
+			return new EventResponseVO(eventResultMessage, eventResultImage);
 		} else if (rollD12 < 5) {
 			if (percentTest(rollD100)) {
 				eventResultImage = "event-dw-3-dig-1";
 				eventResultMessage = "Cerchi di scavare ai piedi dell'albero, ma il terreno e' troppo duro e fallisci nel tuo intento";
-				return eventResultMessage;
 			} else {
 				adventureDB.decreasePlayerHealth();
 				eventResultImage = "event-dw-3-dig-1";
 				eventResultMessage = "Cerchi di scavare ai piedi dell'albero, ma trovi solo dei cocci taglienti che ti feriscono "
 						+ "durante lo scavo";
-				return eventResultMessage;
 			}
+			return new EventResponseVO(eventResultMessage, eventResultImage);
 		} else {
 			if (percentTest(rollD100+20)) {
 				if (percentTest(rollD100+20)) {
@@ -161,18 +164,17 @@ public class DWTreeCrossEvent implements EventAction {
 					eventResultMessage = String.format("Cercando nella terra ai piedi dell'albero trovi qualcosa sepolto da tempo, "
 						+ " un vecchio baule custodisce un antico oggetto: "
 						+ "ricevi un nuovo oggetto: <i>'&s'</i>", reward.getItem().getName());
-					return eventResultMessage;
 				} else {
 					adventureDB.increasePlayerHealth();
 					eventResultImage = "event-dw-3-dig-1";
 					eventResultMessage = "Scavi ai piedi dell'albero e trovi una cassa, all'interno trovi una pozione della vita, "
 							+ "riesci a curare un punto ferita";
-					return eventResultMessage;
 				}
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			} else {
 				eventResultImage = "event-dw-3-dig-1";
 				eventResultMessage = "Scavi ai piedi dell'albero e trovi una cassa, ma quando la apri scopri che &egrave; vuota";
-				return eventResultMessage;
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			}
 		}
 		

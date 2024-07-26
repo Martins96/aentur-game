@@ -72,3 +72,22 @@ export class EventVO {
     }
 
 }
+
+export class EventResponseVO {
+    private _eventResult: string = "";
+	private _imageResultName: string = "";
+
+    public get eventResult() : string {
+        return this._eventResult;
+    }
+    public set eventResult(eventResult : string) {
+        this._eventResult = eventResult;
+    }
+
+    public get imageResultName() : string {
+        return this._imageResultName;
+    }
+    public set imageResultName(imageResultName : string) {
+        this._imageResultName = imageResultName;
+    }
+}

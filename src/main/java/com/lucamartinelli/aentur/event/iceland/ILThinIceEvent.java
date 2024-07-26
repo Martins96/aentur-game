@@ -1,6 +1,6 @@
 package com.lucamartinelli.aentur.event.iceland;
 
-import com.lucamartinelli.aentur.event.EventAction;
+import com.lucamartinelli.aentur.event.EventActionOld;
 import com.lucamartinelli.aentur.vo.EventDTO;
 import com.lucamartinelli.aentur.vo.ItemDTO;
 import com.lucamartinelli.aentur.vo.RewardDTO;
@@ -11,7 +11,7 @@ import jakarta.ws.rs.core.Response;
 
 @Named("event-il-9")
 @ApplicationScoped
-public class ILThinIceEvent implements EventAction {
+public class ILThinIceEvent implements EventActionOld {
 
 	private final EventDTO event = new EventDTO("event-il-9", 
 			"Mentre cammini nelle lande gelate senti uno scricchiolio provvenire dai tuoi piedi. Ti accorgi di essere "

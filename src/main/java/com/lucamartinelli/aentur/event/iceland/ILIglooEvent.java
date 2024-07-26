@@ -1,6 +1,6 @@
 package com.lucamartinelli.aentur.event.iceland;
 
-import com.lucamartinelli.aentur.event.EventAction;
+import com.lucamartinelli.aentur.event.EventActionOld;
 import com.lucamartinelli.aentur.vo.EventDTO;
 import com.lucamartinelli.aentur.vo.RewardDTO;
 
@@ -10,7 +10,7 @@ import jakarta.ws.rs.core.Response;
 
 @Named("event-il-6")
 @ApplicationScoped
-public class ILIglooEvent implements EventAction {
+public class ILIglooEvent implements EventActionOld {
 
 	private final EventDTO event = new EventDTO("event-il-6", 
 			"In mezzo alla neve vedi una strana struttura, avvicinandoti noti che e' igloo", 

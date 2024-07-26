@@ -1,6 +1,6 @@
 package com.lucamartinelli.aentur.event.frozenmountains;
 
-import com.lucamartinelli.aentur.event.EventAction;
+import com.lucamartinelli.aentur.event.EventActionOld;
 import com.lucamartinelli.aentur.vo.EventDTO;
 import com.lucamartinelli.aentur.vo.ItemDTO;
 
@@ -11,7 +11,7 @@ import jakarta.ws.rs.core.Response;
 
 @Named("event-fm-18")
 @ApplicationScoped
-public class FMMonasteryEvent implements EventAction {
+public class FMMonasteryEvent implements EventActionOld {
 
 	private final EventDTO event = new EventDTO("event-fm-18", 
 			"Affronti una faticosa salita durante il cammino, alla fine di questa ti ritrovi in uno spiazzo "

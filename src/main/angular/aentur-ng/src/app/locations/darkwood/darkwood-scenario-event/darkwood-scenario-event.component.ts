@@ -2,7 +2,7 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable, firstValueFrom } from 'rxjs';
 import { RestService } from 'src/app/rest-service';
-import { EventChoiceVO, EventVO } from 'src/app/vo/event-vo';
+import { EventChoiceVO, EventResponseVO, EventVO } from 'src/app/vo/event-vo';
 
 @Component({
   selector: 'app-darkwood-scenario-event',
@@ -17,7 +17,8 @@ export class DarkwoodScenarioEventComponent implements OnInit {
   private location: string = "darkwood";
 
   event: EventVO|undefined=undefined;
-  eventResult: string|undefined=undefined;
+  eventResultMessage: string|undefined=undefined;
+  eventResultImage: string|undefined=undefined;
 
   constructor(private rest: RestService) { }
 
@@ -27,7 +28,7 @@ export class DarkwoodScenarioEventComponent implements OnInit {
 
   loadRandomEvent() {
     const observ: Observable<HttpResponse<EventVO>> = this.rest
-        .sendGet<EventVO>("/api/event/get-random-event/"+this.location, new HttpHeaders({
+        .sendGet<EventVO>("/api/event/get-random-event-new/"+this.location, new HttpHeaders({
           "accept": "application/json"
         }));
 
@@ -78,9 +79,10 @@ export class DarkwoodScenarioEventComponent implements OnInit {
     eventRequest.setRollD12= rolld12;
     eventRequest.setRollD100= rolld100;
 
-    const observ: Observable<HttpResponse<string>> = this.rest
-        .sendPostGetRawText("/api/event/apply-effect", eventRequest, new HttpHeaders({
-          "content-type": "application/json"
+    const observ: Observable<HttpResponse<EventResponseVO>> = this.rest
+        .sendPost("/api/event/apply-effect-new", eventRequest, new HttpHeaders({
+          "content-type": "application/json",
+          "accept": "application/json"
         }));
 
     firstValueFrom(observ).then(
@@ -90,7 +92,8 @@ export class DarkwoodScenarioEventComponent implements OnInit {
           return;
         }
         
-        this.eventResult = resp.body;
+        this.eventResultMessage = resp.body.eventResult;
+        this.eventResultImage = 'assets/darkwood/events/results/' + resp.body.imageResultName + '.jpg';
       }, err => {
         console.error("Call BE failed: ", err);
       }

@@ -1,12 +1,17 @@
 package com.lucamartinelli.aentur.event.darkwood;
 
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
 import com.lucamartinelli.aentur.event.EventAction;
 import com.lucamartinelli.aentur.vo.EventDTO;
+import com.lucamartinelli.aentur.vo.EventResponseVO;
 import com.lucamartinelli.aentur.vo.RewardDTO;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
-import jakarta.ws.rs.core.Response;
 
 @Named("event-dw-5")
 @ApplicationScoped
@@ -25,44 +30,44 @@ public class DWLonelyHouseEvent implements EventAction {
 	}
 
 	@Override
-	public Response apply(int choice, int rollD100, int rollD12) {
+	public ImmutablePair<EventResponseVO, Entry<Integer, String>> apply(int choice, int rollD100, int rollD12) {
 		switch (choice) {
 		case 1:
-			return Response.ok(ignoreAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(ignoreAction(rollD100, rollD12), null);
 		case 2:
-			return Response.ok(houseAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(houseAction(rollD100, rollD12), null);
 		case 3:
-			return Response.ok(cellarAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(cellarAction(rollD100, rollD12), null);
 
 		default:
-			return Response.status(400, "Invalid choice id").build();
+			return ImmutablePair.of(null, Map.entry(400, "Invalid choice id"));
 		}
 	}
 
-	private Object ignoreAction(int rollD100, int rollD12) {
+	private EventResponseVO ignoreAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		if (rollD12 < 4) {
 			if (percentTest(rollD100)) {
 				eventResultImage = "event-dw-5-ignore-1";
 				eventResultMessage = "Noti che il terreno e' disseminato di trappole ad inciampo e tagliole, meglio allontanarsi";
-				return eventResultMessage;
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			} else {
 				adventureDB.decreasePlayerHealth();
 				eventResultImage = "event-dw-5-ignore-2";
 				eventResultMessage = "Decidi di ignorare la casa, ma appena fai un passo senti un filo tirarsi; hai attivato una trappola "
 						+ "ad inciampo e un dardo ti colpisce ad un braccio, ferita e con molta attenzioni ti allontani dal "
 						+ "posto";
-				return eventResultMessage;
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			}
 		} else {
 			eventResultImage = "event-dw-5-ignore-3";
 			eventResultMessage = "Ignori la casa e tutto quello che potrebbe esserci dentro, sia nel bene che nel male";
-			return eventResultMessage;
+			return new EventResponseVO(eventResultMessage, eventResultImage);
 		}
 	}
 
-	private Object houseAction(int rollD100, int rollD12) {
+	private EventResponseVO houseAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -71,13 +76,13 @@ public class DWLonelyHouseEvent implements EventAction {
 				eventResultImage = "event-dw-5-house-1";
 				eventResultMessage = "Noti che il terreno davanti all'entrata e' disseminato di trappole ad inciampo "
 						+ "e tagliole, non riesci a trovare un modo per evitarle o disinnescarle meglio allontanarsi";
-				return eventResultMessage;
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			} else {
 				adventureDB.decreasePlayerHealth();
 				eventResultImage = "event-dw-5-house-2";
 				eventResultMessage = "Decidi di esplorare la casa, ma avvicinandoti alla porta fai scattare una tagliola e ti ferisce "
 						+ "ad una gamba. Con forza, apri la trappola e con la gamba ferita ti allontani";
-				return eventResultMessage;
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			}
 		} else if (rollD12 < 7) {
 			if (percentTest(rollD100)) {
@@ -90,18 +95,18 @@ public class DWLonelyHouseEvent implements EventAction {
 							+ "Tenti di trovare qualcosa di utile e nascosto nei mobili disfati della sala trovi un"
 							+ " sacchetto di monete, credi che non servano piu' a nessuno e cos' aggiungi %d"
 							+ " al tuo borsello", gold);
-					return eventResultMessage;
+					return new EventResponseVO(eventResultMessage, eventResultImage);
 				} else {
 					eventResultImage = "event-dw-5-house-3";
 					eventResultMessage = "Apri la porta della casa, ma tutto quello che trovi sono solo stanze vuote";
-					return eventResultMessage;
+					return new EventResponseVO(eventResultMessage, eventResultImage);
 				}
 			} else {
 				if (percentTest(rollD100)) {
 					eventResultImage = "event-dw-5-house-4";
 					eventResultMessage = "Ti avvicini alla casa, ma la porta &egrave; chiusa. Tenti di forzarla, ma e' estremamente resistente "
 							+ "e abbandoni l'idea di entrare";
-					return eventResultMessage;
+					return new EventResponseVO(eventResultMessage, eventResultImage);
 				} else {
 					adventureDB.decreasePlayerHealth();
 					eventResultImage = "event-dw-5-house-5";
@@ -109,7 +114,7 @@ public class DWLonelyHouseEvent implements EventAction {
 							+ "da dentro esce un troll. Non fai tempo a presentarti che con un calcio di spazza fuori "
 							+ "dalla propriet&agrave;, con qualche insulto in una lingua poco chiara richiude la porta. Ferita "
 							+ "te ne vai";
-					return eventResultMessage;
+					return new EventResponseVO(eventResultMessage, eventResultImage);
 				}
 			}
 		} else if (rollD12 < 10) {
@@ -121,13 +126,13 @@ public class DWLonelyHouseEvent implements EventAction {
 						+ "sono ancora integri. Non sembra esserci "
 						+ "nessuno e ti prendi la libert&agrave; di guardare in giro, in un cassetto della cucina trovi %d"
 						+ " monete d'oro, le metti nel borsello e te ne vai", gold);
-				return eventResultMessage;
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			} else {
 				eventResultImage = "event-dw-5-house-6";
 				eventResultMessage = "Entri nella casa, sembra abbandonata da tempo, ma i mobili sono ancora integri. Ma all'improvviso "
 						+ "senti degli stani rumori e ululati. Di colpo le candele si accendono e un fantasma compare davanti "
 						+ "al caminetto. Spaventatissima lasci la casa prima che le cose si mettano male";
-				return eventResultMessage;
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			}
 		} else {
 			if (percentTest(rollD100)) {
@@ -142,7 +147,7 @@ public class DWLonelyHouseEvent implements EventAction {
 						+ "Si allontana qualche istante per tornare con un oggetto coperto da un panno.<br/>"
 						+ "<i>'Ecco prendi, mi ha portato fortuna nelle mie avventure, ora desidero che lo usi tu, a me "
 						+ "non serve pi&ugrave; oramai'</i>, ricevi <i>'%s'</i>", reward.getItem().getName());
-				return eventResultMessage;
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			} else {
 				adventureDB.increasePlayerHealth();
 				adventureDB.increasePlayerHealth();
@@ -153,12 +158,12 @@ public class DWLonelyHouseEvent implements EventAction {
 						+ "verdure al vapore cucinate da mia moglie'</i>, ti sieti al tavolo e partecipi al pranzo "
 						+ "con la famiglia, tra racconti e risate finisci il pasto e ti senti ricaricato. Le tue ferite"
 						+ " sono state curate. Ringrazi la famiglia che ti augura buona fortuna nella tua impresa";
-				return eventResultMessage;
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			}
 		}
 	}
 
-	private Object cellarAction(int rollD100, int rollD12) {
+	private EventResponseVO cellarAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -167,14 +172,14 @@ public class DWLonelyHouseEvent implements EventAction {
 				eventResultImage = "event-dw-5-house-1";
 				eventResultMessage = "Noti che il terreno davanti all'entrata e' disseminato di trappole ad inciampo "
 						+ "e tagliole, non riesci a trovare un modo per evitarle o disinnescarle meglio allontanarsi";
-				return eventResultMessage;
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			} else {
 				adventureDB.decreasePlayerHealth();
 				eventResultImage = "event-dw-5-cellar-1";
 				eventResultMessage = "Decidi di esplorare la cantina in cerca di qualcosa, ma aprendo la porta fai scattare una "
 						+ "trappola e un dardo ti ferisce ad una gamba. "
 						+ "Abbandoni l'idea di esplorare il posto per paura di altre trappole";
-				return eventResultMessage;
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			}
 		} else if (rollD12 < 8) {
 			if (percentTest(rollD100+rollD12)) {
@@ -182,19 +187,19 @@ public class DWLonelyHouseEvent implements EventAction {
 				eventEffectDB.setActiveEffect("I tiri per i <b>test talismano</b> sono aumentati di 1");
 				eventResultMessage = "Trovi diverse pozioni magiche, ne bevi una e senti la forza magica scorrere in te.<br/>"
 						+ "-Nuovo effetto attivo-";
-				return eventResultMessage;
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			} else {
 				if (percentTest(rollD100)) {
 					eventResultImage = "event-dw-5-cellar-3";
 					eventResultMessage = "Solo puzza e vecchi vasetti ammuffiti, nulla di utile qui.";
-					return eventResultMessage;
+					return new EventResponseVO(eventResultMessage, eventResultImage);
 				} else {
 					adventureDB.decreasePlayerHealth();
 					eventResultImage = "event-dw-5-cellar-4";
 					eventResultMessage = "Entri nella cantina, ma dentro trovi un grosso orco che ti cattura. Con le sue mani ti "
 							+ "stritola e ti ferisce, ma non appena molla un po' la presa riesci a scivolare fuori da "
 							+ "quelle zampe e fuggire.";
-					return eventResultMessage;
+					return new EventResponseVO(eventResultMessage, eventResultImage);
 				}
 			}
 		} else {
@@ -206,7 +211,7 @@ public class DWLonelyHouseEvent implements EventAction {
 						+ "se qualcosina manca e ti servi un bel pranzetto. Alla fine del pasto ti senti riposata e "
 						+ "piena<br/>"
 						+ "-Nuovo effetto attivo-";
-				return eventResultMessage;
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			} else {
 				if (percentTest(rollD100)) {
 					final int gold = getRandomInt(4) + 1;
@@ -214,14 +219,14 @@ public class DWLonelyHouseEvent implements EventAction {
 					eventResultMessage = "Entri nella cantina e vedi un po' di confusione, presumi che sia abbandonata da tempo e "
 							+ "cerchi qualcosa di utile. In un vasetto sotto ad una montagna di polvere trovi delle "
 							+ "monete. Ricevi " + gold + " di oro";
-					return eventResultMessage;
+					return new EventResponseVO(eventResultMessage, eventResultImage);
 				} else {
 					eventResultImage = "event-dw-5-cellar-7";
 					eventEffectDB.setActiveEffect("I tiri <b>difesa</b> e per i <b>test armatura</b> sono diminuiti di 1");
 					eventResultMessage = "Entri nella cantina e trovi delle strane pozioni magiche. Incuriosita ne provi una, ma ti "
 							+ "inizia a girare la testa e ti viene la nausea, forse non e' stata una buona idea.<br/>"
 							+ "-Nuovo effetto attivo-";
-					return eventResultMessage;
+					return new EventResponseVO(eventResultMessage, eventResultImage);
 				}
 			}
 		}

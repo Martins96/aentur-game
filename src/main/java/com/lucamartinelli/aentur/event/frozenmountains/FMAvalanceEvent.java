@@ -1,6 +1,6 @@
 package com.lucamartinelli.aentur.event.frozenmountains;
 
-import com.lucamartinelli.aentur.event.EventAction;
+import com.lucamartinelli.aentur.event.EventActionOld;
 import com.lucamartinelli.aentur.vo.EventDTO;
 import com.lucamartinelli.aentur.vo.ItemDTO;
 
@@ -10,7 +10,7 @@ import jakarta.ws.rs.core.Response;
 
 @Named("event-fm-17")
 @ApplicationScoped
-public class FMAvalanceEvent implements EventAction {
+public class FMAvalanceEvent implements EventActionOld {
 
 	private final EventDTO event = new EventDTO("event-fm-17", 
 			"Il paesaggio e' silenzioso durante la tua camminata tra la neve e sotto il sole."

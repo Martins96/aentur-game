@@ -1,6 +1,6 @@
 package com.lucamartinelli.aentur.event.iceland;
 
-import com.lucamartinelli.aentur.event.EventAction;
+import com.lucamartinelli.aentur.event.EventActionOld;
 import com.lucamartinelli.aentur.vo.EventDTO;
 import com.lucamartinelli.aentur.vo.RewardDTO;
 
@@ -10,7 +10,7 @@ import jakarta.ws.rs.core.Response;
 
 @Named("event-il-7")
 @ApplicationScoped
-public class ILBlizzardEvent implements EventAction {
+public class ILBlizzardEvent implements EventActionOld {
 
 	private final EventDTO event = new EventDTO("event-il-7", 
 			"Mentre cammini senti l'aria che diventa piu' fredda, una tempesta di neve inizia a sollevarsi nella zona "

@@ -16,7 +16,9 @@ export class EventResolutionComponent implements OnInit {
   endScenario: EventEmitter<boolean>=new EventEmitter();
 
   @Input()
-  eventResult: string = "";
+  eventResultMessage: string = "";
+  @Input()
+  eventResultImage: string|undefined = "";
 
   disableButton:boolean = false;
 

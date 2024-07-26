@@ -1,6 +1,6 @@
 package com.lucamartinelli.aentur.event.frozenmountains;
 
-import com.lucamartinelli.aentur.event.EventAction;
+import com.lucamartinelli.aentur.event.EventActionOld;
 import com.lucamartinelli.aentur.vo.EventDTO;
 import com.lucamartinelli.aentur.vo.RewardDTO;
 
@@ -10,7 +10,7 @@ import jakarta.ws.rs.core.Response;
 
 @Named("event-fm-16")
 @ApplicationScoped
-public class FMMountainMineEvent implements EventAction {
+public class FMMountainMineEvent implements EventActionOld {
 
 	private final EventDTO event = new EventDTO("event-fm-16", 
 			"Lungo la strada scorgi una caverna che rientra nella montagna. Ti avvicini e "

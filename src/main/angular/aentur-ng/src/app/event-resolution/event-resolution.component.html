@@ -1,4 +1,9 @@
-<p [innerHTML]="eventResult"></p>
-<button style="padding: 10px" (click)="nextStepAction()" [disabled]="disableButton">
-    <app-dynamiccontents [key]="'adventure.event.goahead'"></app-dynamiccontents>
-</button>
+<div class="container">
+    <img [src]="eventResultImage" alt="Event result" />
+    <div class="text-section">
+        <p [innerHTML]="eventResultMessage"></p>
+        <button style="padding: 10px" (click)="nextStepAction()" [disabled]="disableButton">
+            <app-dynamiccontents [key]="'adventure.event.goahead'"></app-dynamiccontents>
+        </button>
+    </div>
+</div>

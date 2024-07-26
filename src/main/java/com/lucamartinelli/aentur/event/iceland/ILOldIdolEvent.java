@@ -1,6 +1,6 @@
 package com.lucamartinelli.aentur.event.iceland;
 
-import com.lucamartinelli.aentur.event.EventAction;
+import com.lucamartinelli.aentur.event.EventActionOld;
 import com.lucamartinelli.aentur.vo.EventDTO;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -9,7 +9,7 @@ import jakarta.ws.rs.core.Response;
 
 @Named("event-il-8")
 @ApplicationScoped
-public class ILOldIdolEvent implements EventAction {
+public class ILOldIdolEvent implements EventActionOld {
 
 	private final EventDTO event = new EventDTO("event-il-8", 
 			"Mezzo sepolto dalla neve, trovi un'antica statuetta che raffigura una lince, alla base sembrano esserci delle "
