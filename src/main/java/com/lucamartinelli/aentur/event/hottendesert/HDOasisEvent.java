@@ -1,15 +1,20 @@
 package com.lucamartinelli.aentur.event.hottendesert;
 
-import com.lucamartinelli.aentur.event.EventActionOld;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
+import com.lucamartinelli.aentur.event.EventAction;
 import com.lucamartinelli.aentur.vo.EventDTO;
+import com.lucamartinelli.aentur.vo.EventResponseVO;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
-import jakarta.ws.rs.core.Response;
 
 @Named("event-hd-11")
 @ApplicationScoped
-public class HDOasisEvent implements EventActionOld {
+public class HDOasisEvent implements EventAction {
 
 	private final EventDTO event = new EventDTO("event-hd-11", 
 			"Stai camminando sotto il sole cocente e le tue scorte di acqua stanno finendo. "
@@ -23,19 +28,19 @@ public class HDOasisEvent implements EventActionOld {
 	}
 
 	@Override
-	public Response apply(int choice, int rollD100, int rollD12) {
+	public ImmutablePair<EventResponseVO, Entry<Integer, String>> apply(int choice, int rollD100, int rollD12) {
 		switch (choice) {
 		case 1:
-			return Response.ok(ignoreAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(ignoreAction(rollD100, rollD12), null);
 		case 2:
-			return Response.ok(oasisAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(oasisAction(rollD100, rollD12), null);
 
 		default:
-			return Response.status(400, "Invalid choice id").build();
+			return ImmutablePair.of(null, Map.entry(400, "Invalid choice id"));
 		}
 	}
 
-	private Object ignoreAction(int rollD100, int rollD12) {
+	private EventResponseVO ignoreAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -69,10 +74,10 @@ public class HDOasisEvent implements EventActionOld {
 						+ "razionalizzare l'acqua in modo efficente. Fai fatica, ma ce la fai";
 			}
 		}
-		return eventResultMessage;
+		return new EventResponseVO(eventResultMessage, eventResultImage);
 	}
 
-	private Object oasisAction(int rollD100, int rollD12) {
+	private EventResponseVO oasisAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -109,7 +114,7 @@ public class HDOasisEvent implements EventActionOld {
 							+ "sta disidratando. Hai fatto della strada inutile e il caldo ti ferisce.";
 				}
 			}
-			return eventResultMessage;
+			return new EventResponseVO(eventResultMessage, eventResultImage);
 		} else {
 			if (percentTest(rollD100+rollD12)) {
 				if (percentTest(rollD100)) {
@@ -155,7 +160,7 @@ public class HDOasisEvent implements EventActionOld {
 							+ "scappi dalla zona.";
 				}
 			}
-			return eventResultMessage;
+			return new EventResponseVO(eventResultMessage, eventResultImage);
 		}
 	}
 

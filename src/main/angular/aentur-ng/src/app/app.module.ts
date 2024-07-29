@@ -79,6 +79,7 @@ import { GameOverCongratsComponent } from './world-map/game-over-congrats/game-o
 import { DynamiccontentsComponent } from './dynamiccontents/dynamiccontents/dynamiccontents.component';
 import { LanguageselectorComponent } from './dynamiccontents/languageselector/languageselector.component';
 import { EventResolutionComponent } from './event-resolution/event-resolution.component';
+import { PopupFailureComponent } from './world-map/popup-abstract/popup-failure-component/popup-failure-component.component';
 
 @NgModule({
   declarations: [
@@ -155,7 +156,8 @@ import { EventResolutionComponent } from './event-resolution/event-resolution.co
     GameOverCongratsComponent,
     DynamiccontentsComponent,
     LanguageselectorComponent,
-    EventResolutionComponent
+    EventResolutionComponent,
+    PopupFailureComponent
   ],
   imports: [
     BrowserModule,

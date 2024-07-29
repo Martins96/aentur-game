@@ -1,9 +1,15 @@
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, Type } from '@angular/core';
 import { Observable, firstValueFrom } from 'rxjs';
 import { RestService } from '../rest-service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DarkwoodPopupFailureComponent } from '../locations/darkwood/popup/darkwood-popup-failure/darkwood-popup-failure.component';
+import { PopupFailureComponent } from '../world-map/popup-abstract/popup-failure-component/popup-failure-component.component';
+import { CrimsoncavePopupFailureComponent } from '../locations/crimsoncave/popup/crimsoncave-popup-failure/crimsoncave-popup-failure.component';
+import { FlamevolcanoPopupFailureComponent } from '../locations/flamevolcano/popup/flamevolcano-popup-failure/flamevolcano-popup-failure.component';
+import { FrozenmountainsPopupFailureComponent } from '../locations/frozenmountains/popup/frozenmountains-popup-failure/frozenmountains-popup-failure.component';
+import { HottendesertPopupFailureComponent } from '../locations/hottendesert/popup/hottendesert-popup-failure/hottendesert-popup-failure.component';
+import { ComponentType } from '@angular/cdk/portal';
 
 @Component({
   selector: 'app-event-resolution',
@@ -16,15 +22,40 @@ export class EventResolutionComponent implements OnInit {
   endScenario: EventEmitter<boolean>=new EventEmitter();
 
   @Input()
+  location: string = "";
+  @Input()
   eventResultMessage: string = "";
   @Input()
   eventResultImage: string|undefined = "";
 
   disableButton:boolean = false;
 
+  failurePopup: ComponentType<PopupFailureComponent>|undefined;
+
   constructor(private rest: RestService, private dialogFail: MatDialog) { }
 
   ngOnInit(): void {
+    switch(this.location) {
+      case 'darkwood':
+        this.failurePopup = DarkwoodPopupFailureComponent;
+        break;
+      case 'crimsoncave':
+        this.failurePopup = CrimsoncavePopupFailureComponent;
+        break;
+      case 'flamevolcano':
+        this.failurePopup = FlamevolcanoPopupFailureComponent;
+        break;
+      case 'frozenmountains':
+        this.failurePopup = FrozenmountainsPopupFailureComponent;
+        break;
+      case 'hottendesert':
+        this.failurePopup = HottendesertPopupFailureComponent;
+        break;
+
+      default:
+        console.error("Error loading popup component, unable to manage location: " + this.location);
+        throw new Error("Error loading popup component, unable to manage location: " + this.location);
+    }
   }
 
   async nextStepAction(): Promise<void> {
@@ -80,6 +111,11 @@ export class EventResolutionComponent implements OnInit {
   }
 
   openDialogFailure() {
+    if (this.failurePopup == undefined) {
+      console.error("Error loading popup component");
+      throw new Error("Error loading popup component");
+    }
+
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
@@ -89,7 +125,7 @@ export class EventResolutionComponent implements OnInit {
     dialogConfig.enterAnimationDuration = "1000ms"
     dialogConfig.closeOnNavigation = true;
 
-    this.dialogFail.open(DarkwoodPopupFailureComponent, dialogConfig);
+    this.dialogFail.open(this.failurePopup, dialogConfig);
   }
 
 }

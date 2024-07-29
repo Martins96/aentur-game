@@ -3,7 +3,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { firstValueFrom, Observable } from 'rxjs';
 import { RestService } from 'src/app/rest-service';
-import { EventChoiceVO, EventVO } from 'src/app/vo/event-vo';
+import { EventChoiceVO, EventResponseVO, EventVO } from 'src/app/vo/event-vo';
 import { HottendesertPopupFailureComponent } from '../popup/hottendesert-popup-failure/hottendesert-popup-failure.component';
 
 @Component({
@@ -18,10 +18,9 @@ export class HottendesertScenarioEventComponent implements OnInit {
 
   private location: string = "hottendesert";
 
-  disableButton:boolean = false;
-
   event: EventVO|undefined=undefined;
-  eventResult: string|undefined=undefined;
+  eventResultMessage: string|undefined=undefined;
+  eventResultImage: string|undefined=undefined;
 
   constructor(private rest: RestService,
     private dialogFail: MatDialog) { }
@@ -30,61 +29,9 @@ export class HottendesertScenarioEventComponent implements OnInit {
     this.loadRandomEvent();
   }
 
-  async nextStepAction(): Promise<void> {
-    this.disableButton = true;
-    const adventureFailed: boolean = await this.isAdventureFailed();
-    if (adventureFailed) {
-      this.openDialogFailure();
-    } else {
-      await this.nextPathStep();
-      this.endScenario.emit(true);
-    }
-  }
-
-  async nextPathStep(): Promise<void> {
-    const observ: Observable<HttpResponse<void>> = this.rest
-        .sendGet<void>("/api/player/increase-step", new HttpHeaders({
-          "accept":"application/json"
-        }));
-
-    await firstValueFrom(observ).then(
-      resp => {
-        if (!resp || !resp.ok) {
-          console.error("Call BE failed ", resp);
-          return;
-        }
-      }, err => {
-        console.error("Call BE failed: ", err);
-      }
-    )
-  }
-
-  async isAdventureFailed(): Promise<boolean> {
-    const observ: Observable<HttpResponse<boolean>> = this.rest
-        .sendGet<boolean>("/api/adventure/isfailed", new HttpHeaders({
-          'accept': 'application/json'
-        }));
-
-    let result: boolean=false;
-    await firstValueFrom(observ).then(
-      resp => {
-        if (!resp || !resp.ok || resp.body == null) {
-          console.error("Error calling BE: ", resp);
-          return;
-        }
-        result = resp.body;
-      },
-      err => {
-        console.error("Error calling BE", err);
-      }
-    )
-
-    return result;
-  }
-
   loadRandomEvent() {
     const observ: Observable<HttpResponse<EventVO>> = this.rest
-        .sendGet<EventVO>("/api/event/get-random-event/"+this.location, new HttpHeaders({
+        .sendGet<EventVO>("/api/event/get-random-event-new/"+this.location, new HttpHeaders({
           "accept": "application/json"
         }));
 
@@ -134,8 +81,8 @@ export class HottendesertScenarioEventComponent implements OnInit {
     eventRequest.setRollD12= rolld12;
     eventRequest.setRollD100= rolld100;
 
-    const observ: Observable<HttpResponse<string>> = this.rest
-        .sendPostGetRawText("/api/event/apply-effect", eventRequest, new HttpHeaders({
+    const observ: Observable<HttpResponse<EventResponseVO>> = this.rest
+        .sendPost("/api/event/apply-effect-new", eventRequest, new HttpHeaders({
           "content-type": "application/json"
         }));
 
@@ -146,24 +93,16 @@ export class HottendesertScenarioEventComponent implements OnInit {
           return;
         }
         
-        this.eventResult = resp.body;
+        this.eventResultMessage = resp.body.eventResult;
+        this.eventResultImage = 'assets/hottendesert/events/results/' + resp.body.imageResultName + '.jpg';
       }, err => {
         console.error("Call BE failed: ", err);
       }
     )
   }
 
-  openDialogFailure() {
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "95%";
-    dialogConfig.height = "95%";
-    dialogConfig.enterAnimationDuration = "1000ms"
-    dialogConfig.closeOnNavigation = true;
-
-    this.dialogFail.open(HottendesertPopupFailureComponent, dialogConfig);
+  endScenarioFnc(event: boolean): void {
+    this.endScenario.emit(event);
   }
 
 }

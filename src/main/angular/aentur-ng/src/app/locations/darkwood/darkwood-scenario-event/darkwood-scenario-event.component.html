@@ -31,6 +31,7 @@
         
         <div *ngIf="eventResultMessage" class="event-result">
             <app-event-resolution (endScenario)="endScenarioFnc($event)" 
+                    [location]="'darkwood'"
                     [eventResultMessage]="eventResultMessage"
                     [eventResultImage]="eventResultImage">
             </app-event-resolution>
