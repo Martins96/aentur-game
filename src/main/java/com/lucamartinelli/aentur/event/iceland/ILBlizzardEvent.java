@@ -39,72 +39,95 @@ public class ILBlizzardEvent implements EventActionOld {
 	}
 
 	private Object ignoreAction(int rollD100, int rollD12) {
+		String eventResultMessage;
+		String eventResultImage;
+		
 		if (rollD12 < 9) {
 			if (percentTest(rollD100-rollD12)) {
-				return "Tenti di continuare, il freddo e' glaciale, ma con tenacia passi la zona cercando come puoi "
+				eventResultImage = "event-il-7-ignore-1";
+				eventResultMessage = "Tenti di continuare, il freddo e' glaciale, ma con tenacia passi la zona cercando come puoi "
 						+ "di ripararti e riprendere fiato dietro ad ogni roccia o albero. Comunque riesci a superare "
 						+ "la tempesta incolume";
 			} else {
 				adventureDB.decreasePlayerHealth();
 				eventEffectDB.setActiveEffect("I tiri di <b>difesa</b> e <b>test armatura</b> sono diminuiti di 1");
-				return "Tenti di proseguire il cammino, ma la tempesta e' forte e rende i tuoi passi sempre piu' difficili"
+				eventResultImage = "event-il-7-ignore-2";
+				eventResultMessage = "Tenti di proseguire il cammino, ma la tempesta e' forte e rende i tuoi passi sempre piu' difficili"
 						+ ", la vista inizia ad annebiarsi e la neve ti avvolge. Perdi la strada e cadi a terra "
 						+ "incoscente<br/>"
 						+ "-Nuovo effetto attivo-";
 			}
 		} else {
-			return "Le tue conoscenze delle zone impervie e inospitali come questa tornano utili. Passando in zone "
+			eventResultImage = "event-il-7-ignore-1";
+			eventResultMessage = "Le tue conoscenze delle zone impervie e inospitali come questa tornano utili. Passando in zone "
 					+ "riparate sottovento ed evitando di essere troppo esposta al gelo riesci a passare la tempesta "
 					+ "senza particolari problemi";
 		}
+		
+		return eventResultMessage;
 	}
 
 	private Object snowShelterAction(int rollD100, int rollD12) {
+		String eventResultMessage;
+		String eventResultImage;
+		
 		if (rollD12 < 8) {
 			if (percentTest(rollD100)) {
-				return "Crei un rifugio temporaneo per la bufera, non e' granche', ma sufficiente per proteggerti dal "
-						+ "vento gelido.";
+				eventResultImage = "event-il-7-shelter-1";
+				eventResultMessage = "Crei un rifugio temporaneo per la bufera, non &egrave; granch&egrave;, "
+						+ "ma sufficiente per proteggerti dal vento gelido.";
 			} else {
 				adventureDB.decreasePlayerHealth();
-				return "Crei un rifugio temporaneo per la bufera, ma appena ti ci infili crolla. Le tue capacita' non "
+				eventResultImage = "event-il-7-shelter-2";
+				eventResultMessage = "Crei un rifugio temporaneo per la bufera, ma appena ti ci infili crolla. Le tue capacita' non "
 						+ "erano sufficienti per questo compito. Rimani ferita e superi la tempesta";
 			}
 		} else {
 			if (percentTest(rollD100)) {
 				adventureDB.increasePlayerHealth();
-				return "Crei rapidamente un rifugio resistente con la neve in un posto contro vento, ti ci infili e ti "
-						+ "proteggi dalla bufera. E' cosi' accogliente che fai anche un riposino e recuperi delle ferite";
+				eventResultImage = "event-il-7-shelter-1";
+				eventResultMessage = "Crei rapidamente un rifugio resistente con la neve in un posto contro vento, ti ci infili e ti "
+						+ "proteggi dalla bufera. E' cos&igrave; accogliente che fai anche un riposino e recuperi delle ferite";
 			} else {
+				eventResultImage = "event-il-7-shelter-3";
 				eventEffectDB.setActiveEffect("I tiri di <b>difesa</b> e <b>test armatura</b> sono diminuiti di 1");
-				return "Crei un rifugio temporaneo per la bufera. Ti protegge dalla bufera, ma e' cosi' stretto che la "
-						+ "neve e' aderente al tuo corpo e una parte inizia a sciogliersi. L'acqua va a contatto con la "
-						+ "tua armatura e la tua pelle raffreddandoti e rendendoti piu' debole<br/>"
+				eventResultMessage = "Crei un rifugio temporaneo per la bufera. Ti protegge dalla bufera, ma &egrave; cos&igrave; stretto che la "
+						+ "neve &egrave; aderente al tuo corpo e una parte inizia a sciogliersi. L'acqua va a contatto con la "
+						+ "tua armatura e la tua pelle raffreddandoti e rendendoti pi&ugrave; debole<br/>"
 						+ "-Nuovo effetto attivo-";
 			}
 		}
+		
+		return eventResultMessage;
 	}
 
 	private Object searchAction(int rollD100, int rollD12) {
+		String eventResultMessage;
+		String eventResultImage;
+		
 		final int d12percent = rollD12 * 9;
 		if (percentTest(d12percent)) {
 			if (percentTest(rollD100)) {
 				final RewardDTO reward = rewardEJB.getReward(1);
 				playerInventoryDB.addItems(reward.getItem());
-				return "Inizi a cercare un rifugio e noti una piccola caverna poco distante, la raggiungi e, mentre "
+				eventResultImage = "event-il-7-search-1";
+				eventResultMessage = String.format("Inizi a cercare un rifugio e noti una piccola caverna poco distante, la raggiungi e, mentre "
 						+ "attendi la fine della tempesta, provi ad esplorarla. Addentrandoti trovi un vecchio baule "
-						+ "che contiene un oggetto: <b>" + reward.getItem().getName() + "</b>";
+						+ "che contiene un oggetto: <b>%s</b>", reward.getItem().getName());
 			} else {
 				if (percentTest(d12percent-rollD12)) {
 					adventureDB.increasePlayerHealth();
-					return "Girovagando trovi una grotta con un bagliore al suo interno. Entri e trovi un giramondo "
-							+ "davanti ad un falo'. Lui ti saluta dicendoti <i>'Oh che sorpresa, hai trovato riparo "
+					eventResultImage = "event-il-7-search-2";
+					eventResultMessage = "Girovagando trovi una grotta con un bagliore al suo interno. Entri e trovi un giramondo "
+							+ "davanti ad un fal&ograve;. Lui ti saluta dicendoti <i>'Oh che sorpresa, hai trovato riparo "
 							+ "anche tu da questo tempaccio vedo, che ne dici di riposarti un po' qui davanti al "
 							+ "fuoco?'</i>, accetti l'invito e ti rilassi chiaccerando con lo sconosciuto. Passi dei "
 							+ "piacevoli minuti con lui e poi la tempesta si placa. Vi salutate e riprendete il viaggio";
 				} else {
 					eventEffectDB.setActiveEffect("I tiri di <b>attacco</b> e <b>test arma</b> sono diminuiti di 1");
 					adventureDB.decreasePlayerHealth();
-					return "Trovi di fortuna una grotta, ma capisci che la fortuna scopare quando all'interno decine "
+					eventResultImage = "event-il-7-search-3";
+					eventResultMessage = "Trovi di fortuna una grotta, ma capisci che la fortuna scopare quando all'interno decine "
 							+ "di pipistrelli vampiro ti accerchiano. Non riesci a difenderti e ti attaccano. Supbisci "
 							+ "delle ferite e ti assorbono la forza vitale. Ma almeno la tempesta e' passata<br/>"
 							+ "-Nuovo effetto attivo-";
@@ -112,16 +135,20 @@ public class ILBlizzardEvent implements EventActionOld {
 			}
 		} else {
 			if (percentTest(rollD100)) {
-				return "Inizi a cercare un rifugio e noti una piccola caverna di ghiaccio poco distante. E' veramente "
-						+ "piccola, ma bastera' per ripararti dal clima gelido";
+				eventResultImage = "event-il-7-search-4";
+				eventResultMessage = "Inizi a cercare un rifugio e noti una piccola caverna di ghiaccio poco distante. E' veramente "
+						+ "piccola, ma baster&agrave; per ripararti dal clima gelido";
 			} else {
 				adventureDB.decreasePlayerHealth();
-				return "Tenti invano di trovare un rifugio, ma tutto quello che c'e' attorno a te e' solo neve. A questo "
-						+ "punto tenti di superare la tempesta e lo fai con molta difficolta'. Il freddo ti ferisce "
+				eventResultImage = "event-il-7-search-5";
+				eventResultMessage = "Tenti invano di trovare un rifugio, ma tutto quello che c'&egrave; attorno a "
+						+ "te &egrave; solo neve. A questo "
+						+ "punto tenti di superare la tempesta e lo fai con molta difficolt&agrave;. Il freddo ti ferisce "
 						+ "fino alle ossa.";
 			}
 		}
 		
+		return eventResultMessage;
 	}
 
 }

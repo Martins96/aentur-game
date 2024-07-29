@@ -39,72 +39,98 @@ public class ILHuntedDeerEvent implements EventActionOld {
 	}
 
 	private Object ignoreAction(int rollD100, int rollD12) {
+		String eventResultMessage;
+		String eventResultImage;
+		
 		if (percentTest(rollD100+rollD12)) {
-			return "Ignori l'animale prima che arrivi chi o cosa gli aveva lanciato quelle frecce";
+			eventResultImage = "event-il-10-ignore-1";
+			eventResultMessage = "Ignori l'animale prima che arrivi chi o cosa gli aveva lanciato quelle frecce";
 		} else {
 			if (percentTest(rollD100)) {
-				return "Le grida del cervo diventano sempre piu' deboli man mano che te ne vai, un po' scosso cerchi "
+				eventResultImage = "event-il-10-ignore-1";
+				eventResultMessage = "Le grida del cervo diventano sempre pi&ugrave; deboli man mano che te ne vai, un po' scosso cerchi "
 						+ "di dimenticare in fretta l'accaduto";
 			} else {
 				eventEffectDB.setActiveEffect("I tiri <b>attacco</b> e i <b>test arma</b> sono diminuiti di 1");
-				return "Il grido di sofferenza di quel cervo ti rimane impresso nella mente, non riesci a darti "
-						+ "pace e senti la tua forza di volonta' venir meno.<br/>"
+				eventResultImage = "event-il-10-ignore-1";
+				eventResultMessage = "Il grido di sofferenza di quel cervo ti rimane impresso nella mente, non riesci a darti "
+						+ "pace e senti la tua forza di volont&agrave; venir meno.<br/>"
 						+ "-Nuovo effetto attivo-";
 			}
 		}
+		
+		return eventResultMessage;
 	}
 
 	private Object cureAction(int rollD100, int rollD12) {
-		if (percentTest(rollD100+rollD12)) {
+		String eventResultMessage;
+		String eventResultImage;
+		
+		if (percentTest(rollD12*8+5)) {
 			if (percentTest(rollD100)) {
 				eventEffectDB.setActiveEffect("I tiri <b>difesa</b> e i <b>test armatura</b> sono aumentati di 1");
-				return "Curi il cervo con abilita'. L'animale si riprende velocemente e ti guarda per un lungo istante "
-						+ "prima di andarsene. Senti nel cuore come una benedizione, la forza e la velocita' del cervo "
+				eventResultImage = "event-il-10-cure-1";
+				eventResultMessage = "Curi il cervo con abilit&agrave;. L'animale si riprende velocemente e ti guarda per un lungo istante "
+						+ "prima di andarsene. Senti nel cuore come una benedizione, la forza e la velocit&agrave; del cervo "
 						+ "ti hanno colpito<br/>"
 						+ "-Nuovo effetto attivo-";
 			} else {
-				return "Curi il cervo al meglio delle tue capacita', questo si riprende velocemente dalle ferite medicate "
-						+ "e non appena ha un po' di forza si mette in piedi. Con rapidita' fugge lontano e ti lascia "
+				eventResultImage = "event-il-10-cure-2";
+				eventResultMessage = "Curi il cervo al meglio delle tue capacit&agrave;, questo si riprende velocemente dalle ferite medicate "
+						+ "e non appena ha un po' di forza si mette in piedi. Con rapidit&agrave; fugge lontano e ti lascia "
 						+ "indietro. Beh che ti aspettavi? Un grazie da un cervo?";
 			}
 		} else {
 			if (percentTest(rollD100)) {
-				return "Tenti di curare il cervo, ma le ferite sono troppo gravi e le tue capacita' non sono abbastanza "
+				eventResultImage = "event-il-10-cure-3";
+				eventResultMessage = "Tenti di curare il cervo, ma le ferite sono troppo gravi e le tue capacit&agrave; non sono abbastanza "
 						+ "per salvarlo.";
 			} else {
 				adventureDB.decreasePlayerHealth();
-				return "Mentre ti appresti a curare il cervo, premi su una ferita per bloccare l'emoragia. Quest'azione "
-						+ "pero' e' dolorosa e il cervo d'istinto ti tira una zoccolata in petto che ti ferisce. "
+				eventResultImage = "event-il-10-cure-4";
+				eventResultMessage = "Mentre ti appresti a curare il cervo, premi su una ferita per bloccare l'emoragia. Quest'azione "
+						+ "per&ograve; &egrave; dolorosa e il cervo d'istinto ti tira una zoccolata in petto che ti ferisce. "
 						+ "Dopodiche scappa con le poche forze rimanenti";
 			}
 		}
+		
+		return eventResultMessage;
 	}
 
 	private Object killAction(int rollD100, int rollD12) {
+		String eventResultMessage;
+		String eventResultImage;
+		
 		if (percentTest(rollD100+rollD12)) {
 			if (percentTest(rollD100)) {
 				adventureDB.increasePlayerHealth();
 				adventureDB.increasePlayerHealth();
-				return "Macelli con sucesso il cervo e ne ricavi della carne che cucini subito. Recuperi le forze";
+				eventResultImage = "event-il-10-cook-1";
+				eventResultMessage = "Macelli con sucesso il cervo e ne ricavi della carne che cucini subito. Recuperi le forze";
 			} else {
-				return "Tenti di macellare il cervo, ma non hai le capacita' e conoscenze giuste per farlo, ricavi "
-						+ "poca carne e di scarsa qualita'. Tenti di cucinarla ma meta' brucia e meta' rimane non "
+				eventResultImage = "event-il-10-cook-2";
+				eventResultMessage = "Tenti di macellare il cervo, ma non hai le capacit&agrave; e conoscenze giuste per farlo, ricavi "
+						+ "poca carne e di scarsa qualit&agrave;. Tenti di cucinarla ma met&agrave; brucia e met&agrave; rimane non "
 						+ "cotta. Abbandoni l'idea di fare uno spuntino";
 			}
 		} else {
 			if (percentTest(rollD100)) {
-				return "Appena inizi a macellare il cervo senti dei versi in lontananza, con rapidita' ti nascondi "
+				eventResultImage = "event-il-10-cook-3";
+				eventResultMessage = "Appena inizi a macellare il cervo senti dei versi in lontananza, con rapidit&agrave; ti nascondi "
 						+ "e poco dopo arrivano dei tipi loschi vestiti da tribali. Prendono il cervo e lo portano "
 						+ "via";
 			} else {
 				eventEffectDB.setActiveEffect("I tiri <b>difesa</b> e i <b>test armatura</b> sono diminuiti di 1");
-				return "Mentre stai macellando il cervo, una freccia ti colpisce ad una gamba, senti un veleno "
+				eventResultImage = "event-il-10-cook-4";
+				eventResultMessage = "Mentre stai macellando il cervo, una freccia ti colpisce ad una gamba, senti un veleno "
 						+ "scorrere nel sangue e vedi dei tizi vestiti da tribali correre verso di te, con tutta "
-						+ "la tua forza corri via e ti nascondi. Il veleno pero' fa effetto e ti rende sempre "
+						+ "la tua forza corri via e ti nascondi. Il veleno per&ograve; fa effetto e ti rende sempre "
 						+ "piu' debole<br/>"
 						+ "-Nuovo effetto attivo-";
 			}
 		}
+		
+		return eventResultMessage;
 	}
 
 }
