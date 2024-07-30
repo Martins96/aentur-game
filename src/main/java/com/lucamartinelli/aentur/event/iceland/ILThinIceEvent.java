@@ -46,25 +46,29 @@ public class ILThinIceEvent implements EventActionOld {
 		
 		if (rollD12 < 8) {
 			if (percentTest(rollD100)) {
+				eventResultImage = "event-il-9-run-1";
 				eventResultMessage = "Breve, ma intenso? Beh con fortuna riesci a passare la zona ghiacciata velocemente";
 			} else {
 				adventureDB.decreasePlayerHealth();
+				eventResultImage = "event-il-9-run-2";
 				eventResultMessage = "Corri, ma dopo 2 passi il ghiaccio si rompe e sprofondi nelle acque gelide di quel fiume. "
 						+ "Riesci in qualche modo a raggiungere la terra ferma, ma ti senti ferita";
 			}
 		} else {
 			if (percentTest(rollD100)) {
 				adventureDB.increasePlayerHealth();
-				eventResultMessage = "Corri piu' veloce che puoi, ma inciampi. Fortunatamente il ghiaccio non si rompe, anzi "
-						+ "scivoli con poca fatica verso la fine della zona ghiacciata, e proprio li' vedi un povero "
+				eventResultImage = "event-il-9-run-3";
+				eventResultMessage = "Corri pi&ugrave; veloce che puoi, ma inciampi. Fortunatamente il ghiaccio non si rompe, anzi "
+						+ "scivoli con poca fatica verso la fine della zona ghiacciata, e proprio l&igrave; vedi un povero "
 						+ "pesce congelato in un cubetto di ghiaccio. Accendi un fuoco e cucini la fortunata 'pesca'. "
 						+ "Recuperi dei punti ferita";
 			} else {
 				eventEffectDB.setActiveEffect("I tiri <b>difesa</b> e i <b>test armatura</b> sono diminuiti di 1");
-				eventResultMessage = "Corri piu' veloce che puoi e sembra andare tutto bene, ma appena ti trovi a pochi passi dalla "
-						+ "terra ferma, il ghiaccio si rompe e finisci con le gambe nell'acqua. Per fortuna non e' "
-						+ "profondo e ti bagni solo dalla vita in giu', ma il gelo si sente in tutto il corpo e "
-						+ "ti rende piu' lenta.<br/>"
+				eventResultImage = "event-il-9-run-2";
+				eventResultMessage = "Corri pi&ugrave; veloce che puoi e sembra andare tutto bene, ma appena ti trovi a pochi passi dalla "
+						+ "terra ferma, il ghiaccio si rompe e finisci con le gambe nell'acqua. Per fortuna non &egrave; "
+						+ "profondo e ti bagni solo dalla vita in gi&ugrave;, ma il gelo si sente in tutto il corpo e "
+						+ "ti rende pi&ugrave; lenta.<br/>"
 						+ "-Nuovo effetto attivo-";
 			}
 		}
@@ -78,10 +82,12 @@ public class ILThinIceEvent implements EventActionOld {
 		
 		if (rollD12 < 7) {
 			if (percentTest(rollD100+rollD12)) {
-				eventResultMessage = "Passo dopo passo, scricchiolio dopo scricchiolioe soprattutto preghiera dopo preghiera; riesci "
+				eventResultImage = "event-il-9-slow-1";
+				eventResultMessage = "Passo dopo passo, scricchiolio dopo scricchiolio e soprattutto preghiera dopo preghiera; riesci "
 						+ "a raggiungere la terra ferma senza cadere nell'acqua";
 			} else {
 				adventureDB.decreasePlayerHealth();
+				eventResultImage = "event-il-9-run-2";
 				eventResultMessage = "Tenti di affrontare con calma la situazione, ma il ghiaccio si rompe e "
 						+ "sprofondi nelle acque gelide di quel fiume. "
 						+ "Riesci in qualche modo a raggiungere la terra ferma, ma ti senti ferita";
@@ -90,15 +96,17 @@ public class ILThinIceEvent implements EventActionOld {
 			if (percentTest(rollD100)) {
 				final RewardDTO reward = rewardEJB.getReward(1);
 				playerInventoryDB.addItems(reward.getItem());
-				eventResultMessage = "Cammini con calma per evitare di rompere il ghiaccio e sembra funzionare. In piu' questo passo "
+				eventResultImage = "event-il-9-slow-2";
+				eventResultMessage = "Cammini con calma per evitare di rompere il ghiaccio e sembra funzionare. In pi&ugrave; questo passo "
 						+ "ti permette d'ispezionare meglio il terreno e la neve, infatti trovi un vecchio oggetto "
 						+ "abbandonato da tempo: <b>" + reward.getItem() + "</b>";
 			} else {
 				eventEffectDB.setActiveEffect("I tiri <b>difesa</b> e i <b>test armatura</b> sono diminuiti di 1");
-				eventResultMessage = "Corri piu' veloce che puoi e sembra andare tutto bene, ma appena ti trovi a pochi passi dalla "
-						+ "terra ferma, il ghiaccio si rompe e finisci con le gambe nell'acqua. Per fortuna non e' "
-						+ "profondo e ti bagni solo dalla vita in giu', ma il gelo si sente in tutto il corpo e "
-						+ "ti rende piu' lenta.<br/>"
+				eventResultImage = "event-il-9-run-2";
+				eventResultMessage = "Cammini lentamente e sembra andare tutto bene, ma appena ti trovi a pochi passi dalla "
+						+ "terra ferma, il ghiaccio si rompe e finisci con le gambe nell'acqua. Per fortuna non &egrave; "
+						+ "profondo e ti bagni solo dalla vita in gi&ugrave;, ma il gelo si sente in tutto il corpo e "
+						+ "ti rende pi&ugrave; lenta.<br/>"
 						+ "-Nuovo effetto attivo-";
 			}
 		}
@@ -110,9 +118,10 @@ public class ILThinIceEvent implements EventActionOld {
 		String eventResultMessage;
 		String eventResultImage;
 
+		eventResultImage = "event-il-9-lose-1";
 		if (percentTest(rollD100+rollD12)) {
 			eventResultMessage = "Abbandoni un oggetto equipaggiato in modo da diminuire il peso del tuo corpo e raggiungere la terra "
-					+ "in sucurezza. Quando sei in una zona sicura pensi tristemente all'oggetto abbandonato, pero' poi "
+					+ "in sucurezza. Quando sei in una zona sicura pensi tristemente all'oggetto abbandonato, per&ograve; poi "
 					+ "un vento lo fa scivolare sul ghiaccio fino a te. Un colpo di fortuna in questa giornata. Non "
 					+ "perdi alcun oggetto";
 			
@@ -130,7 +139,7 @@ public class ILThinIceEvent implements EventActionOld {
 				return eventResultMessage;
 			}
 			playerInventoryDB.removeItems(item);
-			eventResultMessage = "Abbandoni un oggetto per essere piu' leggero ed evitare di rompere il ghiaccio. Quindi butti a terra "
+			eventResultMessage = "Abbandoni un oggetto per essere pi&ugrave; leggero ed evitare di rompere il ghiaccio. Quindi butti a terra "
 					+ item.getName() + " e continui senza problemi. Il tuo sacrificio ti salva la pelle.";
 		} else if (playerInventoryDB.getGold() > 5L) {
 			playerInventoryDB.removeGold(5L);;
