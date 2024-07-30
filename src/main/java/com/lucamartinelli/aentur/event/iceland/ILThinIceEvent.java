@@ -1,17 +1,22 @@
 package com.lucamartinelli.aentur.event.iceland;
 
-import com.lucamartinelli.aentur.event.EventActionOld;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
+import com.lucamartinelli.aentur.event.EventAction;
 import com.lucamartinelli.aentur.vo.EventDTO;
+import com.lucamartinelli.aentur.vo.EventResponseVO;
 import com.lucamartinelli.aentur.vo.ItemDTO;
 import com.lucamartinelli.aentur.vo.RewardDTO;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
-import jakarta.ws.rs.core.Response;
 
 @Named("event-il-9")
 @ApplicationScoped
-public class ILThinIceEvent implements EventActionOld {
+public class ILThinIceEvent implements EventAction {
 
 	private final EventDTO event = new EventDTO("event-il-9", 
 			"Mentre cammini nelle lande gelate senti uno scricchiolio provvenire dai tuoi piedi. Ti accorgi di essere "
@@ -26,21 +31,21 @@ public class ILThinIceEvent implements EventActionOld {
 	}
 
 	@Override
-	public Response apply(int choice, int rollD100, int rollD12) {
+	public ImmutablePair<EventResponseVO, Entry<Integer, String>> apply(int choice, int rollD100, int rollD12) {
 		switch (choice) {
 		case 1:
-			return Response.ok(runAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(runAction(rollD100, rollD12), null);
 		case 2:
-			return Response.ok(slowAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(slowAction(rollD100, rollD12), null);
 		case 3:
-			return Response.ok(loseItemAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(loseItemAction(rollD100, rollD12), null);
 
 		default:
-			return Response.status(400, "Invalid choice id").build();
+			return ImmutablePair.of(null, Map.entry(400, "Invalid choice id"));
 		}
 	}
 
-	private Object runAction(int rollD100, int rollD12) {
+	private EventResponseVO runAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -73,10 +78,10 @@ public class ILThinIceEvent implements EventActionOld {
 			}
 		}
 		
-		return eventResultMessage;
+		return new EventResponseVO(eventResultMessage, eventResultImage);
 	}
 
-	private Object slowAction(int rollD100, int rollD12) {
+	private EventResponseVO slowAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -111,10 +116,10 @@ public class ILThinIceEvent implements EventActionOld {
 			}
 		}
 		
-		return eventResultMessage;
+		return new EventResponseVO(eventResultMessage, eventResultImage);
 	}
 
-	private Object loseItemAction(int rollD100, int rollD12) {
+	private EventResponseVO loseItemAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 
@@ -125,7 +130,7 @@ public class ILThinIceEvent implements EventActionOld {
 					+ "un vento lo fa scivolare sul ghiaccio fino a te. Un colpo di fortuna in questa giornata. Non "
 					+ "perdi alcun oggetto";
 			
-			return eventResultMessage;
+			return new EventResponseVO(eventResultMessage, eventResultImage);
 		}
 		
 		if (playerInventoryDB.getItems().size() > 0) {
@@ -136,7 +141,7 @@ public class ILThinIceEvent implements EventActionOld {
 			if (item == null) {
 				eventResultMessage = "Vorresti abbandonare un oggetto o dell'oro, ma non possiedi nulla, per questo motivo sei leggero "
 						+ "e riesci a raggiungere la terra senza problemi";
-				return eventResultMessage;
+				return new EventResponseVO(eventResultMessage, eventResultImage);
 			}
 			playerInventoryDB.removeItems(item);
 			eventResultMessage = "Abbandoni un oggetto per essere pi&ugrave; leggero ed evitare di rompere il ghiaccio. Quindi butti a terra "
@@ -150,7 +155,7 @@ public class ILThinIceEvent implements EventActionOld {
 					+ "e riesci a raggiungere la terra senza problemi";
 		}
 		
-		return eventResultMessage;
+		return new EventResponseVO(eventResultMessage, eventResultImage);
 	}
 
 }

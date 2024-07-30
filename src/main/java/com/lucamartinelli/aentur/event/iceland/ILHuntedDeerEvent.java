@@ -1,15 +1,20 @@
 package com.lucamartinelli.aentur.event.iceland;
 
-import com.lucamartinelli.aentur.event.EventActionOld;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
+import com.lucamartinelli.aentur.event.EventAction;
 import com.lucamartinelli.aentur.vo.EventDTO;
+import com.lucamartinelli.aentur.vo.EventResponseVO;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
-import jakarta.ws.rs.core.Response;
 
 @Named("event-il-10")
 @ApplicationScoped
-public class ILHuntedDeerEvent implements EventActionOld {
+public class ILHuntedDeerEvent implements EventAction {
 
 	private final EventDTO event = new EventDTO("event-il-10", 
 			"Durante il cammino ti imbatti in un cervo ferito e morente, diverse frecce lo han ferito ed ora e' "
@@ -24,21 +29,21 @@ public class ILHuntedDeerEvent implements EventActionOld {
 	}
 
 	@Override
-	public Response apply(int choice, int rollD100, int rollD12) {
+	public ImmutablePair<EventResponseVO, Entry<Integer, String>> apply(int choice, int rollD100, int rollD12) {
 		switch (choice) {
 		case 1:
-			return Response.ok(ignoreAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(ignoreAction(rollD100, rollD12), null);
 		case 2:
-			return Response.ok(cureAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(cureAction(rollD100, rollD12), null);
 		case 3:
-			return Response.ok(killAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(killAction(rollD100, rollD12), null);
 
 		default:
-			return Response.status(400, "Invalid choice id").build();
+			return ImmutablePair.of(null, Map.entry(400, "Invalid choice id"));
 		}
 	}
 
-	private Object ignoreAction(int rollD100, int rollD12) {
+	private EventResponseVO ignoreAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -59,10 +64,10 @@ public class ILHuntedDeerEvent implements EventActionOld {
 			}
 		}
 		
-		return eventResultMessage;
+		return new EventResponseVO(eventResultMessage, eventResultImage);
 	}
 
-	private Object cureAction(int rollD100, int rollD12) {
+	private EventResponseVO cureAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -94,10 +99,10 @@ public class ILHuntedDeerEvent implements EventActionOld {
 			}
 		}
 		
-		return eventResultMessage;
+		return new EventResponseVO(eventResultMessage, eventResultImage);
 	}
 
-	private Object killAction(int rollD100, int rollD12) {
+	private EventResponseVO killAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -130,7 +135,7 @@ public class ILHuntedDeerEvent implements EventActionOld {
 			}
 		}
 		
-		return eventResultMessage;
+		return new EventResponseVO(eventResultMessage, eventResultImage);
 	}
 
 }

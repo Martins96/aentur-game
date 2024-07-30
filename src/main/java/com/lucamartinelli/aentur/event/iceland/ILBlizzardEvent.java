@@ -1,16 +1,21 @@
 package com.lucamartinelli.aentur.event.iceland;
 
-import com.lucamartinelli.aentur.event.EventActionOld;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
+import com.lucamartinelli.aentur.event.EventAction;
 import com.lucamartinelli.aentur.vo.EventDTO;
+import com.lucamartinelli.aentur.vo.EventResponseVO;
 import com.lucamartinelli.aentur.vo.RewardDTO;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
-import jakarta.ws.rs.core.Response;
 
 @Named("event-il-7")
 @ApplicationScoped
-public class ILBlizzardEvent implements EventActionOld {
+public class ILBlizzardEvent implements EventAction {
 
 	private final EventDTO event = new EventDTO("event-il-7", 
 			"Mentre cammini senti l'aria che diventa piu' fredda, una tempesta di neve inizia a sollevarsi nella zona "
@@ -24,21 +29,21 @@ public class ILBlizzardEvent implements EventActionOld {
 	}
 
 	@Override
-	public Response apply(int choice, int rollD100, int rollD12) {
+	public ImmutablePair<EventResponseVO, Entry<Integer, String>> apply(int choice, int rollD100, int rollD12) {
 		switch (choice) {
 		case 1:
-			return Response.ok(ignoreAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(ignoreAction(rollD100, rollD12), null);
 		case 2:
-			return Response.ok(snowShelterAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(snowShelterAction(rollD100, rollD12), null);
 		case 3:
-			return Response.ok(searchAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(searchAction(rollD100, rollD12), null);
 
 		default:
-			return Response.status(400, "Invalid choice id").build();
+			return ImmutablePair.of(null, Map.entry(400, "Invalid choice id"));
 		}
 	}
 
-	private Object ignoreAction(int rollD100, int rollD12) {
+	private EventResponseVO ignoreAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -64,10 +69,10 @@ public class ILBlizzardEvent implements EventActionOld {
 					+ "senza particolari problemi";
 		}
 		
-		return eventResultMessage;
+		return new EventResponseVO(eventResultMessage, eventResultImage);
 	}
 
-	private Object snowShelterAction(int rollD100, int rollD12) {
+	private EventResponseVO snowShelterAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -98,10 +103,10 @@ public class ILBlizzardEvent implements EventActionOld {
 			}
 		}
 		
-		return eventResultMessage;
+		return new EventResponseVO(eventResultMessage, eventResultImage);
 	}
 
-	private Object searchAction(int rollD100, int rollD12) {
+	private EventResponseVO searchAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -148,7 +153,7 @@ public class ILBlizzardEvent implements EventActionOld {
 			}
 		}
 		
-		return eventResultMessage;
+		return new EventResponseVO(eventResultMessage, eventResultImage);
 	}
 
 }

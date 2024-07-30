@@ -14,7 +14,7 @@ export class DarkwoodScenarioEventComponent implements OnInit {
   @Output()
   endScenario: EventEmitter<boolean>=new EventEmitter();
 
-  private location: string = "darkwood";
+  location: string = "darkwood";
 
   event: EventVO|undefined=undefined;
   eventResultMessage: string|undefined=undefined;
@@ -93,7 +93,7 @@ export class DarkwoodScenarioEventComponent implements OnInit {
         }
         
         this.eventResultMessage = resp.body.eventResult;
-        this.eventResultImage = 'assets/darkwood/events/results/' + resp.body.imageResultName + '.jpg';
+        this.eventResultImage = 'assets/' + this.location + '/events/results/' + resp.body.imageResultName + '.jpg';
       }, err => {
         console.error("Call BE failed: ", err);
       }

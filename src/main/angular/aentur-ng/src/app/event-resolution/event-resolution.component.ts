@@ -10,6 +10,7 @@ import { FlamevolcanoPopupFailureComponent } from '../locations/flamevolcano/pop
 import { FrozenmountainsPopupFailureComponent } from '../locations/frozenmountains/popup/frozenmountains-popup-failure/frozenmountains-popup-failure.component';
 import { HottendesertPopupFailureComponent } from '../locations/hottendesert/popup/hottendesert-popup-failure/hottendesert-popup-failure.component';
 import { ComponentType } from '@angular/cdk/portal';
+import { IcelandPopupFailureComponent } from '../locations/iceland/popup/iceland-popup-failure/iceland-popup-failure.component';
 
 @Component({
   selector: 'app-event-resolution',
@@ -47,6 +48,9 @@ export class EventResolutionComponent implements OnInit {
         break;
       case 'frozenmountains':
         this.failurePopup = FrozenmountainsPopupFailureComponent;
+        break;
+      case 'iceland':
+        this.failurePopup = IcelandPopupFailureComponent;
         break;
       case 'hottendesert':
         this.failurePopup = HottendesertPopupFailureComponent;

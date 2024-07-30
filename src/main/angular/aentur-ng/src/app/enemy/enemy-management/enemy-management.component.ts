@@ -56,11 +56,12 @@ export class EnemyManagementComponent implements OnInit {
 
     firstValueFrom(observ2).then(
       resp => {
-        if (!resp || !resp.ok || !resp.body) {
+        if (!resp || !resp.ok) {
           console.error("Error calling BE: ", resp);
           return;
         }
-        this.enemyHealth = resp.body;
+
+        this.enemyHealth = resp.body == null ? 0 : resp.body;
       },
       err => {
         console.error("Error calling BE", err);

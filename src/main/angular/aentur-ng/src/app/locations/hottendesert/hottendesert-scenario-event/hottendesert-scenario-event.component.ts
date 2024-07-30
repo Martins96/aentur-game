@@ -1,10 +1,8 @@
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { firstValueFrom, Observable } from 'rxjs';
 import { RestService } from 'src/app/rest-service';
 import { EventChoiceVO, EventResponseVO, EventVO } from 'src/app/vo/event-vo';
-import { HottendesertPopupFailureComponent } from '../popup/hottendesert-popup-failure/hottendesert-popup-failure.component';
 
 @Component({
   selector: 'app-hottendesert-scenario-event',
@@ -22,8 +20,7 @@ export class HottendesertScenarioEventComponent implements OnInit {
   eventResultMessage: string|undefined=undefined;
   eventResultImage: string|undefined=undefined;
 
-  constructor(private rest: RestService,
-    private dialogFail: MatDialog) { }
+  constructor(private rest: RestService) { }
 
   ngOnInit(): void {
     this.loadRandomEvent();
