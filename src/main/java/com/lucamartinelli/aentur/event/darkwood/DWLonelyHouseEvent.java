@@ -93,7 +93,7 @@ public class DWLonelyHouseEvent implements EventAction {
 					eventResultMessage = String.format("Apri la porta della casa, sembra abbandonata da tempo e prensenta "
 							+ "molti rottami marci.<br />"
 							+ "Tenti di trovare qualcosa di utile e nascosto nei mobili disfati della sala trovi un"
-							+ " sacchetto di monete, credi che non servano piu' a nessuno e cos' aggiungi %d"
+							+ " sacchetto di monete, credi che non servano piu' a nessuno e cos&igrave; aggiungi %d"
 							+ " al tuo borsello", gold);
 					return new EventResponseVO(eventResultMessage, eventResultImage);
 				} else {

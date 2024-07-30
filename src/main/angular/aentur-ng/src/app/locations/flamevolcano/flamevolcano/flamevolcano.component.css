@@ -70,3 +70,7 @@ span {
     border: 10px dashed green
 }
 
+.active-effect-txt {
+    font-size: 1.2em;
+    font-family: 'fantasy-mail';
+}

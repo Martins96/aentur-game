@@ -11,7 +11,7 @@ public class FrustataAction extends BossAction {
 	public BossActionResultVO executeAction(int playerD20) {
 		action.setImg(getImg());
 		if (playerD20 < 8) {
-			action.setEffect("La frusta e' velocissima e in pochi secondi ti colpisce piu' volte");
+			action.setEffect("La frusta &egrave; velocissima e in pochi secondi ti colpisce pi&ugrave; volte");
 			adventureDB.decreasePlayerHealth();
 		} else if (playerD20 < 14) {
 			action.setEffect(" Con fatica riesci a schivare ogni colpo della frusta uscendone senza ferite");

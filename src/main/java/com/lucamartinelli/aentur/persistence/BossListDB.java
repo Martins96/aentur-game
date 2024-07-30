@@ -10,7 +10,7 @@ public final class BossListDB {
 			Map.entry("darkwood", new BossDTO(0, "darkwood", "boss.dw.name", 
 					"boss.dw.description",
 					new int[] {0,1,2,3,4,5})),
-			Map.entry("iceland", new BossDTO(1, "iceland", "Linnorm dei Ghiacci",
+			Map.entry("iceland", new BossDTO(1, "iceland", "boss.il.name",
 					"boss.il.description",
 					new int[] {0,5,6,7,8,9,10})),
 			Map.entry("frozenmountains", new BossDTO(2, "frozenmountain", "boss.fm.name", 
@@ -30,11 +30,17 @@ public final class BossListDB {
 	
 	
 	public static BossDTO getById(int id) {
-		return BOSSES.values()
+		final BossDTO bossDto = BOSSES.values()
 				.stream()
 				.filter(e -> e.getId() == id)
 				.findFirst()
 				.orElseGet(null);
+		return bossDto != null ? bossDto.clone() : null;
+	}
+	
+	public static BossDTO getByLocation(String loc) {
+		final BossDTO bossDto = BOSSES.getOrDefault(loc, null);
+		return bossDto != null ? bossDto.clone() : null;
 	}
 	
 }

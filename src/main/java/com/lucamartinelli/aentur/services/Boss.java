@@ -70,6 +70,7 @@ public class Boss {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@POST
 	public BossActionResultVO action(String rollD20) {
+		log.debug("Roll20 sent: " + rollD20);
 		if (rollD20 == null || rollD20.isEmpty()) {
 			log.error("Input is null");
 			return null;

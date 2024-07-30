@@ -37,7 +37,7 @@ public class BossActionListDB {
 					, null, null),
 			new BossActionResultVO(3, "Frustata",
 					"Il nemico prende la sua frusta gigante dal fianco, esegue due giri sulla sua testa e schianta"
-					+ " un colto su di te.",
+					+ " un colpo su di te.",
 					null, null),
 			new BossActionResultVO(4, "Cristalli esplosivi",
 					"Rapidamente il mostro toglie dalla tasca un piccolo sacchetto e raccoglie da esso una manciata "

@@ -55,9 +55,13 @@ public class BossEJB {
 	}
 
 	public BossDTO getBoss(String bossLocation) {
-		final BossDTO boss = BossListDB.BOSSES.get(bossLocation);
+		log.debug("Getting boss by location: " + bossLocation);
+		final BossDTO boss = BossListDB.getByLocation(bossLocation);
 		if (boss == null)
 			log.warnf("Boss is null for location [%s]", bossLocation);
+		else
+			log.debugf("Boss for location [%s] loaded, ID=%d - NAME=%s", 
+					bossLocation, boss.getId(), boss.getName());
 		return boss;
 	}
 	

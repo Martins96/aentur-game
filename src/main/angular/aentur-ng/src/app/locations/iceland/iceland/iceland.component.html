@@ -56,7 +56,7 @@
 <div class="active-effect">
     <h4><app-dynamiccontents [key]="'adventure.location.active.effects'"></app-dynamiccontents></h4>
     <div *ngIf="activeEffect">
-        <u><span [innerHTML]="activeEffect"></span></u>
+        <u><span [innerHTML]="activeEffect" class="active-effect-txt"></span></u>
     </div>
     <div *ngIf="!activeEffect">
         <span><app-dynamiccontents [key]="'adventure.location.effects.noeffects'"></app-dynamiccontents></span>

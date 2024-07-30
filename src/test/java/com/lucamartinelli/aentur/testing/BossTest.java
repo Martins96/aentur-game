@@ -2,6 +2,7 @@ package com.lucamartinelli.aentur.testing;
 
 import org.junit.jupiter.api.Test;
 
+import com.lucamartinelli.aentur.languagecontent.ResolveContentsUtils;
 import com.lucamartinelli.aentur.persistence.AdventureStatsDB;
 import com.lucamartinelli.aentur.persistence.BossListDB;
 import com.lucamartinelli.aentur.vo.BossDTO;
@@ -33,10 +34,13 @@ public class BossTest {
 	}
 
 	private static void testByLocationEndpointInternal(String location) {
-		final BossDTO bossDto = BossListDB.BOSSES.get(location);
+		BossDTO bossDto = BossListDB.BOSSES.get(location);
+		bossDto = ResolveContentsUtils.resolveLabels(bossDto);
 		given()
-				.when().get("/api/boss/get-by-location/" + location).then().statusCode(200)
-				.body("name", equalTo(bossDto.getName())).body("id", equalTo(bossDto.getId()));
+				.when().get("/api/boss/get-by-location/" + location)
+				.then().statusCode(200)
+				.body("name", equalTo(bossDto.getName()))
+				.body("id", equalTo(bossDto.getId()));
 	}
 
 	@Test

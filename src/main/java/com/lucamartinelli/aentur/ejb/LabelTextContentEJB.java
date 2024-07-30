@@ -44,10 +44,8 @@ public class LabelTextContentEJB {
 		if(lang.isPresent() && lang.get() != null) {
 			return LanguagesVO.convertStringToLanguage(lang.get());
 		} else if (textDB.getLanguage() != null) {
-			log.debug("Getting lang from session: " + textDB.getLanguage());
 			return textDB.getLanguage();
 		} else {
-			log.debug("Getting lang by default: " + LanguagesVO.getDefault());
 			return LanguagesVO.getDefault();
 		}
 	}

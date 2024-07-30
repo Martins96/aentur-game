@@ -174,9 +174,8 @@ public class DWOldWomanEvent implements EventAction {
 				
 				
 			} else {
-				final int gold = (rollD12-1)*2;
+				final int gold = (rollD12-2)*2;
 				if (playerInventoryDB.getGold() < gold) {
-					playerInventoryDB.removeGold(gold);
 					eventResultImage = "event-dw-4-bet-8";
 					eventResultMessage = response + "Peschi una perlina rossa, l'anziana ti chiede " + gold + " monete d'oro. Purtroppo "
 							+ "dici di non avere abbastanza denaro. <i>'Un altro poveraccio, allora smetti di farmi "
@@ -190,18 +189,19 @@ public class DWOldWomanEvent implements EventAction {
 						eventResultImage = "event-dw-4-bet-8";
 						eventResultMessage = response + "Peschi una perlina rossa, l'anziana ti chiede " + gold + " monete d'oro. Come da "
 								+ "accordi, le consegni alla donna e lei ti dice: <i>'Avrei dovuto darti una pozione della salute "
-								+ "per curare delle ferite, ma a quanto vedo stai bene, quindi ti daro' questo...'</i>, la donna "
+								+ "per curare delle ferite, ma a quanto vedo stai bene, quindi ti dar&ograve; questo...'</i>, la donna "
 								+ "ti fa bere una pozione color rosso intenso, dopo pochi secondi questa pozione ti inonda di nuova "
-								+ "forza, le tue braccia e i tuoi muscoli sono piu' attivi e vigorosi<br/>"
+								+ "forza, le tue braccia e i tuoi muscoli sono pi&ugrave; attivi e vigorosi<br/>"
 								+ "-Nuovo effetto attivo-";
 						return new EventResponseVO(eventResultMessage, eventResultImage);
 					} else {
 						adventureDB.increasePlayerHealth();
+						adventureDB.increasePlayerHealth();
 						playerInventoryDB.removeGold(gold);
 						eventResultImage = "event-dw-4-bet-8";
 						eventResultMessage = response + "Peschi una perlina rossa, l'anziana ti chiede " + gold + " monete d'oro. Come da "
-								+ "accordi, le consegni alla donna e lei ti consegna ua pozione della salute che bevi. Viene "
-								+ "curata una ferita. <i>'Nulla e' piu' importante della salute, dico bene?'</i>. Con questa "
+								+ "accordi, le consegni alla donna e lei ti consegna una pozione della salute che bevi. Vengono "
+								+ "curate le tue ferite. <i>'Nulla &egrave; pi&ugrave; importante della salute, dico bene?'</i>. Con questa "
 								+ "frase ti saluta e se ne va";
 						return new EventResponseVO(eventResultMessage, eventResultImage);
 					}
