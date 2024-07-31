@@ -40,53 +40,64 @@ public class CCBloodFountainEvent implements EventActionOld {
 	}
 	
 	private String ignoreAction(int rollD100, int rollD12) {
+		String eventResultMessage;
+		String eventResultImage;
+		
 		if (rollD12 < 4) {
 			if (!percentTest(rollD100 + 20)) {
 				adventureDB.decreasePlayerHealth();
-				return "Decidi di ignorare la fontana, ma appena la oltrepassi senti che questa inizia a bollire.<br/>"
+				eventResultMessage = "Decidi di ignorare la fontana, ma appena la oltrepassi senti che questa inizia a bollire.<br/>"
 						+ "Ti volti per vedere cosa sta succedendo e di colpo vedi una demone che ti afferra e ti "
 						+ "trascina nella fontana. Lotti con tutte le tue forze per liberarti e alla fine riesci ad "
 						+ "uscire, anche se hai subito delle ferite,";
+			} else {
+				eventResultMessage = "Appena lasci la zona senti strani rumori dal liquido rosso, &egrave; come se stesse ribollendo. In men"
+						+ " che non si dica hai lasciato la stanza e tutto quello che stava accadendo l&agrave;";
 			}
-			return "Appena lasci la zona senti strani rumori dal liquido rosso, &egrave; come se stesse ribollendo. In men"
-					+ " che non si dica hai lasciato la stanza e tutto quello che stava accadendo l&agrave;";
 		} else {
-			return "Decidi di ignorare la fontana, il colore non ti ispirava niente di buono";
+			eventResultMessage = "Decidi di ignorare la fontana, il colore non ti ispirava niente di buono";
 		}
+		
+		return;
 		
 	}
 
 	private String drinkAction(int rollD100, int rollD12) {
+		String eventResultMessage;
+		String eventResultImage;
+		
 		if (rollD12 < 7) {
 			if (!percentTest(rollD100/2)) {
 				adventureDB.decreasePlayerHealth();
-				return "Stai per bere dalla fontana, quando un'ombra si forma nel liquido, non riesci neanche ad "
+				eventResultMessage = "Stai per bere dalla fontana, quando un'ombra si forma nel liquido, non riesci neanche ad "
 						+ "indietreggiare che vieni colpito da una magia oscura. Subisci una ferita";
 			} else {
-				return "Bevi dalla fontana... non sembra succedere nulla... Il non succede niente al gusto ciliegia";
+				eventResultMessage = "Bevi dalla fontana... non sembra succedere nulla... Il non succede niente al gusto ciliegia";
 			}
 		} else if (rollD12 < 12) {
 			if (!percentTest(rollD100 + rollD12)) {
 				adventureDB.decreasePlayerHealth();
 				eventEffectDB.setActiveEffect("I tiri di <b>difesa</b> e <b>test armatura</b> sono diminuiti di 1");
-				return "Bevi l'acqua della fonte e a poco a poco inizi a sentirti debole, la sorgente "
+				eventResultMessage = "Bevi l'acqua della fonte e a poco a poco inizi a sentirti debole, la sorgente "
 						+ "e' maledetta da una magia vapirica. Subisci una ferita e il tuo corpo e' debole.<br/>"
 						+ "-Nuovo effetto attivo-";
 			} else if (!percentTest(rollD100 + 10)) {
 				adventureDB.decreasePlayerHealth();
-				return "Dopo aver bevuto senti girare la testa, la fontana e' avvelenata e subisci un danno";
+				eventResultMessage = "Dopo aver bevuto senti girare la testa, la fontana e' avvelenata e subisci un danno";
 			} else {
 				adventureDB.increasePlayerHealth();
-				return "Bevi il liquido della fontana, &egrave; fresco e magico, questa breve pausa ti ha consentito di tirare "
+				eventResultMessage = "Bevi il liquido della fontana, &egrave; fresco e magico, questa breve pausa ti ha consentito di tirare "
 						+ "il fiato per un momento, ti curi di una ferita";
 			}
 		} else {
 			adventureDB.increasePlayerHealth();
 			adventureDB.increasePlayerHealth();
 			eventEffectDB.setActiveEffect("I tiri di <b>difesa</b> e <b>test armatura</b> sono aumentati di 1");
-			return "La fontana sembra magica, appena bevi senti la forza scorrere dentro di te, la tua pelle"
+			eventResultMessage = "La fontana sembra magica, appena bevi senti la forza scorrere dentro di te, la tua pelle"
 					+ " diventa piu' resistente e le ferite si rimarginano -Nuovo effetto attivo-";
 		}
+		
+		return eventResultMessage;
 	}
 
 }
