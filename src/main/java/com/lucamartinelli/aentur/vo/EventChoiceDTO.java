@@ -2,6 +2,9 @@ package com.lucamartinelli.aentur.vo;
 
 import java.util.Objects;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class EventChoiceDTO {
 	
 	private String location;

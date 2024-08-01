@@ -3,6 +3,9 @@ package com.lucamartinelli.aentur.vo;
 import java.util.Arrays;
 import java.util.Objects;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class EventDTO {
 	
 	private String eventID;

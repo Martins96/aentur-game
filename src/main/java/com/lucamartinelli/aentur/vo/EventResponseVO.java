@@ -2,9 +2,11 @@ package com.lucamartinelli.aentur.vo;
 
 import java.util.Objects;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 
+@RegisterForReflection
 public class EventResponseVO {
 	
 	private String eventResult;

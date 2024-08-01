@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 
+@RegisterForReflection
 public class AttackDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1116102902132800140L;

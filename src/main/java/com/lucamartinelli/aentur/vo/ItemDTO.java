@@ -5,9 +5,11 @@ import java.util.Objects;
 
 import com.lucamartinelli.aentur.persistence.ItemCategory;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 
+@RegisterForReflection
 public class ItemDTO implements Serializable {
 
 	private static final long serialVersionUID = -5505975039695748130L;

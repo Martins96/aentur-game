@@ -2,6 +2,9 @@ package com.lucamartinelli.aentur.vo;
 
 import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class RewardDTO implements Serializable {
 
 	private static final long serialVersionUID = 683888223052012511L;

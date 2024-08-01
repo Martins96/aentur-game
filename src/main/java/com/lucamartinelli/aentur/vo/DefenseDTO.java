@@ -3,10 +3,12 @@ package com.lucamartinelli.aentur.vo;
 import java.util.Arrays;
 import java.util.Objects;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 
+@RegisterForReflection
 public class DefenseDTO {
 	
 	private int id;

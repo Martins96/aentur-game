@@ -5,6 +5,9 @@ import java.util.Objects;
 
 import com.lucamartinelli.aentur.boss.BossAction;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class BossActionDTO implements Serializable {
 	
 	private static final long serialVersionUID = 6725328416339449903L;

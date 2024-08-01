@@ -3,6 +3,9 @@ package com.lucamartinelli.aentur.vo;
 import java.io.Serializable;
 import java.util.Objects;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class StepDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -58,7 +58,7 @@ public class CCBloodFountainEvent implements EventActionOld {
 			eventResultMessage = "Decidi di ignorare la fontana, il colore non ti ispirava niente di buono";
 		}
 		
-		return;
+		return eventResultMessage;
 		
 	}
 
