@@ -119,6 +119,7 @@ public class HDQuicksandsEvent implements EventAction {
 						reward = rewardEJB.getReward(1);
 					}
 					playerInventoryDB.addItems(reward.getItem());
+					reward.resolveItemLabels();
 					eventResultMessage = response.concat("un antico oggetto: <b>" + reward.getItem() + "</b>");
 				} else {
 					final int gold = getRandomInt(5)+1;

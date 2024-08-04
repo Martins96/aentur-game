@@ -115,6 +115,7 @@ public class ILBlizzardEvent implements EventAction {
 			if (percentTest(rollD100)) {
 				final RewardDTO reward = rewardEJB.getReward(1);
 				playerInventoryDB.addItems(reward.getItem());
+				reward.resolveItemLabels();
 				eventResultImage = "event-il-7-search-1";
 				eventResultMessage = String.format("Inizi a cercare un rifugio e noti una piccola caverna poco distante, la raggiungi e, mentre "
 						+ "attendi la fine della tempesta, provi ad esplorarla. Addentrandoti trovi un vecchio baule "

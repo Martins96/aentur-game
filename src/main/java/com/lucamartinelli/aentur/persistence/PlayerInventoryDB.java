@@ -62,7 +62,8 @@ public class PlayerInventoryDB implements Serializable {
 	public void addItems(ItemDTO... items) {
 		if (this.items == null)
 			this.items = new ArrayList<>(0);
-		this.items.addAll(Arrays.asList(items));
+		Arrays.stream(items)
+				.forEach(i -> this.items.add(i.clone()));
 		CreateSaveFile.saveAdventure();
 	}
 	public void removeItems(ItemDTO item) {
@@ -75,19 +76,28 @@ public class PlayerInventoryDB implements Serializable {
 	}
 	
 	public ItemDTO getEquipedWeapon() {
-		return equipedWeapon;
+		if (equipedWeapon != null)
+			return equipedWeapon.clone();
+		else
+			return null;
 	}
 	public void setEquipedWeapon(ItemDTO equipedWeapon) {
 		this.equipedWeapon = equipedWeapon;
 	}
 	public ItemDTO getEquipedArmor() {
-		return equipedArmor;
+		if (equipedArmor != null)
+			return equipedArmor.clone();
+		else
+			return null;
 	}
 	public void setEquipedArmor(ItemDTO equipedArmor) {
 		this.equipedArmor = equipedArmor;
 	}
 	public ItemDTO getEquipedTalisman() {
-		return equipedTalisman;
+		if (equipedTalisman != null)
+			return equipedTalisman.clone();
+		else
+			return null;
 	}
 	public void setEquipedTalisman(ItemDTO equipedTalisman) {
 		this.equipedTalisman = equipedTalisman;

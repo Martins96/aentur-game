@@ -70,6 +70,13 @@ span {
     border: 10px dashed green
 }
 
+.active-effect {
+    background-color: beige;
+    text-align: center;
+    padding: 10px 0;
+    margin-bottom: 50px;
+}
+
 .active-effect-txt {
     font-size: 1.2em;
     font-family: 'fantasy-mail';

@@ -101,6 +101,7 @@ public class ILThinIceEvent implements EventAction {
 			if (percentTest(rollD100)) {
 				final RewardDTO reward = rewardEJB.getReward(1);
 				playerInventoryDB.addItems(reward.getItem());
+				reward.resolveItemLabels();
 				eventResultImage = "event-il-9-slow-2";
 				eventResultMessage = "Cammini con calma per evitare di rompere il ghiaccio e sembra funzionare. In pi&ugrave; questo passo "
 						+ "ti permette d'ispezionare meglio il terreno e la neve, infatti trovi un vecchio oggetto "

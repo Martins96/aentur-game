@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import com.lucamartinelli.aentur.event.EventAction;
+import com.lucamartinelli.aentur.languagecontent.ResolveContentsUtils;
 import com.lucamartinelli.aentur.persistence.ItemsListDB;
 import com.lucamartinelli.aentur.vo.EventDTO;
 import com.lucamartinelli.aentur.vo.EventResponseVO;
@@ -79,7 +80,7 @@ public class HDDesertMerchantEvent implements EventAction {
 			return new EventResponseVO(eventResultMessage, eventResultImage);
 		}
 		playerInventoryDB.removeGold(20L);
-		final ItemDTO item;
+		ItemDTO item;
 		if (percentTest(rollD100+rollD12)) {
 			if (percentTest((rollD100/2)+rollD12)) {
 				if (percentTest((rollD100+rollD12)/2)) {
@@ -94,6 +95,7 @@ public class HDDesertMerchantEvent implements EventAction {
 			item = ItemsListDB.getById(17);
 		}
 		playerInventoryDB.addItems(item);
+		item = ResolveContentsUtils.resolveLabels(item);
 		eventResultImage = "event-hd-12-buy-2";
 		eventResultMessage = String.format("Consegni le 20 monete al mercante, ti cede il pacchetto ridendo. "
 				+ "Con ansia apri la scatola e all'interno "

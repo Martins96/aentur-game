@@ -160,6 +160,7 @@ public class DWTreeCrossEvent implements EventAction {
 				if (percentTest(rollD100+20)) {
 					final RewardDTO reward = rewardEJB.getReward(1);
 					playerInventoryDB.addItems(reward.getItem());
+					reward.resolveItemLabels();
 					eventResultImage = "event-dw-3-dig-1";
 					eventResultMessage = String.format("Cercando nella terra ai piedi dell'albero trovi qualcosa sepolto da tempo, "
 						+ " un vecchio baule custodisce un antico oggetto: "

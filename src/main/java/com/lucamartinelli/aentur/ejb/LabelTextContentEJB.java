@@ -35,7 +35,10 @@ public class LabelTextContentEJB {
 	public String getContent(final String key, final Optional<String> lang) throws IOException {
 		final LanguagesVO language = getLanguageByPriority(lang);
 		final Properties props = getPropertyFile(language);
-		return props.getProperty(key);
+		final String textValue = props.getProperty(key);
+		if (textValue == null) 
+			log.warnf("Unable to found text for key [%s]", key);
+		return textValue;
 	}
 	
 	

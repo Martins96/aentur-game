@@ -1,6 +1,9 @@
 package com.lucamartinelli.aentur.vo;
 
 import java.io.Serializable;
+import java.util.Objects;
+
+import com.lucamartinelli.aentur.languagecontent.ResolveContentsUtils;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
@@ -34,7 +37,32 @@ public class RewardDTO implements Serializable {
 	public void setItem(ItemDTO item) {
 		this.item = item;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(gold, item);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RewardDTO other = (RewardDTO) obj;
+		return gold == other.gold && Objects.equals(item, other.item);
+	}
+
+	@Override
+	public String toString() {
+		return "RewardDTO [gold=" + gold + ", item=" + item + "]";
+	}
 	
+	public void resolveItemLabels() {
+		item = ResolveContentsUtils.resolveLabels(item);
+	}
 	
 	
 	

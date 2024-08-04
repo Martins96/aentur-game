@@ -129,6 +129,8 @@ public class Enemy {
 		 
 		 rewardEJB.assignReward(reward);
 		 
+		 reward.resolveItemLabels();
+		 
 		 return reward;
 	}
 	

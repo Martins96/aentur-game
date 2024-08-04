@@ -94,6 +94,7 @@ public class Boss {
 		}
 		final RewardDTO reward = rewardEJB.getBossReward();
 		rewardEJB.assignReward(reward);
+		reward.resolveItemLabels();
 		
 		return reward;
 		

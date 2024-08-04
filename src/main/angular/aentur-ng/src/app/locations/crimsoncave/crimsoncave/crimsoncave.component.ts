@@ -158,6 +158,7 @@ export class CrimsoncaveComponent implements OnInit {
 
   endScenario(event: boolean): void {
     this.refreshPathStep();
+    this.loadActiveEffects();
   }
 
   async randomBackgroundImg(): Promise<void> {

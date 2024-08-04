@@ -1,6 +1,7 @@
 package com.lucamartinelli.aentur.event.frozenmountains;
 
 import com.lucamartinelli.aentur.event.EventActionOld;
+import com.lucamartinelli.aentur.languagecontent.ResolveContentsUtils;
 import com.lucamartinelli.aentur.vo.EventDTO;
 import com.lucamartinelli.aentur.vo.ItemDTO;
 
@@ -59,8 +60,9 @@ public class FMAvalanceEvent implements EventActionOld {
 						+ "%d monete)", lostGold);
 			}
 		} else {
-			final ItemDTO item = rewardEJB.getReward(1).getItem();
+			ItemDTO item = rewardEJB.getReward(1).getItem();
 			playerInventoryDB.addItems(item);
+			item = ResolveContentsUtils.resolveLabels(item);
 			return "Corri avanti per la tua strada nel modo piu' rapido che puoi, la valanga era iniziata "
 					+ "lontano e questo ti da del tempo per lasciare la zona d'impatto. Infatti, la vedi "
 					+ "passare a qualche metro da dove sei ora e scampi al disastro senza problemi. In piu' "
@@ -99,8 +101,9 @@ public class FMAvalanceEvent implements EventActionOld {
 			if (percentTest(rollD100+rollD12)) {
 				adventureDB.decreasePlayerHealth();
 				final int gold = getRandomInt(2) + 1;
-				final ItemDTO item = rewardEJB.getReward(1).getItem();
+				ItemDTO item = rewardEJB.getReward(1).getItem();
 				playerInventoryDB.addItems(item);
+				item = ResolveContentsUtils.resolveLabels(item);
 				return "Scendi verso valle con la speranza di scampare alla neve, quando senti delle urla "
 						+ "dietro di te. Un altro topino piu' in alto dalla tua posizione sta scendendo "
 						+ "con quello che sembra uno slittino. Arriva velocemente da te, ma anche la valanga "
@@ -242,8 +245,9 @@ public class FMAvalanceEvent implements EventActionOld {
 						+ "passato. Ricominci il tuo viaggio piena di energie";
 			} else {
 				if (percentTest(rollD100)) {
-					final ItemDTO item = rewardEJB.getReward(1).getItem();
+					ItemDTO item = rewardEJB.getReward(1).getItem();
 					playerInventoryDB.addItems(item);
+					item = ResolveContentsUtils.resolveLabels(item);
 					return "Trovi una piccola grotta, ma e' un riparo perfetto per scampare alla valanga."
 							+ "<br>Mentre attendi la fine, noti una vecchia borsa un po' rammendata. La "
 							+ "apri e trovi '" + item.getName() + "'.<br>Finita la valanga riparti con il "

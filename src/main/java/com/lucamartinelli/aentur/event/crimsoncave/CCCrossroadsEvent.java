@@ -1,6 +1,7 @@
 package com.lucamartinelli.aentur.event.crimsoncave;
 
 import com.lucamartinelli.aentur.event.EventActionOld;
+import com.lucamartinelli.aentur.languagecontent.ResolveContentsUtils;
 import com.lucamartinelli.aentur.vo.EventDTO;
 import com.lucamartinelli.aentur.vo.ItemDTO;
 
@@ -86,8 +87,9 @@ public class CCCrossroadsEvent implements EventActionOld {
 			}
 		} else {
 			if (percentTest(rollD100)) {
-				final ItemDTO itemFound = rewardEJB.getReward(1).getItem();
+				ItemDTO itemFound = rewardEJB.getReward(1).getItem();
 				playerInventoryDB.addItems(itemFound);
+				itemFound = ResolveContentsUtils.resolveLabels(itemFound);
 				eventResultImage = "event-cc-21-left-4";
 				eventResultMessage = String.format("Entri nel corridoio e segui la scia di liquido rosso. Arrivi in una stanza dove si deve essere "
 						+ "consumata una battaglia tempo fa. Tutto &egrave; in disordine e a pezzi, ma nel macello trovi "
@@ -162,6 +164,7 @@ public class CCCrossroadsEvent implements EventActionOld {
 			if (percentTest(rollD100 + rollD12)) {
 				ItemDTO item = rewardEJB.getReward(1).getItem();
 				playerInventoryDB.addItems(item);
+				item = ResolveContentsUtils.resolveLabels(item);
 				eventResultImage = "event-cc-21-central-4";
 				eventResultMessage = String.format("Entri nel corridoio con la strada battuta. Dopo qualche metro ti ritrovi in una stanza buia, con la luce "
 						+ "fioca della lampada controlli in giro e capisci di essere circondata da vampiri. Fortunatamente stanno "
@@ -209,6 +212,7 @@ public class CCCrossroadsEvent implements EventActionOld {
 			if (percentTest(rollD100+rollD12/2)) {
 				ItemDTO item = rewardEJB.getReward(2).getItem();
 				playerInventoryDB.addItems(item);
+				item = ResolveContentsUtils.resolveLabels(item);
 				eventResultImage = "event-cc-21-right-3";
 				eventResultMessage = String.format("Percorri il corridoio, che non &egrave; poi tanto lungo, arrivi in una stanza con "
 						+ "un laghetto in mezzo e una cascatina sgorga dalla parete.<br/>"

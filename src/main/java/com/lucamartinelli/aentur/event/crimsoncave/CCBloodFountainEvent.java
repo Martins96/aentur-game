@@ -94,7 +94,7 @@ public class CCBloodFountainEvent implements EventActionOld {
 			adventureDB.increasePlayerHealth();
 			eventEffectDB.setActiveEffect("I tiri di <b>difesa</b> e <b>test armatura</b> sono aumentati di 1");
 			eventResultMessage = "La fontana sembra magica, appena bevi senti la forza scorrere dentro di te, la tua pelle"
-					+ " diventa piu' resistente e le ferite si rimarginano -Nuovo effetto attivo-";
+					+ " diventa piu' resistente e le ferite si rimarginano <br /> -Nuovo effetto attivo-";
 		}
 		
 		return eventResultMessage;

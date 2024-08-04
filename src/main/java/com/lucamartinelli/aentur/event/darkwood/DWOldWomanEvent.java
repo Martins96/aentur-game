@@ -163,6 +163,7 @@ public class DWOldWomanEvent implements EventAction {
 				} else {
 					playerInventoryDB.removeGold(gold);
 					playerInventoryDB.addItems(reward.getItem());
+					reward.resolveItemLabels();
 					eventResultImage = "event-dw-4-bet-7";
 					eventResultMessage = response + "Peschi una perlina verde, l'anziana ti chiede " + gold + " monete d'oro. "
 							+ "Porgi le monete e lei ti mostra un oggetto che nascondeva sotto il mantello. E' un "

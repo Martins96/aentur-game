@@ -137,7 +137,8 @@ public class DWLonelyHouseEvent implements EventAction {
 		} else {
 			if (percentTest(rollD100)) {
 				final RewardDTO reward = rewardEJB.getReward(1);
-				playerInventoryDB.addItems(reward.getItem());
+				playerInventoryDB.addItems(reward.getItem().clone());
+				reward.resolveItemLabels();
 				eventResultImage = "event-dw-5-house-7";
 				eventResultMessage = String.format("Entri nella casa e trovi una famiglia di topolini, il padre si presenta, dice di chiamarsi Mickey e "
 						+ "ti chiede se stai partecipando alla gara della regina, alla tua affermazione risponde: <i>'Sai, "

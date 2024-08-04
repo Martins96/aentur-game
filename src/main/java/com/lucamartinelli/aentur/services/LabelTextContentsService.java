@@ -37,6 +37,7 @@ public class LabelTextContentsService {
 			final String label = getContent(key, Optional.ofNullable(lang));
 			
 			if (label == null || label.isEmpty()) {
+				log.warnf("Unable to found text for key [%s]", key);
 				return Response.status(400).build();
 			}
 			

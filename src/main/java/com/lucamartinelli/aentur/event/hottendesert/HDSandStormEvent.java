@@ -19,7 +19,7 @@ public class HDSandStormEvent implements EventAction {
 
 	private final EventDTO event = new EventDTO("event-hd-13", 
 			"Mentre cammini senti il vento alzarsi e in poco tempo una tempesta di sabbia si crea dal nulla", 
-			new String[] {"Prosegui sulla strada", "Crea un rifugio Con del tessuto", "Cerca un riparo in giro"});
+			new String[] {"Prosegui sulla strada", "Crea un rifugio con del tessuto", "Cerca un riparo in giro"});
 	
 	@Override
 	public EventDTO getWelcomeMessage() {
@@ -116,6 +116,7 @@ public class HDSandStormEvent implements EventAction {
 			if (percentTest(rollD100)) {
 				final RewardDTO reward = rewardEJB.getReward(1);
 				playerInventoryDB.addItems(reward.getItem());
+				reward.resolveItemLabels();
 				eventResultImage = "event-hd-13-search-1";
 				eventResultMessage = String.format("Inizi a cercare un rifugio e noti una piccola caverna poco distante, la raggiungi e, mentre "
 						+ "attendi la fine della tempesta, provi ad esplorarla. Addentrandoti trovi un vecchio baule "
@@ -143,7 +144,7 @@ public class HDSandStormEvent implements EventAction {
 			if (percentTest(rollD100)) {
 				eventResultImage = "event-hd-13-search-4";
 				eventResultMessage = "Inizi a cercare un rifugio e noti una piccola caverna di ardesia poco distante. E' veramente "
-						+ "piccola, ma baster&agrave; per ripararti dal clima gelido";
+						+ "piccola, ma baster&agrave; per ripararti dal clima angusto";
 			} else {
 				adventureDB.decreasePlayerHealth();
 				eventResultImage = "event-hd-13-ignore-2";

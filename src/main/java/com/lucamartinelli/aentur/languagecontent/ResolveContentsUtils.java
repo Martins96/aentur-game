@@ -15,7 +15,6 @@ public class ResolveContentsUtils {
 	
 	private static String resolveKey(final String key) {
 		try {
-			log.debugf("Loading key [%s]", key);
 			final String content = LabelTextContentsService.getContent(key);
 			log.debugf("resolved key [%s] with value [%s]", key, ""+content);
 			return content;

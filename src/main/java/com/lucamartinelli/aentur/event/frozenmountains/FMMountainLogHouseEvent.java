@@ -102,8 +102,9 @@ public class FMMountainLogHouseEvent implements EventActionOld {
 			}
 		} else {
 			if (percentTest(rollD100)) {
-				final RewardDTO reward = rewardEJB.getReward(1);
+				RewardDTO reward = rewardEJB.getReward(1);
 				playerInventoryDB.addItems(reward.getItem());
+				reward.resolveItemLabels();
 				return "Entri nella casa e trovi una famiglia di topolini, il padre si presenta, dice di chiamarsi Oliver e "
 						+ "ti chiede se stai partecipando alla gara della regina, alla tua affermazione risponde: <i>'Sai, "
 						+ "un tempo ero un avventuriero come te, ma ora la mia vera avventura e' qui, in questa casa con la "

@@ -153,6 +153,7 @@ public class DWLittleLakeEvent implements EventAction {
 				} else {
 					final RewardDTO reward = rewardEJB.getReward(1);
 					playerInventoryDB.addItems(reward.getItem());
+					reward.resolveItemLabels();
 					if (!percentTest(rollD100)) {
 						adventureDB.decreasePlayerHealth();
 						eventResultImage = "event-dw-1-drink-1";
@@ -171,6 +172,7 @@ public class DWLittleLakeEvent implements EventAction {
 		} else {
 			final RewardDTO reward = rewardEJB.getReward(1);
 			playerInventoryDB.addItems(reward.getItem());
+			reward.resolveItemLabels();
 			eventResultImage = "event-dw-1-search-5";
 			eventResultMessage = String.format("Noti subito qualcosa sotterrato nella sabbia dentro al lago, "
 					+ "lo sollevi dall'acqua e ricevi un nuovo oggetto: <i>'%s'</i>", reward.getItem().getName());

@@ -84,6 +84,7 @@ public class FMMountainMineEvent implements EventActionOld {
 				if (percentTest(rollD100)) {
 					final RewardDTO reward = rewardEJB.getReward(1);
 					playerInventoryDB.addItems(reward.getItem());
+					reward.resolveItemLabels();
 					return "Trovi della roccia luccicante e la estrai spendendo del tempo. E' del mithril e "
 							+ "ti appresti subito a fonderlo per formare un buon equipaggiamento. Purtroppo "
 							+ "le tue doti di forgiatura non sono elevate e riesci a produrre solo dell'"
@@ -104,6 +105,7 @@ public class FMMountainMineEvent implements EventActionOld {
 			if (percentTest(rollD100+rollD12)) {
 				final RewardDTO reward = rewardEJB.getReward(2);
 				playerInventoryDB.addItems(reward.getItem());
+				reward.resolveItemLabels();
 				return "Estrai dell'ottimo ferro blu e del carbonio, ideale per una lega d'acciaio blu."
 						+ "Accendi forno fusorio e mentre si scalda trovi dei progetti di equipaggiamento "
 						+ "lasciati tra le cose dei minatori. Provi a seguirne uno e con molta fortuna "

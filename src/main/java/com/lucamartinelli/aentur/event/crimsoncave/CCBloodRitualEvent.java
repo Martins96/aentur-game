@@ -1,6 +1,7 @@
 package com.lucamartinelli.aentur.event.crimsoncave;
 
 import com.lucamartinelli.aentur.event.EventActionOld;
+import com.lucamartinelli.aentur.languagecontent.ResolveContentsUtils;
 import com.lucamartinelli.aentur.vo.EventDTO;
 import com.lucamartinelli.aentur.vo.ItemDTO;
 
@@ -13,7 +14,7 @@ import jakarta.ws.rs.core.Response;
 @ApplicationScoped
 public class CCBloodRitualEvent implements EventActionOld {
 	
-	private final EventDTO event = new EventDTO("event-cc-19", 
+	private final EventDTO event = new EventDTO("event-cc-22", 
 			"Entri in una stanza oscura e ti imbatti i alcune candele, sul terreno ci sono disegnati "
 			+ "due cerchi con un qualche liquido rosso. A lato vedi un leggio con un libro consunto aperto. "
 			+ "Sembra una qualche sorta di rituale. Sul libro c'&egrave; la procedura per eseguire completamente"
@@ -133,8 +134,9 @@ public class CCBloodRitualEvent implements EventActionOld {
 						+ "-Nuovo effetto attivo-";
 			} else {
 				final int itemlvl = getRandomInt(2)+1;
-				final ItemDTO item = rewardEJB.getReward(itemlvl).getItem();
-				playerInventoryDB.addItems(item);
+				ItemDTO item = rewardEJB.getReward(itemlvl).getItem();
+				playerInventoryDB.addItems(item.clone());
+				item = ResolveContentsUtils.resolveLabels(item);
 				eventResultMessage = String.format("Attivi il portale con facilit&agrave;. Posizioni come ultima cosa una candela "
 						+ "al centro del cerchio e questa inizia a brillare, dopo un lampo accecante vedi che al "
 						+ "suo posto &egrave; comparso un forziere. Lo apri e trovi un oggetto <b>%s</b>", item.getName());

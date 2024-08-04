@@ -127,6 +127,7 @@ public class ILIglooEvent implements EventAction {
 			if (percentTest(rollD100)) {
 				final RewardDTO reward = rewardEJB.getReward(1);
 				playerInventoryDB.addItems(reward.getItem());
+				reward.resolveItemLabels();
 				eventResultImage = "event-il-6-inspect-6";
 				eventResultMessage = "Dentro alla struttura trovi un vecchio baule coperto di ghiaccio, con un colpo lo apri e trovi"
 						+ " un vecchio oggetto: <b>" + reward.getItem().getName() + "</b>";
