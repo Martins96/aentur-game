@@ -13,6 +13,7 @@ import jakarta.enterprise.inject.spi.CDI;
 import jakarta.ws.rs.core.Response;
 
 
+@Deprecated
 public interface EventActionOld {
 	
 	Logger log=Logger.getLogger(EventActionOld.class);

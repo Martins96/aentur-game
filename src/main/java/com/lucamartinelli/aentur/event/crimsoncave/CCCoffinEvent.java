@@ -1,17 +1,22 @@
 package com.lucamartinelli.aentur.event.crimsoncave;
 
-import com.lucamartinelli.aentur.event.EventActionOld;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
+import com.lucamartinelli.aentur.event.EventAction;
 import com.lucamartinelli.aentur.vo.EventDTO;
+import com.lucamartinelli.aentur.vo.EventResponseVO;
 import com.lucamartinelli.aentur.vo.ItemDTO;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
-import jakarta.ws.rs.core.Response;
 
 
 @Named("event-cc-20")
 @ApplicationScoped
-public class CCCoffinEvent implements EventActionOld {
+public class CCCoffinEvent implements EventAction {
 	
 	private final EventDTO event = new EventDTO("event-cc-20", 
 			"In una stretta insenatura trovi una bara in legno con attorno delle candele."
@@ -26,22 +31,22 @@ public class CCCoffinEvent implements EventActionOld {
 	}
 
 	@Override
-	public Response apply(int choice, int rollD100, int rollD12) {
+	public ImmutablePair<EventResponseVO, Entry<Integer, String>> apply(int choice, int rollD100, int rollD12) {
 		switch (choice) {
 		case 1:
-			return Response.ok(ignoreAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(ignoreAction(rollD100, rollD12), null);
 		case 2:
-			return Response.ok(destroyAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(destroyAction(rollD100, rollD12), null);
 		case 3:
-			return Response.ok(scavageAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(scavageAction(rollD100, rollD12), null);
 
 		default:
-			return Response.status(400, "Invalid choice id").build();
+			return ImmutablePair.of(null, Map.entry(400, "Invalid choice id"));
 		}
 		
 	}
 	
-	private String ignoreAction(int rollD100, int rollD12) {
+	private EventResponseVO ignoreAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -64,10 +69,10 @@ public class CCCoffinEvent implements EventActionOld {
 			eventResultMessage = "Decidi di ignorare la bara e qualsiasi cosa contenga";
 		}
 		
-		return eventResultMessage;
+		return new EventResponseVO(eventResultMessage, eventResultImage);
 	}
 
-	private String destroyAction(int rollD100, int rollD12) {
+	private EventResponseVO destroyAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -158,10 +163,10 @@ public class CCCoffinEvent implements EventActionOld {
 					+ " -Nuovo effetto attivo-";
 		}
 		
-		return eventResultMessage;
+		return new EventResponseVO(eventResultMessage, eventResultImage);
 	}
 	
-	private String scavageAction(int rollD100, int rollD12) {
+	private EventResponseVO scavageAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -230,7 +235,7 @@ public class CCCoffinEvent implements EventActionOld {
 			}
 		}
 		
-		return eventResultMessage;
+		return new EventResponseVO(eventResultMessage, eventResultImage);
 	}
 
 }

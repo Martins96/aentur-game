@@ -3,7 +3,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { firstValueFrom, Observable } from 'rxjs';
 import { RestService } from 'src/app/rest-service';
-import { EventChoiceVO, EventVO } from 'src/app/vo/event-vo';
+import { EventChoiceVO, EventResponseVO, EventVO } from 'src/app/vo/event-vo';
 import { CrimsoncavePopupFailureComponent } from '../popup/crimsoncave-popup-failure/crimsoncave-popup-failure.component';
 
 @Component({
@@ -14,77 +14,24 @@ import { CrimsoncavePopupFailureComponent } from '../popup/crimsoncave-popup-fai
 export class CrimsoncaveScenarioEventComponent implements OnInit {
 
 	@Output()
-	  endScenario: EventEmitter<boolean>=new EventEmitter();
+	endScenario: EventEmitter<boolean>=new EventEmitter();
 
-	  private location: string = "crimsoncave";
+	location: string = "crimsoncave";
 
-	  disableButton:boolean = false;
 
-	  event: EventVO|undefined=undefined;
-	  eventResult: string|undefined=undefined;
+	event: EventVO|undefined=undefined;
+	eventResultMessage: string|undefined=undefined;
+	eventResultImage: string|undefined=undefined;
 
-	  constructor(private rest: RestService,
-	    private dialogFail: MatDialog) { }
+	constructor(private rest: RestService) { }
 
-	  ngOnInit(): void {
-	    this.loadRandomEvent();
-	  }
+	ngOnInit(): void {
+		this.loadRandomEvent();
+	}
 
-	  async nextStepAction(): Promise<void> {
-	    this.disableButton = true;
-	    const adventureFailed: boolean = await this.isAdventureFailed();
-	    if (adventureFailed) {
-	      this.openDialogFailure();
-	    } else {
-	      await this.nextPathStep();
-	      this.endScenario.emit(true);
-	    }
-	  }
-
-	  async nextPathStep(): Promise<void> {
-	    const observ: Observable<HttpResponse<void>> = this.rest
-	        .sendGet<void>("/api/player/increase-step", new HttpHeaders({
-	          "accept":"application/json"
-	        }));
-
-	    await firstValueFrom(observ).then(
-	      resp => {
-	        if (!resp || !resp.ok) {
-	          console.error("Call BE failed ", resp);
-	          return;
-	        }
-	      }, err => {
-	        console.error("Call BE failed: ", err);
-	      }
-	    )
-	  }
-
-	  async isAdventureFailed(): Promise<boolean> {
-	    const observ: Observable<HttpResponse<boolean>> = this.rest
-	        .sendGet<boolean>("/api/adventure/isfailed", new HttpHeaders({
-	          'accept': 'application/json'
-	        }));
-
-	    let result: boolean=false;
-	    await firstValueFrom(observ).then(
-	      resp => {
-	        if (!resp || !resp.ok || resp.body == null) {
-	          console.error("Error calling BE: ", resp);
-	          return;
-	        }
-	        result = resp.body;
-	      },
-	      err => {
-	        console.error("Error calling BE", err);
-	      }
-	    )
-
-	    return result;
-	  }
-
-	  loadRandomEvent() {
+	loadRandomEvent() {
 	    const observ: Observable<HttpResponse<EventVO>> = this.rest
-	        .sendGet<EventVO>("/api/event/get-random-event/"+this.location, new HttpHeaders({
+	        .sendGet<EventVO>("/api/event/get-random-event-new/"+this.location, new HttpHeaders({
 	          "accept": "application/json"
 	        }));
 
@@ -100,9 +47,9 @@ export class CrimsoncaveScenarioEventComponent implements OnInit {
 	        console.error("Call BE failed: ", err);
 	      }
 	    )
-	  }
+	}
 
-	  sendChoice(i: number, rolld12Str: string, rolld100Str: string) {
+	sendChoice(i: number, rolld12Str: string, rolld100Str: string) {
 	    if (!rolld12Str || !parseInt(rolld12Str)) {
 	      alert("Il campo del tiro D12 deve essere valorizzato con un numero")
 	      return;
@@ -134,36 +81,29 @@ export class CrimsoncaveScenarioEventComponent implements OnInit {
 	    eventRequest.setRollD12= rolld12;
 	    eventRequest.setRollD100= rolld100;
 
-	    const observ: Observable<HttpResponse<string>> = this.rest
-	        .sendPostGetRawText("/api/event/apply-effect", eventRequest, new HttpHeaders({
+	    const observ: Observable<HttpResponse<EventResponseVO>> = this.rest
+	        .sendPost("/api/event/apply-effect-new", eventRequest, new HttpHeaders({
 	          "content-type": "application/json"
-	        }));
+	    	})
+		);
 
-	    firstValueFrom(observ).then(
-	      resp => {
-	        if (!resp || !resp.ok || !resp.body) {
-	          console.error("Call BE failed ", resp);
-	          return;
-	        }
-	        
-	        this.eventResult = resp.body;
-	      }, err => {
-	        console.error("Call BE failed: ", err);
-	      }
-	    )
-	  }
+		firstValueFrom(observ).then(
+			resp => {
+			if (!resp || !resp.ok || !resp.body) {
+				console.error("Call BE failed ", resp);
+				return;
+			}
+				  
+			this.eventResultMessage = resp.body.eventResult;
+			this.eventResultImage = 'assets/' + this.location + '/events/results/' + resp.body.imageResultName + '.jpg';
+			}, err => {
+			    console.error("Call BE failed: ", err);
+			}
+		)
+	}
 
-	  openDialogFailure() {
-	    const dialogConfig = new MatDialogConfig();
-
-	    dialogConfig.disableClose = true;
-	    dialogConfig.autoFocus = true;
-	    dialogConfig.width = "95%";
-	    dialogConfig.height = "95%";
-	    dialogConfig.enterAnimationDuration = "1000ms"
-	    dialogConfig.closeOnNavigation = true;
-
-	    this.dialogFail.open(CrimsoncavePopupFailureComponent, dialogConfig);
-	  }
+	endScenarioFnc(event: boolean): void {
+		this.endScenario.emit(event);
+	}
 
 }

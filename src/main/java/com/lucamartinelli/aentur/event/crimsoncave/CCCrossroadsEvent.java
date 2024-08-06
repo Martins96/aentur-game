@@ -1,18 +1,23 @@
 package com.lucamartinelli.aentur.event.crimsoncave;
 
-import com.lucamartinelli.aentur.event.EventActionOld;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
+import com.lucamartinelli.aentur.event.EventAction;
 import com.lucamartinelli.aentur.languagecontent.ResolveContentsUtils;
 import com.lucamartinelli.aentur.vo.EventDTO;
+import com.lucamartinelli.aentur.vo.EventResponseVO;
 import com.lucamartinelli.aentur.vo.ItemDTO;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
-import jakarta.ws.rs.core.Response;
 
 
 @Named("event-cc-21")
 @ApplicationScoped
-public class CCCrossroadsEvent implements EventActionOld {
+public class CCCrossroadsEvent implements EventAction {
 	
 	private final EventDTO event = new EventDTO("event-cc-21", 
 			"Dopo un corridoio roccioso ti trovi in una piccola stanza. Davanti a te ci sono "
@@ -32,22 +37,22 @@ public class CCCrossroadsEvent implements EventActionOld {
 	}
 
 	@Override
-	public Response apply(int choice, int rollD100, int rollD12) {
+	public ImmutablePair<EventResponseVO, Entry<Integer, String>> apply(int choice, int rollD100, int rollD12) {
 		switch (choice) {
 		case 1:
-			return Response.ok(leftAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(leftAction(rollD100, rollD12), null);
 		case 2:
-			return Response.ok(centralAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(centralAction(rollD100, rollD12), null);
 		case 3:
-			return Response.ok(rightAction(rollD100, rollD12)).build();
+			return ImmutablePair.of(rightAction(rollD100, rollD12), null);
 
 		default:
-			return Response.status(400, "Invalid choice id").build();
+			return ImmutablePair.of(null, Map.entry(400, "Invalid choice id"));
 		}
 		
 	}
 	
-	private String leftAction(int rollD100, int rollD12) {
+	private EventResponseVO leftAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -119,10 +124,10 @@ public class CCCrossroadsEvent implements EventActionOld {
 			}
 		}
 		
-		return eventResultMessage;
+		return new EventResponseVO(eventResultMessage, eventResultImage);
 	}
 
-	private String centralAction(int rollD100, int rollD12) {
+	private EventResponseVO centralAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -183,10 +188,10 @@ public class CCCrossroadsEvent implements EventActionOld {
 			}
 		}
 		
-		return eventResultMessage;
+		return new EventResponseVO(eventResultMessage, eventResultImage);
 	}
 	
-	private String rightAction(int rollD100, int rollD12) {
+	private EventResponseVO rightAction(int rollD100, int rollD12) {
 		String eventResultMessage;
 		String eventResultImage;
 		
@@ -257,7 +262,7 @@ public class CCCrossroadsEvent implements EventActionOld {
 			}
 		}
 		
-		return eventResultMessage;
+		return new EventResponseVO(eventResultMessage, eventResultImage);
 	}
 
 }
