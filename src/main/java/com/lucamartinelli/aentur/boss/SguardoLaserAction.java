@@ -11,14 +11,12 @@ public class SguardoLaserAction extends BossAction {
 	public BossActionResultVO executeAction(int playerD20) {
 		action.setImg(getImg());
 		if (playerD20 < 10) {
-			action.setEffect("Lo sguardo inceneritore del mostro ti colpisce prima che tu possa accorgertene, "
-					+ "ti provoca diverse ustioni attraverso la tua armatura");
+			action.setEffect("boss.action.heatvision.action1");
 			adventureDB.decreasePlayerHealth();
 		} else if (playerD20 < 16) {
-			action.setEffect("Rapidamente ti ripari dietro un masso e l'attacco del mostro risulta nullo");
+			action.setEffect("boss.action.heatvision.action2");
 		} else {
-			action.setEffect("Con un pezzo di metallo rifletti il raggio e lo rispedisci nell'occhio del "
-					+ "mostro accecandolo momentaneamente, giusto per darti il tempo di affondare un tuo attacco");
+			action.setEffect("boss.action.heatvision.action3");
 			adventureDB.decreaseBossHealth();
 		}
 		return action;

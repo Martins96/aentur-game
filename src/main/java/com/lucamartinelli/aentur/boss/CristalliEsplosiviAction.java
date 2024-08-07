@@ -11,15 +11,12 @@ public class CristalliEsplosiviAction extends BossAction {
 	public BossActionResultVO executeAction(int playerD20) {
 		action.setImg(getImg());
 		if (playerD20 < 13) {
-			action.setEffect("I cristalli ti circondano ed esplodono ferendoti senza possibilita' di "
-					+ "fuggire da alcuna parte");
+			action.setEffect("boss.action.explosiveglass.action1");
 			adventureDB.decreasePlayerHealth();
 		} else if (playerD20 < 18) {
-			action.setEffect("Ti abbassi e lasci che i cristalli vadano dietro e lontano da te evitando"
-					+ " che ti colpiscano");
+			action.setEffect("boss.action.explosiveglass.action2");
 		} else {
-			action.setEffect("Con grande precisione rispedisci alcuni cristalli al mittente schivando gli altri"
-					+ " l'esplosione danneggia il mostro");
+			action.setEffect("boss.action.explosiveglass.action3");
 			adventureDB.decreaseBossHealth();
 		}
 		return action;

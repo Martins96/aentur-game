@@ -11,13 +11,12 @@ public class FrustataAction extends BossAction {
 	public BossActionResultVO executeAction(int playerD20) {
 		action.setImg(getImg());
 		if (playerD20 < 8) {
-			action.setEffect("La frusta &egrave; velocissima e in pochi secondi ti colpisce pi&ugrave; volte");
+			action.setEffect("boss.action.whip.action1");
 			adventureDB.decreasePlayerHealth();
 		} else if (playerD20 < 14) {
-			action.setEffect(" Con fatica riesci a schivare ogni colpo della frusta uscendone senza ferite");
+			action.setEffect("boss.action.whip.action2");
 		} else {
-			action.setEffect("Dopo il primo colpo di frusta ti aggrappi ad essa e sfrutti il richiamo dell'arma"
-					+ " come spinta per un affondo della tua arma colpendo il mostro con forza");
+			action.setEffect("boss.action.whip.action3");
 			adventureDB.decreaseBossHealth();
 		}
 		return action;
