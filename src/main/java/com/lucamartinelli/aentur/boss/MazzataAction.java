@@ -11,20 +11,16 @@ public class MazzataAction extends BossAction {
 	public BossActionResultVO executeAction(int playerD20) {
 		action.setImg(getImg());
 		if (playerD20 < 3) {
-			action.setEffect("L'enorme mazza e' troppo grande e veloce per essere schivata e ti colpisce "
-					+ "completamente, i danni inflitti sono critici");
+			action.setEffect("boss.action.blow.action1");
 			adventureDB.decreasePlayerHealth();
 			adventureDB.decreasePlayerHealth();
 		} else if (playerD20 < 11) {
-			action.setEffect("Nonostante la tua velocita' schivi a malapena il colpo. La sua arma comunque "
-					+ "riesce a beccare il tuo braccio ferendoti");
+			action.setEffect("boss.action.blow.action2");
 			adventureDB.decreasePlayerHealth();
 		} else if (playerD20 < 17) {
-			action.setEffect("Con protezza di riflessi capisci la traettoria del colpo e lo schivi senza"
-					+ " particolari difficolta'");
+			action.setEffect("boss.action.blow.action3");
 		} else {
-			action.setEffect("Corri verso i piedi del gigante destabilizzandolo, la mazzata direttaa te finisce"
-					+ " invece sul suo alluce e te ne esci illesa");
+			action.setEffect("boss.action.blow.action4");
 			adventureDB.decreaseBossHealth();
 		}
 		return action;

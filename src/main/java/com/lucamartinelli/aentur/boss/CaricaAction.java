@@ -11,21 +11,15 @@ public class CaricaAction extends BossAction {
 	public BossActionResultVO executeAction(int playerD20) {
 		action.setImg(getImg());
 		if (playerD20 < 5) {
-			action.setEffect("La furia del mostro ti travolge scaraventandoti a metri di distanza "
-					+ "con pesanti ferite");
+			action.setEffect("boss.action.charge.action1");
 			adventureDB.decreasePlayerHealth();
 		} else if (playerD20 < 12) {
-			action.setEffect("Con rapidita' riesci a schivare la carica del mostro evitando di subire "
-					+ "danni");
+			action.setEffect("boss.action.charge.action2");
 		} else if (playerD20 < 19) {
-			action.setEffect("Di ingegno corri verso una grande roccia, il mostro ti carica e tu schivi"
-					+ " pochi istanti prima che ti colpisca. Il nemico non ha tempo per fermare la sua corsa"
-					+ " e si schianta contro l'enorme roccia rimanendo ferito.");
+			action.setEffect("boss.action.charge.action3");
 			adventureDB.decreaseBossHealth();
 		} else {
-			action.setEffect("Con enorme maestria salti sulla testa del mostro in corsa. con la tua arma "
-					+ "infilzi il nemico al collo per scivolare per tutta la sua schiena creando un'enorme"
-					+ " ferita critica");
+			action.setEffect("boss.action.charge.action4");
 			adventureDB.decreaseBossHealth();
 			adventureDB.decreaseBossHealth();
 		}
