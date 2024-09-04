@@ -81,7 +81,8 @@ public class Boss {
 			return null;
 		}
 		
-		return bossEJB.selectAndExecuteAction(NumberUtils.toInt(rollD20));
+		final BossActionResultVO result = bossEJB.selectAndExecuteAction(NumberUtils.toInt(rollD20));
+		return ResolveContentsUtils.resolveLabels(result);
 	}
 	
 	@Path("reward")

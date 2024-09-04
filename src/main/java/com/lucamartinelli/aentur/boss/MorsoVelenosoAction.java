@@ -11,19 +11,16 @@ public class MorsoVelenosoAction extends BossAction {
 	public BossActionResultVO executeAction(int playerD20) {
 		action.setImg(getImg());
 		if (playerD20 < 3) {
-			action.setEffect("Il morso non solo ti fa del danno, ma anche il veleno inizia a fare effetto "
-					+ "e presto senti la testa girare, hai subito danni critici");
+			action.setEffect("boss.action.poisonbite.action1");
 			adventureDB.decreasePlayerHealth();
 			adventureDB.decreasePlayerHealth();
 		} else if (playerD20 < 9) {
-			action.setEffect("Il nemico riesce a morderti di striscio, ma il suo veleno non fa in tempo ad agire,"
-					+ " superi tutto con una piccola ferita");
+			action.setEffect("boss.action.poisonbite.action2");
 			adventureDB.decreasePlayerHealth();
 		} else if (playerD20 < 14) {
-			action.setEffect("Respingi con forza l'attacco del mostro che non e' in grado di affondare i denti "
-					+ "contro di te");
+			action.setEffect("boss.action.poisonbite.action3");
 		}else {
-			action.setEffect("Schivi il morso con agilita' e colpisci al fianco il nemico che subisce una ferita");
+			action.setEffect("boss.action.poisonbite.action4");
 			adventureDB.decreaseBossHealth();
 		}
 		

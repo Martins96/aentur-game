@@ -11,14 +11,12 @@ public class OndataPipistrelliAction extends BossAction {
 	public BossActionResultVO executeAction(int playerD20) {
 		action.setImg(getImg());
 		if (playerD20 < 10) {
-			action.setEffect("La nube nera di pipistrelli si scaraventa contro di te, quelle piccole creature ti"
-					+ " feriscono con artigli e denti");
+			action.setEffect("boss.action.batflock.action1");
 			adventureDB.decreasePlayerHealth();
 		} else if (playerD20 < 16) {
-			action.setEffect("Riesci a bloccare l'attacco facendo breccia nel gruppo di pipistrelli, ne esci illesa");
+			action.setEffect("boss.action.batflock.action2");
 		} else {
-			action.setEffect("Con furbizia accendi una torcia e spaventi il gruppo di pipistrelli che torna indietro, "
-					+ "Nella confuzione attacchi il mostro ferendolo");
+			action.setEffect("boss.action.batflock.action3");
 			adventureDB.decreaseBossHealth();
 		}
 		return action;

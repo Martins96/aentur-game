@@ -11,14 +11,12 @@ private final BossActionResultVO action = BossActionListDB.ACTION_TEMPLATES[13];
 	public BossActionResultVO executeAction(int playerD20) {
 		action.setImg(getImg());
 		if (playerD20 < 9) {
-			action.setEffect("Il tagliente attacco ti provoca una ferita, la tua armatura non e' stata in grado"
-					+ " di proteggerti a sufficienza");
+			action.setEffect("boss.action.slash.action1");
 			adventureDB.decreasePlayerHealth();
 		} else if (playerD20 < 16) {
-			action.setEffect("Blocchi l'attacco con forza e non subisci ferite, solo tante scintille nello scontro");
+			action.setEffect("boss.action.slash.action2");
 		} else {
-			action.setEffect("Schivi in velocita' il colpo e approfitti dell'arma del nemico, che era rimasta infilzata"
-					+ " nel terreno, per attaccare il mostro con successo");
+			action.setEffect("boss.action.slash.action3");
 			adventureDB.decreaseBossHealth();
 		}
 		

@@ -11,14 +11,12 @@ public class DardoMagicoAction extends BossAction {
 	public BossActionResultVO executeAction(int playerD20) {
 		action.setImg(getImg());
 		if (playerD20 < 10) {
-			action.setEffect("Il dardo magico ti colpisce in pieno tagliandoti, la tua corazza sembra non aver"
-					+ " attutito la forza magica del colpo");
+			action.setEffect("boss.action.magicdart.action1");
 			adventureDB.decreasePlayerHealth();
 		} else if (playerD20 < 19) {
-			action.setEffect("Riesci ad assorbire il colpo senza subire danni, la magia sparisce e resti incolume");
+			action.setEffect("boss.action.magicdart.action2");
 		} else {
-			action.setEffect("Con velocita' noti che il mostro dopo aver lanciato la magia deve riposare un momento."
-					+ " Schivi rapidamente il colpo e sfrutti la debolezza per attaccare il nemico");
+			action.setEffect("boss.action.magicdart.action3");
 			adventureDB.decreaseBossHealth();
 		}
 		return action;

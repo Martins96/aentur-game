@@ -92,7 +92,7 @@ public class DWOldWomanEvent implements EventAction {
 			} else {
 				eventResultImage = "event-dw-4-bet-2";
 				eventResultMessage = response + "Ma non appena ti avvicini vedi degli occhi rossi e dei denti da vampiro nel suo ghigno. "
-						+ "Corn rapidita' spingi la donna e scappi velocemente. <i>Sei stato furbo questa volta, la sorte "
+						+ "Con rapidit&agrave; spingi la donna e scappi velocemente. <i>Sei stato furbo questa volta, la sorte "
 						+ "ti e' stata favorevole'</i>";
 				return new EventResponseVO(eventResultMessage, eventResultImage);
 			}

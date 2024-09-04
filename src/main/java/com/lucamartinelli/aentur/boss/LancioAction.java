@@ -11,13 +11,12 @@ public class LancioAction extends BossAction {
 	public BossActionResultVO executeAction(int playerD20) {
 		action.setImg(getImg());
 		if (playerD20 < 9) {
-			action.setEffect("Il lancio del nemico ti colpisce con precisione, subusci delle ferite");
+			action.setEffect("boss.action.throwing.action1");
 			adventureDB.decreasePlayerHealth();
 		} else if (playerD20 < 17) {
-			action.setEffect("Rotolando riesci a schivare il colpo del nemico e non subire danni");
+			action.setEffect("boss.action.throwing.action2");
 		} else {
-			action.setEffect("Il tiro del nemico ha una scarsa precisione e ti lascia il tempo di avvicinarti "
-					+ "e attaccare, riesci a ferire il nemico");
+			action.setEffect("boss.action.throwing.action3");
 			adventureDB.decreaseBossHealth();
 		}
 		

@@ -68,6 +68,10 @@ public class BossActionResultVO implements Serializable {
 	public int hashCode() {
 		return Objects.hash(description, effect, id, img, title);
 	}
+	
+	public BossActionResultVO clone() {
+		return new BossActionResultVO(id, title, description, effect, img);
+	}
 
 	@Override
 	public boolean equals(Object obj) {

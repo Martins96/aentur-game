@@ -4,6 +4,7 @@ import org.jboss.logging.Logger;
 
 import com.lucamartinelli.aentur.services.LabelTextContentsService;
 import com.lucamartinelli.aentur.vo.AttackDTO;
+import com.lucamartinelli.aentur.vo.BossActionResultVO;
 import com.lucamartinelli.aentur.vo.BossDTO;
 import com.lucamartinelli.aentur.vo.DefenseDTO;
 import com.lucamartinelli.aentur.vo.ItemDTO;
@@ -106,6 +107,25 @@ public class ResolveContentsUtils {
 		
 		
 		return bossNew;
+	}
+	
+	public static BossActionResultVO resolveLabels(final BossActionResultVO actResult) {
+		if (actResult == null)
+			return null;
+		final BossActionResultVO monsterNew = actResult.clone();
+		
+		if (monsterNew.getDescription() != null) {
+			monsterNew.setDescription(resolveKey(monsterNew.getDescription()));
+		}
+		if (monsterNew.getEffect() != null) {
+			monsterNew.setEffect(resolveKey(actResult.getEffect()));
+		}
+		if (monsterNew.getTitle() != null) {
+			monsterNew.setTitle(resolveKey(actResult.getTitle()));
+		}
+		
+		
+		return monsterNew;
 	}
 	
 }
