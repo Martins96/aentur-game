@@ -10,6 +10,7 @@ import com.lucamartinelli.aentur.languagecontent.ResolveContentsUtils;
 import com.lucamartinelli.aentur.vo.EventDTO;
 import com.lucamartinelli.aentur.vo.EventResponseVO;
 import com.lucamartinelli.aentur.vo.ItemDTO;
+import com.lucamartinelli.aentur.vo.RewardDTO;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
@@ -124,8 +125,10 @@ public class CCBloodRitualEvent implements EventAction {
 						+ "50 grammi d'oro. Sono circa 6 monete.<br />";
 				if (playerInventoryDB.getGold() > 6L) {
 					playerInventoryDB.removeGold(6L);
-					final ItemDTO item = rewardEJB.getReward(2).getItem();
-					playerInventoryDB.addItems(item);
+					final RewardDTO reward = rewardEJB.getReward(2);
+					playerInventoryDB.addItems(reward.getItem());
+					reward.resolveItemLabels();
+					final ItemDTO item = reward.getItem();
 					eventResultImage = "event-cc-22-complete-5";
 					eventResultMessage = response.concat(String.format("Posizioni le monete al centro del cerchio e queste iniziano a fondere sprigionando un "
 							+ "denso fumo. Da questo fumo compare una strana figura che si presenta: <i>'Mortale, hai evocato "

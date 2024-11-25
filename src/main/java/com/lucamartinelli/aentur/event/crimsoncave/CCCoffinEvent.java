@@ -6,9 +6,11 @@ import java.util.Map.Entry;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import com.lucamartinelli.aentur.event.EventAction;
+import com.lucamartinelli.aentur.languagecontent.ResolveContentsUtils;
 import com.lucamartinelli.aentur.vo.EventDTO;
 import com.lucamartinelli.aentur.vo.EventResponseVO;
 import com.lucamartinelli.aentur.vo.ItemDTO;
+import com.lucamartinelli.aentur.vo.RewardDTO;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
@@ -140,8 +142,9 @@ public class CCCoffinEvent implements EventAction {
 				} else {
 					itemLvl = 1;
 				}
-				final ItemDTO itemFound = rewardEJB.getReward(itemLvl).getItem();
+				ItemDTO itemFound = rewardEJB.getReward(itemLvl).getItem();
 				playerInventoryDB.addItems(itemFound);
+				itemFound = ResolveContentsUtils.resolveLabels(itemFound);
 				eventResultImage = "event-cc-20-destroy-5";
 				eventResultMessage = String.format("Utilizzi le candele vicino alla bara per innescare un fal&ograve; e distruggere il sarcofago. "
 						+ "Il legno prende fuoco rapidamente e in pochi minuti brucia completamente. Quando il fuoco "
@@ -209,18 +212,20 @@ public class CCCoffinEvent implements EventAction {
 			}
 		} else {
 			if (percentTest(rollD100-10-rollD12)) {
-				ItemDTO item = rewardEJB.getReward(2).getItem();
-				playerInventoryDB.addItems(item);
+				final RewardDTO reward = rewardEJB.getReward(2);
+				playerInventoryDB.addItems(reward.getItem());
+				reward.resolveItemLabels();
 				eventResultImage = "event-cc-20-scavange-4";
 				eventResultMessage = String.format("Con forza apri la bara e all'interno trovi un antico artefatto. Guadagni "
-						+ "<i>'%s'</i>", item.getName());
+						+ "<i>'%s'</i>", reward.getItem().getName());
 			} else {
 				if (percentTest(rollD100)) {
-					ItemDTO item = rewardEJB.getReward(1).getItem();
-					playerInventoryDB.addItems(item);
+					final RewardDTO reward = rewardEJB.getReward(1);
+					playerInventoryDB.addItems(reward.getItem());
+					reward.resolveItemLabels();
 					eventResultImage = "event-cc-20-scavange-4";
 					eventResultMessage = String.format("Con forza apri la bara e all'interno trovi un antico artefatto. Guadagni "
-							+ "<i>'%s'</i>", item.getName());
+							+ "<i>'%s'</i>", reward.getItem().getName());
 				} else if (percentTest(rollD100 + rollD12)) {
 					final long gold = getRandomInt(5) + 3;
 					playerInventoryDB.addGold(gold);
