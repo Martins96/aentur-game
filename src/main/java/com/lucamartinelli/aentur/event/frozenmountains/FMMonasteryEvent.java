@@ -284,7 +284,7 @@ public class FMMonasteryEvent implements EventAction {
 						+ "la tua storia mi ha colpito e voglio regalarti questo oggetto. Prendilo, per me sara' "
 						+ "come aver chiuso con la mia vecchia vita e aver iniziato definitivamente con la via della "
 						+ "carita'</i>\". Dalle sua mani compare '<b>" + item.getName() + "</b>' che ti dona con "
-						+ "il sorriso. Ringrazi cordialmente e riprendi la tua strada";
+						+ "il sorriso. Ringrazi cordialmente e riprendi la tua strada.";
 			} else {
 				if (percentTest(rollD100)) {
 					String preMsg = "Ti avvicini al cortile, quando incontri un topino che rinvasa alcune piante. Ti presenti "
