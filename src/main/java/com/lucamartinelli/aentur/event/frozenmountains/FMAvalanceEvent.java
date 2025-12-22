@@ -32,17 +32,13 @@ public class FMAvalanceEvent implements EventAction {
 
 	@Override
 	public ImmutablePair<EventResponseVO, Entry<Integer, String>> apply(int choice, int rollD100, int rollD12) {
-		switch (choice) {
-		case 1:
-			return ImmutablePair.of(runForwardAction(rollD100, rollD12), null);
-		case 2:
-			return ImmutablePair.of(runDownAction(rollD100, rollD12), null);
-		case 3:
-			return ImmutablePair.of(exploreAction(rollD100, rollD12), null);
+		return switch (choice) {
+		case 1 -> ImmutablePair.of(runForwardAction(rollD100, rollD12), null);
+		case 2 -> ImmutablePair.of(runDownAction(rollD100, rollD12), null);
+		case 3 -> ImmutablePair.of(exploreAction(rollD100, rollD12), null);
 
-		default:
-			return ImmutablePair.of(null, Map.entry(400, "Invalid choice id"));
-		}
+		default -> ImmutablePair.of(null, Map.entry(400, "Invalid choice id"));
+		};
 	}
 
 	
